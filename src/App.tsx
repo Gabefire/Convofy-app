@@ -5,6 +5,7 @@ import Header from "./components/header";
 import Forum from "./components/forum";
 import Login from "./components/login";
 import SignUp from "./components/sign-up";
+import "./App.css";
 
 function App() {
   return (

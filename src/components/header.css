@@ -1,5 +1,105 @@
 #header {
+  display: grid;
+  grid-template-columns: 1fr 3fr 2fr;
+  color: white;
+  height: 60px;
+  background-color: rgb(63, 62, 62);
+  width: 100%;
+}
+
+#title {
+  margin: 0;
   display: flex;
-  justify-content: space-around;
-  height: 30px;
+  gap: 10px;
+}
+
+img {
+  padding: 0;
+  width: 2.5rem;
+}
+
+#title h3 {
+  height: 0px;
+}
+#drop-down-menu {
+  align-self: center;
+}
+
+#icons {
+  display: flex;
+  justify-content: space-between;
+  width: 15vw;
+  min-width: 130px;
+  align-self: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+
+#home-icons {
+  display: flex;
+  text-decoration: none;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#home-icons div {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+}
+
+#menu {
+  display: none;
+}
+
+#search-items {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+
+#search-bar {
+  width: 35vw;
+  display: flex;
+  align-self: center;
+  border: 2px solid gray;
+  background-color: gray;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+#search-bar img {
+  width: 2rem;
+}
+
+#search-bar input {
+  background-color: gray;
+  border: none;
+  font-family: inherit;
+  font-size: 1.2rem;
+  width: 30vw;
+}
+
+#search-bar input:focus {
+  outline: none;
+}
+
+#user-icons {
+  display: flex;
+  justify-content: end;
+  padding-right: 5vw;
+}
+
+#user-icons button {
+  height: 40px;
+  border-radius: 20px;
+  width: 80px;
+  align-self: center;
+  border: none;
+  background-color: rgb(255, 51, 0);
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: inherit;
+  color: white;
 }
