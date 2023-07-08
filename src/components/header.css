@@ -5,6 +5,8 @@
   height: 60px;
   background-color: rgb(63, 62, 62);
   width: 100%;
+  position: absolute;
+  top: 0;
 }
 
 #title {
@@ -60,7 +62,8 @@ img {
 }
 
 #search-bar {
-  width: 35vw;
+  min-width: 280px;
+  width: 30vw;
   display: flex;
   align-self: center;
   border: 2px solid gray;
@@ -88,6 +91,7 @@ img {
 #user-icons {
   display: flex;
   justify-content: end;
+  gap: 20px;
   padding-right: 5vw;
 }
 
@@ -102,4 +106,12 @@ img {
   font-weight: bold;
   font-family: inherit;
   color: white;
+}
+
+#add-forum {
+  color: white;
+  font-size: 3rem;
+  align-self: center;
+  cursor: pointer;
+  text-decoration: none;
 }

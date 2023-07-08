@@ -8,14 +8,14 @@ import magnify from "../assets/magnify.svg";
 
 export default function Header() {
   return (
-    <div id="header">
+    <nav id="header">
       <div id="title">
         <img src={mainIcon} alt="site symbol" />
         <h3>Fake Forum</h3>
       </div>
 
       <div id="search-items">
-        <nav id="drop-down-menu">
+        <div id="drop-down-menu">
           <div id="icons">
             <Link to="/home">
               <div id="home-icons">
@@ -28,7 +28,7 @@ export default function Header() {
           <div id="menu">
             <DropDownNav />
           </div>
-        </nav>
+        </div>
         <div id="search-bar">
           <img src={magnify} />
           <input type="text" />
@@ -37,8 +37,11 @@ export default function Header() {
 
       {/*If login show name and icon*/}
       <div id="user-icons">
+        <Link to="/create-forum">
+          <div id="add-forum">+</div>
+        </Link>
         <button id="login-btn">Login</button>
       </div>
-    </div>
+    </nav>
   );
 }
