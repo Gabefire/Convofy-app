@@ -1,9 +1,29 @@
 import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import DropDownNav from "../drop-down-nav";
+import { BrowserRouter } from "react-router-dom";
 
 describe("drop down component", () => {
   it("renders forums", () => {
-    render(<DropDownNav forums={["test1", "test2", "test3"]} />);
-    expect(document.querySelectorAll("li").length).toBe(3);
+    render(
+      <BrowserRouter>
+        <DropDownNav forums={["test1", "test2", "test3"]} />
+      </BrowserRouter>
+    );
+    const forumElements = document.querySelectorAll("li");
+    expect(forumElements.length).toBe(3);
+    expect(forumElements[0].textContent).toBe("r/test1");
+  });
+  it("switches url", async () => {
+    render(
+      <BrowserRouter>
+        <DropDownNav forums={["test1", "test2", "test3"]} />
+      </BrowserRouter>
+    );
+    const user = userEvent.setup();
+    const forumElements = document.querySelectorAll("li");
+    expect(location.href).toBe("http://localhost/");
+    await user.click(forumElements[0]);
+    expect(location.href).toBe("http://localhost/r/test1");
   });
 });
