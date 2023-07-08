@@ -17,15 +17,19 @@ export default function CreateForum() {
         className="forum-container"
         id="forum-desc-contain"
       >
-        Name
-        <input
-          type="text"
-          id="forum-desc"
-          placeholder="Enter Description "
-          maxLength={20}
-        />
-        <span>*max length 20 characters</span>
+        Description
+        <textarea id="forum-desc" rows={4} cols={50}></textarea>
       </label>
+      <section id="style-section">
+        <label htmlFor="forum-banner-color">
+          Banner Color
+          <input type="color" id="forum-banner-color" value={"#ff3300"} />
+        </label>
+        <label htmlFor="forum-icon">
+          Icon File
+          <input type="file" id="forum-icon" />
+        </label>
+      </section>
     </form>
   );
 }
