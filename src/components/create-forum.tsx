@@ -30,6 +30,7 @@ export default function CreateForum() {
           <input type="file" id="forum-icon" />
         </label>
       </section>
+      <input type="button" value={"Submit"} id="submit-forum" />
     </form>
   );
 }

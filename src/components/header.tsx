@@ -5,8 +5,34 @@ import mainIcon from "../assets/reddit-circle.svg";
 import chevronDown from "../assets/chevron-down.svg";
 import home from "../assets/home.svg";
 import magnify from "../assets/magnify.svg";
+import { useContext, useEffect } from "react";
+import { FirebaseApp } from "../firebase";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+} from "firebase/firestore";
 
 export default function Header() {
+  const app = useContext(FirebaseApp);
+  useEffect(() => {
+    const db = getFirestore(app);
+    const getForums = async () => {
+      const forums: string[] = [];
+      try {
+        const forumObjects = await getDocs(collection(db, "forums"));
+        forumObjects.forEach((doc) => {
+          forums.push(doc.id);
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getForums();
+  }, []);
+
   return (
     <nav id="header">
       <div id="title">
@@ -17,7 +43,7 @@ export default function Header() {
       <div id="search-items">
         <div id="drop-down-menu">
           <div id="icons">
-            <Link to="/home">
+            <Link to="/">
               <div id="home-icons">
                 <img src={home} alt="home icon" />
                 <div>Home</div>

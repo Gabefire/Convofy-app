@@ -10,6 +10,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -80%);
+  color: white;
 }
 
 .content label {
@@ -22,5 +23,13 @@
   justify-content: space-between;
 }
 
-#forum-desc {
+#submit-forum {
+  cursor: pointer;
+  font-family: inherit;
+  height: 2rem;
+  font-size: 1.2rem;
+  color: white;
+  background-color: rgb(255, 51, 0);
+  border: none;
+  font-weight: bold;
 }
