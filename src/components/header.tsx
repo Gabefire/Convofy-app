@@ -17,6 +17,7 @@ import {
 
 export default function Header() {
   const app = useContext(FirebaseApp);
+  const [showDropDownNav, setShowDropDownNav] = useState(false as boolean);
   const [forumNames, setForumNames] = useState([] as string[]);
   useEffect(() => {
     const db = getFirestore(app);
@@ -34,6 +35,10 @@ export default function Header() {
     };
     getForums();
   }, []);
+  const showNav = (e: React.PointerEvent<HTMLImageElement>): void => {
+    e.preventDefault();
+    setShowDropDownNav(!showDropDownNav);
+  };
 
   return (
     <nav id="header">
@@ -51,9 +56,9 @@ export default function Header() {
                 <div>Home</div>
               </div>
             </Link>
-            <img src={chevronDown} alt="expand menu" />
+            <img src={chevronDown} alt="expand menu" onClick={showNav} />
           </div>
-          <DropDownNav forums={forumNames} />
+          {showDropDownNav ? <DropDownNav forums={forumNames} /> : null}
         </div>
         <div id="search-bar">
           <img src={magnify} />
