@@ -1,7 +1,19 @@
-import { useContext } from "react";
-import { FirebaseApp } from "../firebase";
-import { getFirestore } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
-export default function DropDownNav() {
-  return <div className="test">Test</div>;
+interface dropNavPropTypes {
+  forums: string[];
+}
+
+export default function DropDownNav({ forums }: dropNavPropTypes) {
+  return (
+    <ul id="drop-down-nav">
+      {forums.map((name, index) => {
+        return (
+          <Link to={`/r/${name}`} key={`${name}-${index}`}>
+            <li>{`r/${name}`}</li>
+          </Link>
+        );
+      })}
+    </ul>
+  );
 }

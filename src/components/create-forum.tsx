@@ -23,14 +23,18 @@ export default function CreateForum() {
       <section id="style-section">
         <label htmlFor="forum-banner-color">
           Banner Color
-          <input type="color" id="forum-banner-color" value={"#ff3300"} />
+          <input
+            type="color"
+            id="forum-banner-color"
+            defaultValue={"#ff3300"}
+          />
         </label>
         <label htmlFor="forum-icon">
           Icon File
           <input type="file" id="forum-icon" />
         </label>
       </section>
-      <input type="button" value={"Submit"} id="submit-forum" />
+      <input type="button" readOnly={true} value={"Submit"} id="submit-forum" />
     </form>
   );
 }
