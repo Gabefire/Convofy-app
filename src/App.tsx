@@ -8,13 +8,6 @@ import SignUp from "./components/sign-up";
 import CreateForum from "./components/create-forum";
 import "./App.css";
 
-export interface createForumFun {
-  name: string;
-  desc: string;
-  color: string;
-  file: FileList;
-}
-
 function App() {
   return (
     <>

@@ -22,7 +22,7 @@ export default function CreateForum() {
     const forumRef = ref(storage, `subforum-icons/${forumName.value}/`);
     const testDoc = await getDoc(doc(db, "forums", forumName.value));
     if (testDoc.data() !== undefined) {
-      console.log("forum already exists");
+      console.log("forum already exists by this name");
       return;
     }
     let url: string | null = null;
@@ -40,9 +40,9 @@ export default function CreateForum() {
       description: forumDesc.value,
       iconUrl: url,
       owner: "uid",
-    }).catch((e) => console.error(e));
+    }).catch((error) => console.error(error));
   };
-  // ToDO form validation
+  // ToDO form validation with tests
   return (
     <form className="content">
       <label
