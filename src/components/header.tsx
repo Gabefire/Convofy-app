@@ -8,6 +8,7 @@ import magnify from "../assets/magnify.svg";
 import { useContext, useEffect, useState } from "react";
 import { FirebaseApp } from "../firebase";
 import {
+  addDoc,
   collection,
   doc,
   getDoc,
@@ -34,7 +35,8 @@ export default function Header() {
       }
     };
     getForums();
-  }, []);
+  }, [showDropDownNav]);
+
   const showNav = (e: React.PointerEvent<HTMLImageElement>): void => {
     e.preventDefault();
     setShowDropDownNav(!showDropDownNav);
