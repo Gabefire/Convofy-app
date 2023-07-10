@@ -38,8 +38,7 @@ export default function CreateForum() {
     await setDoc(doc(db, "forums", forumName.value), {
       color: forumBannerColor.value,
       description: forumDesc.value,
-      iconUrl: url,
-      owner: "uid",
+      icon: url,
     }).catch((error) => console.error(error));
   };
   // ToDO form validation with tests
