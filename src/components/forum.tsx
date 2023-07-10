@@ -14,13 +14,13 @@ export default function Forum() {
   const param = useParams().id as string;
   const app = useContext(FirebaseApp);
   const [forumExists, setForumExists] = useState(true);
-  const [iconUrl, setIconURL] = useState("" as any);
+  const [icon, seticon] = useState("" as any);
   const [messagesExists, setMessagesExists] = useState(true);
   const [messages, setMessages] = useState(
     [] as { from: string; content: string; date: Date }[]
   );
   const [forumData, setForumData] = useState(
-    {} as { color: string; description: string; iconURL: string | null }
+    {} as { color: string; description: string; icon: string | null }
   );
 
   useEffect(() => {
@@ -35,11 +35,11 @@ export default function Forum() {
           const forumData: {
             color: string;
             description: string;
-            iconURL: string | null;
+            icon: string | null;
           } = {
             color: dataObject.color,
             description: dataObject.description,
-            iconURL: dataObject.icon,
+            icon: dataObject.icon,
           };
           console.log(forumData);
           setForumData(forumData);
@@ -79,12 +79,13 @@ export default function Forum() {
         console.error(e);
       }
       const storage = getStorage();
-      console.log(forumData.iconURL);
-      if (forumData.iconURL !== null) {
-        await getDownloadURL(ref(storage, forumData.iconURL))
+
+      if (forumData.icon !== null) {
+        console.log(ref(storage, forumData.icon));
+        getDownloadURL(ref(storage, `subforum-icons/${param}`))
           .then((url) => {
             console.log(url);
-            setIconURL(url);
+            seticon(url);
           })
           .catch((e) => {
             console.error(e);
@@ -103,11 +104,11 @@ export default function Forum() {
             style={{ backgroundColor: forumData.color }}
           ></div>
           <div className="title">
-            {forumData.iconURL ? (
-              <img src={iconUrl} />
+            {forumData.icon ? (
+              <img src={icon} className="icon image" />
             ) : (
               <div
-                className="icon"
+                className="icon default"
                 style={{ backgroundColor: forumData.color }}
               >
                 {param.slice(0, 1)}
