@@ -1,0 +1,55 @@
+.forum-content {
+  width: 100vw;
+  position: absolute;
+  top: 60px;
+  display: grid;
+}
+#forum-header {
+  background-color: rgb(63, 62, 62);
+  width: 100%;
+
+  margin-top: 15vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px;
+}
+.banner {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  min-width: 425px;
+  height: 15vh;
+  z-index: -1;
+}
+
+.title {
+  display: flex;
+  margin-left: 100px;
+  align-content: center;
+  gap: 30px;
+  color: white;
+}
+
+.title h1 {
+  font-size: 3rem;
+}
+
+.title img {
+  align-self: center;
+  height: 3.5rem;
+  width: 3.5rem;
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 50%;
+}
+.description {
+  font-weight: bolder;
+  color: white;
+  font-size: 1.5rem;
+  margin-left: 100px;
+}
+#forum-description {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  width: 300px;
+}

@@ -9,13 +9,13 @@ import {
   getFirestore,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import "./forum.css";
 
 export default function Forum() {
   const param = useParams().id as string;
   const app = useContext(FirebaseApp);
   const [forumExists, setForumExists] = useState(true);
   const [icon, seticon] = useState("" as any);
-  const [messagesExists, setMessagesExists] = useState(true);
   const [messages, setMessages] = useState(
     [] as { from: string; content: string; date: Date }[]
   );
@@ -72,8 +72,6 @@ export default function Forum() {
             }
           });
           setMessages(tempMessages);
-        } else {
-          setMessagesExists(false);
         }
       } catch (e) {
         console.error(e);
@@ -98,14 +96,18 @@ export default function Forum() {
   const makeForum = () => {
     return (
       <div className="forum-content">
-        <div id="header">
+        <div id="forum-header">
           <div
             className="banner"
             style={{ backgroundColor: forumData.color }}
           ></div>
           <div className="title">
             {forumData.icon ? (
-              <img src={icon} className="icon image" />
+              <img
+                src={icon}
+                className="icon image"
+                style={{ backgroundColor: forumData.color }}
+              />
             ) : (
               <div
                 className="icon default"
@@ -116,10 +118,13 @@ export default function Forum() {
             )}
             <h1>{`r/${param}`}</h1>
           </div>
-          <div id="forum-description">{forumData.description}</div>
+          <div className="description">
+            Description:
+            <div id="forum-description">{forumData.description}</div>
+          </div>
         </div>
         <div id="messages">
-          {messages.map((message) => {
+          {/*messages.map((message) => {
             return (
               <div className="message">
                 <div className="message-title">
@@ -129,15 +134,19 @@ export default function Forum() {
                 <div className="content">{message.content}</div>
               </div>
             );
-          })}
+          })*/}
         </div>
       </div>
     );
   };
 
-  return forumExists ? (
-    makeForum()
-  ) : (
-    <div id="forum-not-made">Page Does Not Exist</div>
+  return (
+    <>
+      {forumExists ? (
+        makeForum()
+      ) : (
+        <div id="forum-not-made">Page Does Not Exist</div>
+      )}
+    </>
   );
 }
