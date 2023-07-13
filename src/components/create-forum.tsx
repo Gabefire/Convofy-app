@@ -1,10 +1,10 @@
-import { useContext } from "react";
-// import "./create-forum.css";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import "./create-forum.css";
 
-import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+interface createForumProps {
+  createForum: (e: React.PointerEvent<HTMLInputElement>) => Promise<void>;
+}
 
-export default function CreateForum({ createForum }: any) {
+export default function CreateForum({ createForum }: createForumProps) {
   // ToDO form validation with tests
   return (
     <form className="content">
@@ -20,7 +20,6 @@ export default function CreateForum({ createForum }: any) {
           placeholder="r/"
           maxLength={20}
           required={true}
-          aria-label="forum name"
         />
         <span>*max length 20 characters</span>
       </label>
@@ -51,7 +50,6 @@ export default function CreateForum({ createForum }: any) {
         value={"Submit"}
         id="submit-forum"
         onClick={createForum}
-        aria-label="submit button"
       />
     </form>
   );

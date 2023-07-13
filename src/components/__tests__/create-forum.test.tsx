@@ -3,21 +3,19 @@ import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import CreateForum from "../create-forum";
 import "@testing-library/jest-dom";
+import { act } from "react-dom/test-utils";
 
 describe("Create forum component", () => {
-  it("renders forum", () => {
+  it("submits forms", async () => {
+    const mockFn = jest.fn();
     render(
       <BrowserRouter>
-        <CreateForum />
+        <CreateForum createForum={mockFn} />
       </BrowserRouter>
     );
     const user = userEvent.setup();
-    const input = screen.getByRole("textbox", {
-      name: /forum name/i,
-    }) as HTMLInputElement;
-    user.type(input, "bob");
-    expect(input.value).toBe("bob");
-    const button = screen.getByRole("submit", { name: /submit button/i });
-    user.click(button);
+    const button = screen.getByRole("button", { name: /Submit/i });
+    await act(() => user.click(button) as any);
+    expect(mockFn).toHaveBeenCalled();
   });
 });

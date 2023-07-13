@@ -6,6 +6,7 @@ import Forum from "./components/forum";
 import Login from "./components/login";
 import SignUp from "./components/sign-up";
 import CreateForum from "./components/create-forum";
+import CreateMessage from "./components/create-message";
 import "./App.css";
 import { FirebaseApp } from "./firebase";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
@@ -57,7 +58,10 @@ function App() {
             path="create-forum"
             element={<CreateForum createForum={createForum} />}
           />
-          <Route path="r/:id" element={<Forum />} />
+          <Route path="r/:id/">
+            <Route index element={<Forum />} />
+            <Route path="create-message" element={<CreateMessage />} />
+          </Route>
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/login/sign-up" element={<SignUp />} />

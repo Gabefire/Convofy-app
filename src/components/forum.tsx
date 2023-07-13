@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FirebaseApp } from "../firebase";
 import {
   collection,
@@ -15,7 +15,7 @@ export default function Forum() {
   const param = useParams().id as string;
   const app = useContext(FirebaseApp);
   const [forumExists, setForumExists] = useState(true);
-  const [icon, seticon] = useState("" as any);
+  const [icon, setIcon] = useState("" as any);
   const [messages, setMessages] = useState(
     [] as { from: string; content: string; date: Date }[]
   );
@@ -31,7 +31,6 @@ export default function Forum() {
         const data = await getDoc(doc(db, "forums", param));
         const dataObject = data.data();
         if (dataObject !== undefined) {
-          console.log(dataObject.icon);
           const forumData: {
             color: string;
             description: string;
@@ -41,7 +40,6 @@ export default function Forum() {
             description: dataObject.description,
             icon: dataObject.icon,
           };
-          console.log(forumData);
           setForumData(forumData);
         } else {
           setForumExists(false);
@@ -54,9 +52,10 @@ export default function Forum() {
       const tempMessages: { from: string; content: string; date: Date }[] = [];
       try {
         const messages = await getDocs(
-          collection(db, "forums", param, "/messages")
+          collection(db, "forums", param, "messages")
         );
-        if (messages instanceof Array && messages.length !== 0) {
+
+        if (messages !== undefined) {
           messages.forEach((doc) => {
             tempMessages.push(
               doc.data() as { from: string; content: string; date: Date }
@@ -79,11 +78,9 @@ export default function Forum() {
       const storage = getStorage();
 
       if (forumData.icon !== null) {
-        console.log(ref(storage, forumData.icon));
         getDownloadURL(ref(storage, `subforum-icons/${param}`))
           .then((url) => {
-            console.log(url);
-            seticon(url);
+            setIcon(url);
           })
           .catch((e) => {
             console.error(e);
@@ -124,17 +121,27 @@ export default function Forum() {
           </div>
         </div>
         <div id="messages">
-          {/*messages.map((message) => {
-            return (
-              <div className="message">
-                <div className="message-title">
-                  <div className="from">{message.from}</div>
-                  <div className="date">{message.date.toString()}</div>
+          <div id="create-message">
+            <Link to={`create-message`}>
+              <div id="inner-create-message">Create Post</div>
+            </Link>
+          </div>
+          {messages.length === 0 ? (
+            <div id="no-messages">No Messages</div>
+          ) : (
+            messages.map((message, index) => {
+              return (
+                <div className="message" key={`message-${index}`}>
+                  <div className="message-title">
+                    <div className="from">{message.from}</div>
+                    <div className="date">{message.date.toString()}</div>
+                  </div>
+                  <h4>{message.title}</h4>
+                  <div className="message-content">{message.content}</div>
                 </div>
-                <div className="content">{message.content}</div>
-              </div>
-            );
-          })*/}
+              );
+            })
+          )}
         </div>
       </div>
     );
