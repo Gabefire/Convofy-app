@@ -1,4 +1,4 @@
-import "./create-forum.css";
+import "./styles/create-forum.css";
 
 interface createForumProps {
   createForum: (e: React.PointerEvent<HTMLInputElement>) => Promise<void>;

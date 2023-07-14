@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { FirebaseApp } from "../firebase";
 import {
   collection,
@@ -9,7 +9,7 @@ import {
   getFirestore,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import "./forum.css";
+import "./styles/forum.css";
 
 export default function Forum() {
   const param = useParams().id as string;
@@ -17,7 +17,7 @@ export default function Forum() {
   const [forumExists, setForumExists] = useState(true);
   const [icon, setIcon] = useState("" as any);
   const [messages, setMessages] = useState(
-    [] as { from: string; content: string; date: Date }[]
+    [] as { from: string; content: string; date: Date; title: string }[]
   );
   const [forumData, setForumData] = useState(
     {} as { color: string; description: string; icon: string | null }
@@ -49,7 +49,12 @@ export default function Forum() {
         console.error(e);
       }
 
-      const tempMessages: { from: string; content: string; date: Date }[] = [];
+      const tempMessages: {
+        from: string;
+        content: string;
+        date: Date;
+        title: string;
+      }[] = [];
       try {
         const messages = await getDocs(
           collection(db, "forums", param, "messages")
@@ -58,7 +63,12 @@ export default function Forum() {
         if (messages !== undefined) {
           messages.forEach((doc) => {
             tempMessages.push(
-              doc.data() as { from: string; content: string; date: Date }
+              doc.data() as {
+                from: string;
+                content: string;
+                date: Date;
+                title: string;
+              }
             );
           });
           tempMessages.sort((a, b) => {
@@ -122,9 +132,9 @@ export default function Forum() {
         </div>
         <div id="messages">
           <div id="create-message">
-            <Link to={`create-message`}>
+            <NavLink to={`create-message`}>
               <div id="inner-create-message">Create Post</div>
-            </Link>
+            </NavLink>
           </div>
           {messages.length === 0 ? (
             <div id="no-messages">No Messages</div>

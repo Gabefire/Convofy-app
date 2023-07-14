@@ -17,6 +17,13 @@ function App() {
   const storage = getStorage(app);
   const db = getFirestore(app);
 
+  const createMessage = async (
+    e: React.PointerEvent<HTMLInputElement>
+  ): Promise<void> => {
+    e.preventDefault();
+    const messageTitle = document.getElementById("message-title");
+  };
+
   const createForum = async (e: React.PointerEvent<HTMLInputElement>) => {
     e.preventDefault();
     const forumName = document.getElementById("forum-name") as HTMLInputElement;
@@ -60,7 +67,10 @@ function App() {
           />
           <Route path="r/:id/">
             <Route index element={<Forum />} />
-            <Route path="create-message" element={<CreateMessage />} />
+            <Route
+              path="create-message"
+              element={<CreateMessage createMessage={createMessage} />}
+            />
           </Route>
         </Route>
         <Route path="/login" element={<Login />} />

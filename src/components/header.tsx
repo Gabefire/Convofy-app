@@ -1,6 +1,6 @@
 import DropDownNav from "./drop-down-nav";
 import { Link } from "react-router-dom";
-import "./header.css";
+import "./styles/header.css";
 import mainIcon from "../assets/reddit-circle.svg";
 import chevronDown from "../assets/chevron-down.svg";
 import home from "../assets/home.svg";
