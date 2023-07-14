@@ -10,18 +10,44 @@ import CreateMessage from "./components/create-message";
 import "./App.css";
 import { FirebaseApp } from "./firebase";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import { getFirestore, getDoc, doc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  getDoc,
+  doc,
+  setDoc,
+  addDoc,
+  collection,
+} from "firebase/firestore";
 
 function App() {
   const app = useContext(FirebaseApp);
   const storage = getStorage(app);
   const db = getFirestore(app);
 
-  const createMessage = async (
-    e: React.PointerEvent<HTMLInputElement>
-  ): Promise<void> => {
-    e.preventDefault();
-    const messageTitle = document.getElementById("message-title");
+  const createMessage = async (forumName: string): Promise<void> => {
+    console.log(forumName);
+    const messageTitle = document.getElementById(
+      "message-title"
+    ) as HTMLInputElement;
+    const messageContent = document.getElementById(
+      "message-content"
+    ) as HTMLInputElement;
+    if (messageTitle !== null && messageContent !== null) {
+      await addDoc(collection(db, "forums", forumName, "messages"), {
+        title: messageTitle.value,
+        content: messageContent.value,
+        //replace when auth is implemented
+        from: "test",
+        date: new Date(),
+        votes: 0,
+      })
+        .then((docRef) => {
+          console.log(docRef);
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    }
   };
 
   const createForum = async (e: React.PointerEvent<HTMLInputElement>) => {
@@ -33,8 +59,8 @@ function App() {
     ) as HTMLInputElement;
     const forumIcon = document.getElementById("forum-icon") as HTMLInputElement;
     const forumRef = ref(storage, `subforum-icons/${forumName.value}/`);
-    const testDoc = await getDoc(doc(db, "forums", forumName.value));
-    if (testDoc.data() !== undefined) {
+    const forumDoc = await getDoc(doc(db, "forums", forumName.value));
+    if (forumDoc.data() !== undefined) {
       console.log("forum already exists by this name");
       return;
     }

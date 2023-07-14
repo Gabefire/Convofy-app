@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 import { initializeApp } from "firebase/app";
+
 const firebaseConfig = {
   apiKey: "AIzaSyA0r-HiBkg6Z1hNQGdxD6_uRF95MItJcCI",
   authDomain: "reddit-clone-8619f.firebaseapp.com",

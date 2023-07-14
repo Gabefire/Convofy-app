@@ -7,9 +7,7 @@ import { act } from "react-dom/test-utils";
 
 describe("Create forum component", () => {
   it("submits forms", async () => {
-    const mockFn = jest.fn((e: React.PointerEvent<HTMLInputElement>): any => {
-      e.preventDefault();
-    });
+    const mockFn = jest.fn();
     render(
       <BrowserRouter>
         <CreateMessage createMessage={mockFn} />
