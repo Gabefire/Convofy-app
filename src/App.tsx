@@ -37,7 +37,7 @@ function App() {
         title: messageTitle.value,
         content: messageContent.value,
         //replace when auth is implemented
-        from: "test",
+        from: "testName",
         date: new Date(),
         votes: 0,
       })

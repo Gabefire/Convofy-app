@@ -9,9 +9,9 @@ export default function DropDownNav({ forums }: dropNavPropTypes) {
     <ul id="drop-down-nav">
       {forums.map((name, index) => {
         return (
-          <Link to={`/r/${name}`} key={`${name}-${index}`}>
-            <li>{`r/${name}`}</li>
-          </Link>
+          <li key={`${name}-${index}`}>
+            <Link to={`/r/${name}`}>{`r/${name}`}</Link>
+          </li>
         );
       })}
     </ul>

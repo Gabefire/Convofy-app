@@ -17,7 +17,14 @@ export default function Forum() {
   const [forumExists, setForumExists] = useState(true);
   const [icon, setIcon] = useState("" as any);
   const [messages, setMessages] = useState(
-    [] as { from: string; content: string; date: Date; title: string }[]
+    [] as {
+      from: string;
+      content: string;
+      date: Date;
+      title: string;
+      votes: number;
+      id: string;
+    }[]
   );
   const [forumData, setForumData] = useState(
     {} as { color: string; description: string; icon: string | null }
@@ -54,6 +61,8 @@ export default function Forum() {
         content: string;
         date: Date;
         title: string;
+        votes: number;
+        id: string;
       }[] = [];
       try {
         const messages = await getDocs(
@@ -62,14 +71,16 @@ export default function Forum() {
 
         if (messages !== undefined) {
           messages.forEach((doc) => {
-            tempMessages.push(
-              doc.data() as {
-                from: string;
-                content: string;
-                date: Date;
-                title: string;
-              }
-            );
+            const message = doc.data() as {
+              from: string;
+              content: string;
+              date: Date;
+              title: string;
+              votes: number;
+              id: string;
+            };
+            message.id = doc.id;
+            tempMessages.push(message);
           });
           tempMessages.sort((a, b) => {
             if (a.date > b.date) {
@@ -133,7 +144,7 @@ export default function Forum() {
         <div id="messages">
           <div id="create-message">
             <NavLink to={`create-message`}>
-              <div id="inner-create-message">Create Post</div>
+              <div id="create-message-nav">Create Post</div>
             </NavLink>
           </div>
           {messages.length === 0 ? (
@@ -141,13 +152,23 @@ export default function Forum() {
           ) : (
             messages.map((message, index) => {
               return (
-                <div className="message" key={`message-${index}`}>
+                <div
+                  className="message"
+                  key={`message-${index}`}
+                  id={`message-${message.id}`}
+                >
                   <div className="message-title">
-                    <div className="from">{message.from}</div>
-                    <div className="date">{message.date.toString()}</div>
+                    <div className="from">{`Posted by u/${
+                      message.from
+                    } ${message.date.toString()} ago`}</div>
                   </div>
-                  <h4>{message.title}</h4>
-                  <div className="message-content">{message.content}</div>
+                  <div className="message-content">
+                    <h4>{message.title}</h4>
+                    <div>{message.content}</div>
+                  </div>
+                  <div className="bottom-icons">
+                    <div className="likes">{message.votes}</div>
+                  </div>
                 </div>
               );
             })
