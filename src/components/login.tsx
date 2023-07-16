@@ -9,12 +9,14 @@ import {
 import React, { useContext, useState } from "react";
 import "./styles/login.css";
 import { FirebaseApp } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [showSignUp, setShowSignUp] = useState(false);
   const app = useContext(FirebaseApp);
 
   const auth = getAuth(app);
+  const navigate = useNavigate();
 
   const changeLoginToSignUp = (e: React.PointerEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -34,6 +36,7 @@ export default function Login() {
         userPassword.value
       );
       console.log(userCredentials);
+      navigate("/");
     } catch (error: any) {
       console.log(error);
     }
@@ -62,7 +65,7 @@ export default function Login() {
         });
       }
       console.log(userCredentials);
-      setShowSignUp(!showSignUp);
+      navigate("/");
     } catch (error: any) {
       console.log(error);
     }
@@ -75,6 +78,7 @@ export default function Login() {
     try {
       const googleResults = await signInWithPopup(auth, provider);
       console.log(googleResults);
+      navigate("/");
     } catch (error: any) {
       console.log(error);
     }

@@ -7,14 +7,7 @@ import home from "../assets/home.svg";
 import magnify from "../assets/magnify.svg";
 import { useContext, useEffect, useState } from "react";
 import { FirebaseApp } from "../firebase";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-} from "firebase/firestore";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 export default function Header() {
   const app = useContext(FirebaseApp);
@@ -52,7 +45,12 @@ export default function Header() {
       <div id="search-items">
         <div id="drop-down-menu">
           <div id="icons">
-            <Link to="/">
+            <Link
+              to="/"
+              onClick={() => {
+                setShowDropDownNav(false);
+              }}
+            >
               <div id="home-icons">
                 <img src={home} alt="home icon" />
                 <div>Home</div>
@@ -70,10 +68,24 @@ export default function Header() {
 
       <div id="user-icons">
         <Link to="/create-forum">
-          <div id="add-forum">+</div>
+          <div
+            id="add-forum"
+            onClick={() => {
+              setShowDropDownNav(false);
+            }}
+          >
+            +
+          </div>
         </Link>
         <Link to="/login" className="header-link">
-          <button id="login-btn">Login</button>
+          <button
+            id="login-btn"
+            onClick={() => {
+              setShowDropDownNav(false);
+            }}
+          >
+            Login
+          </button>
         </Link>
       </div>
     </div>
