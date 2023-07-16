@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface dropNavPropTypes {
   forums: string[];
@@ -9,9 +9,9 @@ export default function DropDownNav({ forums }: dropNavPropTypes) {
     <ul id="drop-down-nav">
       {forums.map((name, index) => {
         return (
-          <li key={`${name}-${index}`}>
-            <Link to={`/r/${name}`}>{`r/${name}`}</Link>
-          </li>
+          <NavLink to={`r/${name}`} key={`${name}-${index}`}>
+            <li>{`r/${name}`}</li>
+          </NavLink>
         );
       })}
     </ul>

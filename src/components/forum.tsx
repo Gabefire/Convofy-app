@@ -109,7 +109,7 @@ export default function Forum() {
       }
     };
     getForumData();
-  }, []);
+  }, [param]);
 
   const makeForum = () => {
     return (

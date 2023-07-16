@@ -124,6 +124,7 @@ img {
   position: absolute;
   top: 60px;
   background-color: rgb(63, 62, 62);
+  z-index: 10;
 }
 
 #drop-down-nav li {

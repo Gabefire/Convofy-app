@@ -43,7 +43,7 @@ export default function Header() {
   };
 
   return (
-    <nav id="header">
+    <div id="header">
       <div id="title">
         <img src={mainIcon} alt="site symbol" />
         <h3>Fake Forum</h3>
@@ -68,13 +68,12 @@ export default function Header() {
         </div>
       </div>
 
-      {/*If login show name and icon*/}
       <div id="user-icons">
         <Link to="/create-forum">
           <div id="add-forum">+</div>
         </Link>
         <button id="login-btn">Login</button>
       </div>
-    </nav>
+    </div>
   );
 }

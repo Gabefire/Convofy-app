@@ -90,17 +90,17 @@ function App() {
           <Route
             path="create-forum"
             element={<CreateForum createForum={createForum} />}
-          />
-          <Route path="r/:id/">
-            <Route index element={<Forum />} />
-            <Route
-              path="create-message"
-              element={<CreateMessage createMessage={createMessage} />}
-            />
-          </Route>
+          />{" "}
+          <Route path="/login" element={<Login />} />
+          <Route path="/login/sign-up" element={<SignUp />} />
         </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/login/sign-up" element={<SignUp />} />
+        <Route path="r/:id">
+          <Route index element={<Forum />} />
+          <Route
+            path="create-message"
+            element={<CreateMessage createMessage={createMessage} />}
+          />
+        </Route>
       </Routes>
     </>
   );
