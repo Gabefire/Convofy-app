@@ -18,6 +18,7 @@ export default function Home() {
       try {
         const data = await getDocs(collectionGroup(db, "forums"));
         if (data !== undefined) {
+          console.log(data);
           data.forEach((doc) => {
             console.log(doc.id);
           });
@@ -25,7 +26,8 @@ export default function Home() {
       } catch (e) {
         console.error(e);
       }
-      getForumData()
+      getForumData();
+    };
   }, []);
   return <div className="content">Test\</div>;
 }

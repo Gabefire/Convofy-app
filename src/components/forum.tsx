@@ -1,5 +1,6 @@
+import Messages from "./messages";
 import { useContext, useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { FirebaseApp } from "../firebase";
 import {
   collection,
@@ -10,23 +11,24 @@ import {
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import "./styles/forum.css";
-import dateConverter from "../utli/date";
+import { dateType } from "../utli/date";
+
+export interface messageType {
+  from: string;
+  content: string;
+  date: Date | dateType;
+  title: string;
+  votes: number;
+  id: string;
+  forum: string;
+}
 
 export default function Forum() {
   const param = useParams().id as string;
   const app = useContext(FirebaseApp);
   const [forumExists, setForumExists] = useState(true);
   const [icon, setIcon] = useState("" as any);
-  const [messages, setMessages] = useState(
-    [] as {
-      from: string;
-      content: string;
-      date: Date;
-      title: string;
-      votes: number;
-      id: string;
-    }[]
-  );
+  const [messages, setMessages] = useState([] as messageType[]);
   const [forumData, setForumData] = useState(
     {} as { color: string; description: string; icon: string | null }
   );
@@ -57,14 +59,7 @@ export default function Forum() {
         console.error(e);
       }
 
-      const tempMessages: {
-        from: string;
-        content: string;
-        date: Date;
-        title: string;
-        votes: number;
-        id: string;
-      }[] = [];
+      const tempMessages: messageType[] = [];
       try {
         const messages = await getDocs(
           collection(db, "forums", param, "messages")
@@ -72,15 +67,9 @@ export default function Forum() {
 
         if (messages !== undefined) {
           messages.forEach((doc) => {
-            const message = doc.data() as {
-              from: string;
-              content: string;
-              date: Date;
-              title: string;
-              votes: number;
-              id: string;
-            };
+            const message = doc.data() as messageType;
             message.id = doc.id;
+            message.forum = param;
             tempMessages.push(message);
           });
           tempMessages.sort((a, b) => {
@@ -142,39 +131,7 @@ export default function Forum() {
             <div id="forum-description">{forumData.description}</div>
           </div>
         </div>
-        <div id="messages">
-          <div id="create-message">
-            <NavLink to={`create-message`}>
-              <div id="create-message-nav">Create Post</div>
-            </NavLink>
-          </div>
-          {messages.length === 0 ? (
-            <div id="no-messages">No Messages</div>
-          ) : (
-            messages.map((message, index) => {
-              return (
-                <div
-                  className="message"
-                  key={`message-${index}`}
-                  id={`message-${message.id}`}
-                >
-                  <div className="message-title">
-                    <div className="from">{`Posted by u/${
-                      message.from
-                    } ${dateConverter(message.date)}`}</div>
-                  </div>
-                  <div className="message-content">
-                    <h4>{message.title}</h4>
-                    <div>{message.content}</div>
-                  </div>
-                  <div className="bottom-icons">
-                    <div className="likes">{message.votes}</div>
-                  </div>
-                </div>
-              );
-            })
-          )}
-        </div>
+        <Messages messages={messages} home={false} />
       </div>
     );
   };

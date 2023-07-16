@@ -1,6 +1,6 @@
 import differenceInMinutes from "date-fns/differenceInMinutes";
 
-interface dateType {
+export interface dateType {
   seconds: number;
   nanoseconds: number;
 }
