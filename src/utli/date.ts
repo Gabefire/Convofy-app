@@ -14,7 +14,6 @@ export default function dateConverter(date: dateType | Date): string {
     dateParam = date;
   }
   const diffMinutes = Math.abs(differenceInMinutes(currentDate, dateParam));
-  console.log(diffMinutes);
   if (diffMinutes >= 525600) {
     const years = Math.floor(diffMinutes / 525600);
     if (years === 1) {

@@ -1,10 +1,10 @@
-import { useState, useContext, useEffect, createContext } from "react";
-import { Route, Routes } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./components/home";
 import Header from "./components/header";
 import Forum from "./components/forum";
 import Login from "./components/login";
-import SignUp from "./components/sign-up";
+
 import CreateForum from "./components/create-forum";
 import CreateMessage from "./components/create-message";
 import "./App.css";
@@ -18,11 +18,14 @@ import {
   addDoc,
   collection,
 } from "firebase/firestore";
+import { getAuth, signInAnonymously } from "firebase/auth";
 
 function App() {
   const app = useContext(FirebaseApp);
   const storage = getStorage(app);
   const db = getFirestore(app);
+  const auth = getAuth(app);
+  const navigate = useNavigate();
 
   const createMessage = async (forumName: string): Promise<void> => {
     console.log(forumName);
@@ -32,17 +35,26 @@ function App() {
     const messageContent = document.getElementById(
       "message-content"
     ) as HTMLInputElement;
+    let user: null | string | undefined = auth.currentUser?.displayName;
+    let uid: null | string | undefined = auth.currentUser?.uid;
+    if (user === null || user === undefined) {
+      user = "anonymous";
+    }
+    if (uid === undefined) {
+      uid = null;
+    }
     if (messageTitle !== null && messageContent !== null) {
       await addDoc(collection(db, "forums", forumName, "messages"), {
         title: messageTitle.value,
         content: messageContent.value,
-        //replace when auth is implemented
-        from: "testName",
+        uid: uid,
+        from: user,
         date: new Date(),
         votes: 0,
       })
         .then((docRef) => {
           console.log(docRef);
+          navigate(`/r/${forumName}`);
         })
         .catch((e) => {
           console.error(e);
@@ -74,12 +86,30 @@ function App() {
         .catch((error) => console.error(error));
     }
 
+    let uid: null | string | undefined = auth.currentUser?.uid;
+    if (uid === undefined) {
+      uid = null;
+    }
     await setDoc(doc(db, "forums", forumName.value), {
       color: forumBannerColor.value,
       description: forumDesc.value,
       icon: url,
+      uid: uid,
     }).catch((error) => console.error(error));
+
+    navigate(`/r/${forumName}`);
   };
+
+  useEffect(() => {
+    const anonymously = async () => {
+      try {
+        await signInAnonymously(auth);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    anonymously();
+  }, []);
 
   return (
     <>
@@ -92,7 +122,6 @@ function App() {
             element={<CreateForum createForum={createForum} />}
           />{" "}
           <Route path="/login" element={<Login />} />
-          <Route path="/login/sign-up" element={<SignUp />} />
         </Route>
         <Route path="r/:id">
           <Route index element={<Forum />} />

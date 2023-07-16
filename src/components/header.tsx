@@ -72,7 +72,9 @@ export default function Header() {
         <Link to="/create-forum">
           <div id="add-forum">+</div>
         </Link>
-        <button id="login-btn">Login</button>
+        <Link to="/login" className="header-link">
+          <button id="login-btn">Login</button>
+        </Link>
       </div>
     </div>
   );

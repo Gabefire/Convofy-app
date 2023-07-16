@@ -84,9 +84,9 @@ export default function Forum() {
             tempMessages.push(message);
           });
           tempMessages.sort((a, b) => {
-            if (a.date > b.date) {
+            if (b.votes > a.votes) {
               return 1;
-            } else if (a.date === b.date) {
+            } else if (b.votes === a.votes) {
               return 0;
             } else {
               return -1;
