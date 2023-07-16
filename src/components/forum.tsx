@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import "./styles/forum.css";
+import dateConverter from "../utli/date";
 
 export default function Forum() {
   const param = useParams().id as string;
@@ -160,7 +161,7 @@ export default function Forum() {
                   <div className="message-title">
                     <div className="from">{`Posted by u/${
                       message.from
-                    } ${message.date.toString()} ago`}</div>
+                    } ${dateConverter(message.date)}`}</div>
                   </div>
                   <div className="message-content">
                     <h4>{message.title}</h4>
