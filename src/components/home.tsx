@@ -1,10 +1,4 @@
-import {
-  collectionGroup,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-} from "firebase/firestore";
+import { collectionGroup, getDocs, getFirestore } from "firebase/firestore";
 import { useContext, useEffect } from "react";
 import { FirebaseApp } from "../firebase";
 
@@ -14,20 +8,21 @@ export default function Home() {
   useEffect(() => {
     const getForumData = async () => {
       const db = getFirestore(app);
+      console.log("test");
 
       try {
         const data = await getDocs(collectionGroup(db, "forums"));
-        if (data !== undefined) {
+        if (data) {
           console.log(data);
           data.forEach((doc) => {
-            console.log(doc.id);
+            console.log(doc.data());
           });
         }
       } catch (e) {
         console.error(e);
       }
-      getForumData();
     };
+    getForumData();
   }, []);
   return <div className="content">Test\</div>;
 }

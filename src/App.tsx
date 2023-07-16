@@ -51,6 +51,7 @@ function App() {
         from: user,
         date: new Date(),
         votes: 0,
+        forum: forumName,
       })
         .then((docRef) => {
           console.log(docRef);

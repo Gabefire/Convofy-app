@@ -30,7 +30,7 @@ export default function Forum() {
   const [icon, setIcon] = useState("" as any);
   const [messages, setMessages] = useState([] as messageType[]);
   const [forumData, setForumData] = useState(
-    {} as { color: string; description: string; icon: string | null }
+    {} as { color: string; description: string; icon: string | undefined }
   );
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Forum() {
           const forumData: {
             color: string;
             description: string;
-            icon: string | null;
+            icon: string | undefined;
           } = {
             color: dataObject.color,
             description: dataObject.description,
@@ -88,7 +88,8 @@ export default function Forum() {
       }
       const storage = getStorage();
 
-      if (forumData.icon !== null) {
+      if (forumData.icon) {
+        console.log(forumData.icon);
         getDownloadURL(ref(storage, `subforum-icons/${param}`))
           .then((url) => {
             setIcon(url);
