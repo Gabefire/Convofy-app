@@ -19,6 +19,27 @@ export default function Messages({
     );
   };
 
+  const createForumComponent = (forumName: string, url: string | undefined) => {
+    return (
+      <div className="forum-message">
+        {url ? (
+          <img
+            src={url}
+            alt={`forum icon ${forumName}`}
+            className="icon-message"
+          />
+        ) : (
+          <div className="icon-message" style={{ backgroundColor: "red" }}>
+            {forumName.slice(0, 1)}
+          </div>
+        )}
+        <div className="forum-name" data-testid={forumName}>
+          {`r/${forumName}`}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div id="messages">
       {home ? null : createMessageComponent()}
@@ -33,6 +54,9 @@ export default function Messages({
               id={`message-${message.id}`}
             >
               <div className="message-title">
+                {home
+                  ? createForumComponent(message.forum, message.iconURL)
+                  : null}
                 <div className="from">{`Posted by u/${
                   message.from
                 } ${dateConverter(message.date)}`}</div>

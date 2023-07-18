@@ -1,5 +1,5 @@
 import Messages from "./messages";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FirebaseApp } from "../firebase";
 import {
@@ -21,6 +21,7 @@ export interface messageType {
   votes: number;
   id: string;
   forum: string;
+  iconURL: string | undefined;
 }
 
 export default function Forum() {
@@ -51,6 +52,16 @@ export default function Forum() {
             icon: dataObject.icon,
           };
           setForumData(forumData);
+          if (typeof forumData.icon === "string") {
+            const storage = getStorage();
+            await getDownloadURL(ref(storage, `subforum-icons/${param}`))
+              .then((url) => {
+                setIcon(url);
+              })
+              .catch((e) => {
+                console.error(e);
+              });
+          }
         } else {
           setForumExists(false);
           return;
@@ -85,18 +96,6 @@ export default function Forum() {
         }
       } catch (e) {
         console.error(e);
-      }
-      const storage = getStorage();
-
-      if (forumData.icon) {
-        console.log(forumData.icon);
-        getDownloadURL(ref(storage, `subforum-icons/${param}`))
-          .then((url) => {
-            setIcon(url);
-          })
-          .catch((e) => {
-            console.error(e);
-          });
       }
     };
     getForumData();

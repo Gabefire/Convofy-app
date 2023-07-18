@@ -27,7 +27,10 @@ function App() {
   const auth = getAuth(app);
   const navigate = useNavigate();
 
-  const createMessage = async (forumName: string): Promise<void> => {
+  const createMessage = async (
+    forumName: string,
+    url: string | null
+  ): Promise<void> => {
     console.log(forumName);
     const messageTitle = document.getElementById(
       "message-title"
@@ -52,6 +55,7 @@ function App() {
         date: new Date(),
         votes: 0,
         forum: forumName,
+        iconURL: url,
       })
         .then((docRef) => {
           console.log(docRef);
@@ -98,7 +102,7 @@ function App() {
       uid: uid,
     }).catch((error) => console.error(error));
 
-    navigate(`/r/${forumName}`);
+    navigate(`/r/${forumName.value}`);
   };
 
   useEffect(() => {
