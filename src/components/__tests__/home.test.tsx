@@ -46,3 +46,49 @@ describe("messages home component", () => {
     expect(location.href).toBe("http://localhost/r/gabe");
   });
 });
+
+describe("bottom icons in message component", () => {
+  beforeEach(() => {
+    const message1: messageType = {
+      from: "gabe",
+      content: "test",
+      date: new Date(),
+      title: "test",
+      votes: 0,
+      id: "1",
+      forum: "gabe",
+      iconURL: undefined,
+    };
+    const messages: messageType[] = [message1];
+    render(<Messages messages={messages} home={true} />);
+  });
+  it("clicking up arrow increase value of vote", async () => {
+    const user = userEvent.setup();
+    const upArrow = screen.getByRole("button", { name: "up vote" });
+    await user.click(upArrow);
+    expect(screen.getByTestId("likes").textContent).toBe("1");
+  });
+
+  it("clicking down arrow decrease value of vote", async () => {
+    const user = userEvent.setup();
+    const upArrow = screen.getByRole("button", { name: "up vote" });
+    await user.click(upArrow);
+    expect(screen.getByTestId("likes").textContent).toBe("-1");
+  });
+
+  it("can not click up arrow more then one time", async () => {
+    const user = userEvent.setup();
+    const upArrow = screen.getByRole("button", { name: "up vote" });
+    await user.click(upArrow);
+    await user.click(upArrow);
+    expect(screen.getByTestId("likes").textContent).toBe("1");
+  });
+
+  it("can not click down arrow more then one time", async () => {
+    const user = userEvent.setup();
+    const upArrow = screen.getByRole("button", { name: "up vote" });
+    await user.click(upArrow);
+    await user.click(upArrow);
+    expect(screen.getByTestId("likes").textContent).toBe("1");
+  });
+});

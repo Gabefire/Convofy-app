@@ -1,6 +1,9 @@
 import dateConverter from "../utli/date";
 import { NavLink } from "react-router-dom";
 import { messageType } from "./forum";
+import arrowUp from "../assets/arrow-up-bold.svg";
+import arrowDown from "../assets/arrow-down-bold.svg";
+import "./styles/messages.css";
 
 export default function Messages({
   messages,
@@ -66,7 +69,27 @@ export default function Messages({
                 <div>{message.content}</div>
               </div>
               <div className="bottom-icons">
-                <div className="likes">{message.votes}</div>
+                <div
+                  className="likes"
+                  data-testid="likes"
+                  id={`likes-${message.id}`}
+                >
+                  <button
+                    className="up-vote-btn arrow-btn"
+                    id={`up-vote-btn-${message.id}`}
+                    aria-label="up vote"
+                  >
+                    <img src={arrowUp} className="arrow" />
+                  </button>
+                  {message.votes}
+                  <button
+                    className="down-vote-btn arrow-btn"
+                    id={`down-vote-btn-${message.id}`}
+                    aria-label="down vote"
+                  >
+                    <img src={arrowDown} className="arrow" />
+                  </button>
+                </div>
               </div>
             </div>
           );
