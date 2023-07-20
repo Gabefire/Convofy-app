@@ -1,11 +1,12 @@
 import { screen, render } from "@testing-library/react";
-import { messageType } from "../forum";
-import Messages from "../messages";
+import postType from "../../types/post";
+import Feed from "../feed/feed";
 import userEvent from "@testing-library/user-event";
 
 describe("messages home component", () => {
   beforeEach(() => {
-    const message1: messageType = {
+    const message1: postType = {
+      uid: "123",
       from: "gabe",
       content: "test",
       date: new Date(),
@@ -13,9 +14,10 @@ describe("messages home component", () => {
       votes: 0,
       id: "1",
       forum: "gabe",
-      iconURL: undefined,
+      iconURL: null,
     };
-    const message2: messageType = {
+    const message2: postType = {
+      uid: "1234",
       from: "gabe",
       content: "test",
       date: new Date(),
@@ -23,10 +25,10 @@ describe("messages home component", () => {
       votes: 0,
       id: "2",
       forum: "gabe2",
-      iconURL: undefined,
+      iconURL: null,
     };
-    const messages: messageType[] = [message1, message2];
-    render(<Messages messages={messages} home={true} />);
+    const messages: postType[] = [message1, message2];
+    render(<Feed posts={messages} home={true} />);
   });
 
   it("displays messages from two forums", async () => {
@@ -49,7 +51,7 @@ describe("messages home component", () => {
 
 describe("bottom icons in message component", () => {
   beforeEach(() => {
-    const message1: messageType = {
+    const message1: postType = {
       from: "gabe",
       content: "test",
       date: new Date(),
@@ -57,10 +59,11 @@ describe("bottom icons in message component", () => {
       votes: 0,
       id: "1",
       forum: "gabe",
-      iconURL: undefined,
+      uid: "12",
+      iconURL: null,
     };
-    const messages: messageType[] = [message1];
-    render(<Messages messages={messages} home={true} />);
+    const messages: postType[] = [message1];
+    render(<Feed posts={messages} home={true} />);
   });
   it("clicking up arrow increase value of vote", async () => {
     const user = userEvent.setup();

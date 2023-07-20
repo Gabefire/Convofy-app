@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import DropDownNav from "../drop-down-nav";
+import DropDownNav from "./drop-down-nav";
 import { BrowserRouter } from "react-router-dom";
 
 describe("drop down component", () => {

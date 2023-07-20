@@ -1,32 +1,23 @@
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { FirebaseApp } from "../firebase";
 
-interface createMessageType {
-  createMessage: (forumName: string, url: string | null) => Promise<void>;
+interface createPostProps {
+  createPost: (forumName: string | null) => Promise<void>;
 }
 
-export default function CreateMessage({ createMessage }: createMessageType) {
+export default function CreatePost({ createPost }: createPostProps) {
   const forumNameRegex = useLocation().pathname.match(
     /\/r\/(.*)\/create-message/i
   ) as RegExpMatchArray;
-  const app = useContext(FirebaseApp);
-  const storage = getStorage(app);
 
   const createMessageOnClick = (e: React.PointerEvent<HTMLInputElement>) => {
     e.preventDefault();
+    let forumName: string | null;
     if (forumNameRegex !== null) {
-      const forumName: string = forumNameRegex[1];
-      console.log(forumName);
-      getDownloadURL(ref(storage, `subforum-icons/${forumName}`))
-        .then((url) => {
-          createMessage(forumName, url);
-        })
-        .catch(() => {
-          createMessage(forumName, null);
-        });
+      forumName = forumNameRegex[1];
+    } else {
+      forumName = null;
     }
+    createPost(forumName);
   };
 
   // ToDO form validation with tests
@@ -44,6 +35,7 @@ export default function CreateMessage({ createMessage }: createMessageType) {
         type="submit"
         value="submit"
         id="message-submit-button"
+        className="submit"
         onClick={createMessageOnClick}
       />
     </form>

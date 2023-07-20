@@ -1,9 +1,5 @@
 import differenceInMinutes from "date-fns/differenceInMinutes";
-
-export interface dateType {
-  seconds: number;
-  nanoseconds: number;
-}
+import dateType from "../types/date";
 
 export default function dateConverter(date: dateType | Date): string {
   const currentDate = new Date();

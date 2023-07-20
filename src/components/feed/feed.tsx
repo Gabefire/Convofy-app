@@ -1,18 +1,17 @@
-import dateConverter from "../utli/date";
+import dateConverter from "../../utli/date";
 import { NavLink } from "react-router-dom";
-import { messageType } from "./forum";
+import postType from "../../types/post";
 import arrowUp from "../assets/arrow-up-bold.svg";
 import arrowDown from "../assets/arrow-down-bold.svg";
-import "./styles/messages.css";
+import "./styles/feed.css";
 
-export default function Messages({
-  messages,
-  home,
-}: {
-  messages: messageType[];
+interface feedProps {
+  posts: postType[];
   home: boolean;
-}) {
-  const createMessageComponent = () => {
+}
+
+export default function Feed({ posts, home }: feedProps) {
+  const createPostComponent = () => {
     return (
       <div id="create-message">
         <NavLink to={`create-message`}>
@@ -22,7 +21,7 @@ export default function Messages({
     );
   };
 
-  const createForumComponent = (forumName: string, url: string | undefined) => {
+  const createForumComponent = (forumName: string, url: string | null) => {
     return (
       <div className="forum-message">
         {url ? (
@@ -45,46 +44,44 @@ export default function Messages({
 
   return (
     <div id="messages">
-      {home ? null : createMessageComponent()}
-      {messages.length === 0 ? (
+      {home ? null : createPostComponent()}
+      {posts.length === 0 ? (
         <div id="no-messages">No Messages</div>
       ) : (
-        messages.map((message, index) => {
+        posts.map((post, index) => {
           return (
             <div
               className="message"
               key={`message-${index}`}
-              id={`message-${message.id}`}
+              id={`message-${post.id}`}
             >
               <div className="message-title">
-                {home
-                  ? createForumComponent(message.forum, message.iconURL)
-                  : null}
+                {home ? createForumComponent(post.forum, post.iconURL) : null}
                 <div className="from">{`Posted by u/${
-                  message.from
-                } ${dateConverter(message.date)}`}</div>
+                  post.from
+                } ${dateConverter(post.date)}`}</div>
               </div>
               <div className="message-content">
-                <h4>{message.title}</h4>
-                <div>{message.content}</div>
+                <h4>{post.title}</h4>
+                <div>{post.content}</div>
               </div>
               <div className="bottom-icons">
                 <div
                   className="likes"
                   data-testid="likes"
-                  id={`likes-${message.id}`}
+                  id={`likes-${post.id}`}
                 >
                   <button
                     className="up-vote-btn arrow-btn"
-                    id={`up-vote-btn-${message.id}`}
+                    id={`up-vote-btn-${post.id}`}
                     aria-label="up vote"
                   >
                     <img src={arrowUp} className="arrow" />
                   </button>
-                  {message.votes}
+                  {post.votes}
                   <button
                     className="down-vote-btn arrow-btn"
-                    id={`down-vote-btn-${message.id}`}
+                    id={`down-vote-btn-${post.id}`}
                     aria-label="down vote"
                   >
                     <img src={arrowDown} className="arrow" />

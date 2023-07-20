@@ -1,35 +1,16 @@
-import Messages from "./messages";
-import { useContext, useEffect, useMemo, useState } from "react";
+import FeedAPI from "../feed/feed-api";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FirebaseApp } from "../firebase";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-} from "firebase/firestore";
+import { FirebaseApp } from "../../utli/firebase";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import "./styles/forum.css";
-import { dateType } from "../utli/date";
-
-export interface messageType {
-  from: string;
-  content: string;
-  date: Date | dateType;
-  title: string;
-  votes: number;
-  id: string;
-  forum: string;
-  iconURL: string | undefined;
-}
 
 export default function Forum() {
   const param = useParams().id as string;
   const app = useContext(FirebaseApp);
   const [forumExists, setForumExists] = useState(true);
   const [icon, setIcon] = useState("" as any);
-  const [messages, setMessages] = useState([] as messageType[]);
   const [forumData, setForumData] = useState(
     {} as { color: string; description: string; icon: string | undefined }
   );
@@ -69,36 +50,8 @@ export default function Forum() {
       } catch (e) {
         console.error(e);
       }
-
-      const tempMessages: messageType[] = [];
-      try {
-        const messages = await getDocs(
-          collection(db, "forums", param, "messages")
-        );
-
-        if (messages !== undefined) {
-          messages.forEach((doc) => {
-            const message = doc.data() as messageType;
-            message.id = doc.id;
-            message.forum = param;
-            tempMessages.push(message);
-          });
-          tempMessages.sort((a, b) => {
-            if (b.votes > a.votes) {
-              return 1;
-            } else if (b.votes === a.votes) {
-              return 0;
-            } else {
-              return -1;
-            }
-          });
-          setMessages(tempMessages);
-        }
-      } catch (e) {
-        console.error(e);
-      }
+      getForumData();
     };
-    getForumData();
   }, [param]);
 
   const makeForum = () => {
@@ -131,7 +84,7 @@ export default function Forum() {
             <div id="forum-description">{forumData.description}</div>
           </div>
         </div>
-        <Messages messages={messages} home={false} />
+        <FeedAPI home={false} />
       </div>
     );
   };

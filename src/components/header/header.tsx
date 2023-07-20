@@ -6,7 +6,7 @@ import chevronDown from "../assets/chevron-down.svg";
 import home from "../assets/home.svg";
 import magnify from "../assets/magnify.svg";
 import { useContext, useEffect, useState } from "react";
-import { FirebaseApp } from "../firebase";
+import { FirebaseApp } from "../../utli/firebase";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 export default function Header() {

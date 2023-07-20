@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import "./styles/login.css";
-import { FirebaseApp } from "../firebase";
+import { FirebaseApp } from "../../utli/firebase";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
