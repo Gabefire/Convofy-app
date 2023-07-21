@@ -11,6 +11,39 @@ export default function FeedAPI({ home }: { home: boolean }) {
   const app = useContext(FirebaseApp);
   const [posts, setPosts] = useState([] as postType[]);
 
+  const getPosts = async (forum: string) => {
+    setPosts([]);
+    const db = getFirestore(app);
+    const tempMessages: postType[] = [];
+    try {
+      const messages = await getDocs(
+        collection(db, "forums", forum, "messages")
+      );
+      if (messages !== undefined) {
+        messages.forEach((doc) => {
+          const message = doc.data() as postType;
+          message.id = doc.id;
+          message.forum = forum;
+          tempMessages.push(message);
+        });
+        tempMessages.sort((a, b) => {
+          if (b.votes > a.votes) {
+            return 1;
+          } else if (b.votes === a.votes) {
+            return 0;
+          } else {
+            return -1;
+          }
+        });
+        setPosts((prev: postType[]): postType[] => {
+          return prev.concat(tempMessages);
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     const getPostsData = async () => {
       const db = getFirestore(app);
@@ -19,55 +52,11 @@ export default function FeedAPI({ home }: { home: boolean }) {
           const forums: QuerySnapshot = await getDocs(
             collectionGroup(db, "forums")
           );
-          const tempPosts: postType[] = [];
-          for (const forum in forums) {
-            const posts: QuerySnapshot = await getDocs(
-              collection(db, "forums", forum, "messages")
-            );
-            if (posts !== undefined) {
-              posts.forEach((doc) => {
-                const post = doc.data() as postType;
-                post.id = doc.id;
-                tempPosts.push(post);
-              });
-            }
-          }
-          tempPosts.sort((a, b) => {
-            if (b.votes > a.votes) {
-              return 1;
-            } else if (b.votes === a.votes) {
-              return 0;
-            } else {
-              return -1;
-            }
-          });
-          setPosts((prev: postType[]): postType[] => {
-            return prev.concat(tempPosts);
+          forums.forEach((forum) => {
+            getPosts(forum.id);
           });
         } else {
-          const tempPosts: postType[] = [];
-          const posts: QuerySnapshot = await getDocs(
-            collection(db, "forums", param, "messages")
-          );
-          if (posts !== undefined) {
-            posts.forEach((doc) => {
-              const post = doc.data() as postType;
-              post.id = doc.id;
-              tempPosts.push(post);
-            });
-            tempPosts.sort((a, b) => {
-              if (b.votes > a.votes) {
-                return 1;
-              } else if (b.votes === a.votes) {
-                return 0;
-              } else {
-                return -1;
-              }
-            });
-            setPosts((prev: postType[]): postType[] => {
-              return prev.concat(tempPosts);
-            });
-          }
+          getPosts(param);
         }
       } catch (e) {
         console.error(e);

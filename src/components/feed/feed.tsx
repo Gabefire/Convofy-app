@@ -1,9 +1,9 @@
+import { PostBottomIcons } from "./post-bottom-icons";
 import dateConverter from "../../utli/date";
 import { NavLink } from "react-router-dom";
 import postType from "../../types/post";
-import arrowUp from "../assets/arrow-up-bold.svg";
-import arrowDown from "../assets/arrow-down-bold.svg";
-import "./styles/feed.css";
+
+import "./feed.css";
 
 interface feedProps {
   posts: postType[];
@@ -65,29 +65,7 @@ export default function Feed({ posts, home }: feedProps) {
                 <h4>{post.title}</h4>
                 <div>{post.content}</div>
               </div>
-              <div className="bottom-icons">
-                <div
-                  className="likes"
-                  data-testid="likes"
-                  id={`likes-${post.id}`}
-                >
-                  <button
-                    className="up-vote-btn arrow-btn"
-                    id={`up-vote-btn-${post.id}`}
-                    aria-label="up vote"
-                  >
-                    <img src={arrowUp} className="arrow" />
-                  </button>
-                  {post.votes}
-                  <button
-                    className="down-vote-btn arrow-btn"
-                    id={`down-vote-btn-${post.id}`}
-                    aria-label="down vote"
-                  >
-                    <img src={arrowDown} className="arrow" />
-                  </button>
-                </div>
-              </div>
+              <PostBottomIcons post={post} />
             </div>
           );
         })

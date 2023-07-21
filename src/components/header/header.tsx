@@ -1,10 +1,10 @@
 import DropDownNav from "./drop-down-nav";
 import { Link } from "react-router-dom";
-import "./styles/header.css";
-import mainIcon from "../assets/reddit-circle.svg";
-import chevronDown from "../assets/chevron-down.svg";
-import home from "../assets/home.svg";
-import magnify from "../assets/magnify.svg";
+import "./header.css";
+import mainIcon from "../../assets/reddit-circle.svg";
+import chevronDown from "../../assets/chevron-down.svg";
+import home from "../../assets/home.svg";
+import magnify from "../../assets/magnify.svg";
 import { useContext, useEffect, useState } from "react";
 import { FirebaseApp } from "../../utli/firebase";
 import { collection, getDocs, getFirestore } from "firebase/firestore";

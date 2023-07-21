@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { FirebaseApp } from "../../utli/firebase";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import "./styles/forum.css";
+import "./forum.css";
 
 export default function Forum() {
   const param = useParams().id as string;
@@ -50,8 +50,8 @@ export default function Forum() {
       } catch (e) {
         console.error(e);
       }
-      getForumData();
     };
+    getForumData();
   }, [param]);
 
   const makeForum = () => {

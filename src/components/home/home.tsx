@@ -1,5 +1,5 @@
-import "./styles/home.css";
 import FeedAPI from "../feed/feed-api";
+import "./home.css";
 
 export default function Home() {
   return (
