@@ -5,6 +5,7 @@ import { FirebaseApp } from "../../utli/firebase";
 import { getAuth } from "firebase/auth";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import CreatePost from "./create-post";
+import postType from "../../types/post";
 
 export default function CreatePostAPI() {
   const app = useContext(FirebaseApp);
@@ -47,10 +48,11 @@ export default function CreatePostAPI() {
         id: null,
         from: user,
         date: new Date(),
-        votes: 0,
+        upVotes: [],
+        downVotes: [],
         forum: forumName,
         iconURL: url,
-      })
+      } as postType)
         .then(() => {
           navigate(`/r/${forumName}`);
         })

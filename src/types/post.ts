@@ -7,7 +7,7 @@ export default interface postType {
   title: string;
   upVotes: string[];
   downVotes: string[];
-  id: string;
+  id: string | null;
   uid: string;
   forum: string;
   iconURL: string | null;

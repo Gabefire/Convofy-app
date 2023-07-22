@@ -3,16 +3,110 @@ import { NavLink } from "react-router-dom";
 import postType from "../../types/post";
 import "./feed.css";
 import { PostBottomIconsAPI } from "./post-bottom-icons-api";
-import React from "react";
-import { ACTION_TYPE } from "./feed-api";
+import { useEffect, useReducer } from "react";
+
+export const ACTION = {
+  ADD_POSTS: "add-post",
+  UP_VOTE: "up-vote",
+  DOWN_VOTE: "down-vote",
+  DELETE_POST: "delete-post",
+  EDIT_POST: "delete-post",
+  RESTART: "restart",
+};
+
+export type ACTION_TYPE = {
+  type: string;
+  payload?: { posts?: postType[]; id?: string; uid?: string };
+};
+
+const initialState = [] as postType[];
+
+export function reducer(posts: postType[], action: ACTION_TYPE): postType[] {
+  switch (action.type) {
+    case ACTION.ADD_POSTS:
+      if (action.payload !== undefined && action.payload.posts !== undefined) {
+        return posts.concat(action.payload.posts);
+      }
+      console.error("no posts to add");
+      return posts;
+    case ACTION.RESTART:
+      return initialState;
+    case ACTION.UP_VOTE:
+      if (action.payload !== undefined) {
+        return posts.map((post) => {
+          if (
+            action.payload !== undefined &&
+            post.id === action.payload.id &&
+            action.payload.uid !== undefined &&
+            post.upVotes !== undefined
+          ) {
+            if (!post.upVotes.includes(action.payload.uid)) {
+              return {
+                ...post,
+                upVotes: post.upVotes.concat(action.payload.uid),
+                downVotes: post.downVotes.filter(
+                  (uid) => uid !== action.payload?.uid
+                ),
+              };
+            } else {
+              return {
+                ...post,
+                upVotes: post.upVotes.filter(
+                  (uid) => uid !== action.payload?.uid
+                ),
+              };
+            }
+          }
+          return post;
+        });
+      }
+      return posts;
+    case ACTION.DOWN_VOTE:
+      if (action.payload !== undefined) {
+        return posts.map((post) => {
+          if (
+            action.payload !== undefined &&
+            post.id === action.payload.id &&
+            action.payload.uid !== undefined &&
+            post.downVotes !== undefined
+          ) {
+            if (!post.downVotes.includes(action.payload.uid)) {
+              return {
+                ...post,
+                downVotes: post.downVotes.concat(action.payload.uid),
+                upVotes: post.upVotes.filter(
+                  (uid) => uid !== action.payload?.uid
+                ),
+              };
+            } else {
+              return {
+                ...post,
+                downVotes: post.downVotes.filter(
+                  (uid) => uid !== action.payload?.uid
+                ),
+              };
+            }
+          }
+          return post;
+        });
+      }
+      return posts;
+    default:
+      return posts;
+  }
+}
 
 interface feedProps {
   posts: postType[];
   home: boolean;
-  postFunctions: React.Dispatch<ACTION_TYPE>;
 }
 
-export default function Feed({ posts, home, postFunctions }: feedProps) {
+export default function Feed({ posts, home }: feedProps) {
+  const [postsDispatch, dispatch] = useReducer(reducer, initialState);
+  useEffect(() => {
+    dispatch({ type: ACTION.ADD_POSTS, payload: { posts: posts } });
+  }, [posts]);
+
   const createPostComponent = () => {
     return (
       <div id="create-message">
@@ -47,10 +141,10 @@ export default function Feed({ posts, home, postFunctions }: feedProps) {
   return (
     <div id="messages">
       {home ? null : createPostComponent()}
-      {posts.length === 0 ? (
+      {postsDispatch.length === 0 ? (
         <div id="no-messages">No Messages</div>
       ) : (
-        posts.map((post, index) => {
+        postsDispatch.map((post, index) => {
           return (
             <div
               className="message"
@@ -67,7 +161,7 @@ export default function Feed({ posts, home, postFunctions }: feedProps) {
                 <h4>{post.title}</h4>
                 <div>{post.content}</div>
               </div>
-              <PostBottomIconsAPI post={post} postFunctions={postFunctions} />
+              <PostBottomIconsAPI post={post} postFunctions={dispatch} />
             </div>
           );
         })

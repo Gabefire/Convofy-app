@@ -3,7 +3,7 @@ import { useContext, useEffect, useMemo } from "react";
 import { FirebaseApp } from "../../utli/firebase";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { PostBottomIcons } from "./post-bottom-icons";
-import { ACTION_TYPE } from "./feed-api";
+import { ACTION_TYPE } from "./feed";
 import { getAuth } from "firebase/auth";
 
 interface postBottomIconsAPIProps {
@@ -24,9 +24,15 @@ export function PostBottomIconsAPI({
     const addPost = async () => {
       const db = getFirestore(app);
       try {
-        await setDoc(doc(db, "forums", post.forum, "messages", post.id), post, {
-          merge: true,
-        });
+        if (post.id !== null) {
+          await setDoc(
+            doc(db, "forums", post.forum, "messages", post.id),
+            post,
+            {
+              merge: true,
+            }
+          );
+        }
       } catch (e) {
         console.error(e);
       }
@@ -34,5 +40,11 @@ export function PostBottomIconsAPI({
     addPost();
   }, [postMemo]);
 
-  return <PostBottomIcons post={postMemo} uid={auth.currentUser?.uid} />;
+  return (
+    <PostBottomIcons
+      post={postMemo}
+      uid={auth.currentUser?.uid}
+      postFunctions={postFunctions}
+    />
+  );
 }
