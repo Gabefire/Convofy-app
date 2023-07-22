@@ -1,16 +1,18 @@
-import { PostBottomIcons } from "./post-bottom-icons";
 import dateConverter from "../../utli/date";
 import { NavLink } from "react-router-dom";
 import postType from "../../types/post";
-
 import "./feed.css";
+import { PostBottomIconsAPI } from "./post-bottom-icons-api";
+import React from "react";
+import { ACTION_TYPE } from "./feed-api";
 
 interface feedProps {
   posts: postType[];
   home: boolean;
+  postFunctions: React.Dispatch<ACTION_TYPE>;
 }
 
-export default function Feed({ posts, home }: feedProps) {
+export default function Feed({ posts, home, postFunctions }: feedProps) {
   const createPostComponent = () => {
     return (
       <div id="create-message">
@@ -65,7 +67,7 @@ export default function Feed({ posts, home }: feedProps) {
                 <h4>{post.title}</h4>
                 <div>{post.content}</div>
               </div>
-              <PostBottomIcons post={post} />
+              <PostBottomIconsAPI post={post} postFunctions={postFunctions} />
             </div>
           );
         })

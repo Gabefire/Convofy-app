@@ -6,17 +6,18 @@ import { FirebaseApp } from "../../utli/firebase";
 import postType from "../../types/post";
 import Feed from "./feed";
 
-const ACTION = {
+export const ACTION = {
   ADD_POSTS: "add-post",
   UP_VOTE: "up-vote",
+  DOWN_VOTE: "down-vote",
   DELETE_POST: "delete-post",
   EDIT_POST: "delete-post",
   RESTART: "restart",
 };
 
-type ACTION_TYPE = {
+export type ACTION_TYPE = {
   type: string;
-  payload?: { posts?: postType[]; id?: string };
+  payload?: { posts?: postType[]; id?: string; uid?: string };
 };
 
 const initialState = [] as postType[];
@@ -32,13 +33,48 @@ function reducer(posts: postType[], action: ACTION_TYPE): postType[] {
     case ACTION.RESTART:
       return initialState;
     case ACTION.UP_VOTE:
-      if (action.payload !== undefined && action.payload.id !== undefined) {
-        const post = posts.find((post) => {
-          if (action.payload !== undefined) {
-            return post.id === action.payload.id;
+      if (action.payload !== undefined) {
+        return posts.map((post) => {
+          if (
+            action.payload !== undefined &&
+            post.id === action.payload.id &&
+            action.payload.uid !== undefined
+          ) {
+            if (!post.upVotes.includes(action.payload.uid)) {
+              return {
+                ...post,
+                upVotes: post.upVotes.concat(action.payload.uid),
+              };
+            } else {
+              return {
+                ...post,
+                upVotes: post.upVotes.filter(
+                  (uid) => uid !== action.payload?.uid
+                ),
+              };
+            }
           }
+          return post;
         });
       }
+      return posts;
+    case ACTION.DOWN_VOTE:
+      if (action.payload !== undefined) {
+        return posts.map((post) => {
+          if (
+            action.payload !== undefined &&
+            post.id === action.payload.id &&
+            action.payload.uid !== undefined
+          ) {
+            return {
+              ...post,
+              downVotes: post.downVotes.concat(action.payload.uid),
+            };
+          }
+          return post;
+        });
+      }
+      return posts;
     default:
       return posts;
   }
@@ -64,9 +100,15 @@ export default function FeedAPI({ home }: { home: boolean }) {
           tempMessages.push(message);
         });
         tempMessages.sort((a, b) => {
-          if (b.votes > a.votes) {
+          if (
+            b.upVotes.length - b.downVotes.length >
+            a.upVotes.length - a.downVotes.length
+          ) {
             return 1;
-          } else if (b.votes === a.votes) {
+          } else if (
+            b.upVotes.length - b.downVotes.length ===
+            a.upVotes.length - a.downVotes.length
+          ) {
             return 0;
           } else {
             return -1;
@@ -101,5 +143,5 @@ export default function FeedAPI({ home }: { home: boolean }) {
     getPostsData();
   }, [param]);
 
-  return <Feed posts={posts} home={home} />;
+  return <Feed posts={posts} home={home} postFunctions={dispatch} />;
 }

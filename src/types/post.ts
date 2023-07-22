@@ -5,7 +5,8 @@ export default interface postType {
   content: string;
   date: Date | dateType;
   title: string;
-  votes: number;
+  upVotes: string[];
+  downVotes: string[];
   id: string;
   uid: string;
   forum: string;
