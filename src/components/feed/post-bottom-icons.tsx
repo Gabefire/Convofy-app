@@ -48,15 +48,22 @@ export function PostBottomIcons({
   };
 
   const upVote = (e: React.PointerEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    let id = (e.currentTarget.id as string).split("-");
-    postFunctions({ type: ACTION.UP_VOTE, payload: { uid: uid, id: id[3] } });
+    if (uid !== undefined) {
+      e.preventDefault();
+      let id = (e.currentTarget.id as string).split("-");
+      postFunctions({ type: ACTION.UP_VOTE, payload: { uid: uid, id: id[3] } });
+    }
   };
 
   const downVote = (e: React.PointerEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    let id = (e.currentTarget.id as string).split("-");
-    postFunctions({ type: ACTION.DOWN_VOTE, payload: { uid: uid, id: id[3] } });
+    if (uid !== undefined) {
+      e.preventDefault();
+      let id = (e.currentTarget.id as string).split("-");
+      postFunctions({
+        type: ACTION.DOWN_VOTE,
+        payload: { uid: uid, id: id[3] },
+      });
+    }
   };
 
   return (

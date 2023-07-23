@@ -1,8 +1,7 @@
-import dateConverter from "../../utli/date";
+import { Post } from "./post";
 import { NavLink } from "react-router-dom";
 import postType from "../../types/post";
 import "./feed.css";
-import { PostBottomIconsAPI } from "./post-bottom-icons-api";
 import { useEffect, useReducer } from "react";
 
 export const ACTION = {
@@ -151,17 +150,12 @@ export default function Feed({ posts, home }: feedProps) {
               key={`message-${index}`}
               id={`message-${post.id}`}
             >
-              <div className="message-title">
-                {home ? createForumComponent(post.forum, post.iconURL) : null}
-                <div className="from">{`Posted by u/${
-                  post.from
-                } ${dateConverter(post.date)}`}</div>
-              </div>
-              <div className="message-content">
-                <h4>{post.title}</h4>
-                <div>{post.content}</div>
-              </div>
-              <PostBottomIconsAPI post={post} postFunctions={dispatch} />
+              <Post
+                home={home}
+                createForumComponent={createForumComponent}
+                post={post}
+                dispatch={dispatch}
+              />
             </div>
           );
         })

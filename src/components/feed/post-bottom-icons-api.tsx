@@ -17,9 +17,7 @@ export function PostBottomIconsAPI({
 }: postBottomIconsAPIProps) {
   const app = useContext(FirebaseApp);
   const auth = getAuth(app);
-  const postMemo = useMemo(() => {
-    return post;
-  }, [post]);
+
   useEffect(() => {
     const addPost = async () => {
       const db = getFirestore(app);
@@ -38,11 +36,11 @@ export function PostBottomIconsAPI({
       }
     };
     addPost();
-  }, [postMemo]);
+  }, [post]);
 
   return (
     <PostBottomIcons
-      post={postMemo}
+      post={post}
       uid={auth.currentUser?.uid}
       postFunctions={postFunctions}
     />
