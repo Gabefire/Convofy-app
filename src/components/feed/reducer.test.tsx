@@ -92,4 +92,14 @@ describe("bottom icons in message component", () => {
     expect(updatedState[1].upVotes.length).toBe(1);
     expect(updatedState[1].downVotes.length).toBe(0);
   });
+
+  it("deletes post", () => {
+    const initialState = messages;
+    let updatedAction = {
+      type: ACTION.DELETE_POST,
+      payload: { uid: "testuser", id: "2" },
+    };
+    let updatedState = reducer(initialState, updatedAction);
+    expect(updatedState.length).toBe(1);
+  });
 });

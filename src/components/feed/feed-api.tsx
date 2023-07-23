@@ -1,6 +1,11 @@
-import { useEffect, useReducer, useContext, useMemo, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import { QuerySnapshot, getFirestore } from "firebase/firestore";
+import {
+  QuerySnapshot,
+  deleteField,
+  getFirestore,
+  updateDoc,
+} from "firebase/firestore";
 import { getDocs, collection, collectionGroup } from "firebase/firestore";
 import { FirebaseApp } from "../../utli/firebase";
 import postType from "../../types/post";

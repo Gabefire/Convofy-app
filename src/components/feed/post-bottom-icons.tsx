@@ -6,17 +6,21 @@ import { ACTION } from "./feed";
 import { ReactComponent as ArrowUp } from "../../assets/arrow-up-bold.svg";
 import { ReactComponent as ArrowDown } from "../../assets/arrow-down-bold.svg";
 import { ReactComponent as Comment } from "../../assets/comment.svg";
+import { ReactComponent as Delete } from "../../assets/delete.svg";
+import { ReactComponent as Edit } from "../../assets/file-edit.svg";
 
 interface postBottomIconsProps {
   post: postType;
   postFunctions: React.Dispatch<ACTION_TYPE>;
   uid: string | undefined;
+  deleteAPI: () => Promise<void>;
 }
 
 export function PostBottomIcons({
   post,
   postFunctions,
   uid,
+  deleteAPI,
 }: postBottomIconsProps) {
   const activatedUp = () => {
     if (post.upVotes.includes(uid as string) && uid !== undefined) {
@@ -67,11 +71,22 @@ export function PostBottomIcons({
     }
   };
 
+  const deletePost = (e: React.PointerEvent<HTMLButtonElement>) => {
+    if (uid !== undefined) {
+      e.preventDefault();
+      postFunctions({
+        type: ACTION.DELETE_POST,
+        payload: { uid: uid, id: post.id as string },
+      });
+      deleteAPI();
+    }
+  };
+
   return (
     <div className="bottom-icons">
       <div className="likes" data-testid="likes" id={`likes-${post.id}`}>
         <button
-          className="up-vote-btn arrow-btn"
+          className="up-vote-btn icon-btn"
           aria-label="up vote"
           onClick={upVote}
           id={`up-vote-btn-${post.id}`}
@@ -80,7 +95,7 @@ export function PostBottomIcons({
         </button>
         {getVoteValue(post)}
         <button
-          className="down-vote-btn arrow-btn"
+          className="down-vote-btn icon-btn"
           id={`down-vote-btn-${post.id}`}
           onClick={downVote}
           aria-label="down vote"
@@ -88,9 +103,20 @@ export function PostBottomIcons({
           <ArrowDown fill={activatedDown()} className="arrow" />
         </button>
       </div>
-      <button className="comment-btn">
-        <Comment fill={"white"} className="comment-icon" />0
+      <button className="icon-btn">
+        <Comment fill={"white"} className="comment-icon" />
+        {0}
       </button>
+      {uid === post.uid ? (
+        <div className="auth-icons">
+          <button className="icon-btn" onClick={deletePost}>
+            <Delete fill={"white"} className="delete-icon" />
+          </button>
+          <button className="icon-btn">
+            <Edit fill={"white"} className="edit-icon" />
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -28,6 +28,11 @@ export function reducer(posts: postType[], action: ACTION_TYPE): postType[] {
       }
       console.error("no posts to add");
       return posts;
+    case ACTION.DELETE_POST:
+      if (action.payload !== undefined && action.payload.id !== undefined) {
+        return posts.filter((post) => post.id !== action.payload?.id);
+      }
+      return posts;
     case ACTION.RESTART:
       return initialState;
     case ACTION.UP_VOTE:

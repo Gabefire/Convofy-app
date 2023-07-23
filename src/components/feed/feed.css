@@ -14,13 +14,14 @@
 }
 
 .arrow,
-.comment-icon {
+.comment-icon,
+.delete-icon,
+.edit-icon {
   height: 1.8rem;
   cursor: pointer;
 }
 
-.arrow-btn,
-.comment-btn {
+.icon-btn {
   font-size: inherit;
   font-family: inherit;
   color: white;
@@ -35,4 +36,9 @@
 
 .down-vote-btn {
   padding-top: 5px;
+}
+
+.auth-icons {
+  display: flex;
+  gap: 20px;
 }
