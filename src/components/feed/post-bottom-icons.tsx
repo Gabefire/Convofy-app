@@ -1,9 +1,10 @@
-import arrowUp from "../../assets/arrow-up-bold.svg";
-import arrowDown from "../../assets/arrow-down-bold.svg";
+/// <reference types="vite-plugin-svgr/client" />
 import postType from "../../types/post";
 import { ACTION_TYPE } from "./feed";
 import React from "react";
 import { ACTION } from "./feed";
+import { ReactComponent as ArrowUp } from "../../assets/arrow-up-bold.svg";
+import { ReactComponent as ArrowDown } from "../../assets/arrow-down-bold.svg";
 
 interface postBottomIconsProps {
   post: postType;
@@ -16,6 +17,20 @@ export function PostBottomIcons({
   postFunctions,
   uid,
 }: postBottomIconsProps) {
+  const activatedUp = () => {
+    if (post.upVotes.includes(uid as string) && uid !== undefined) {
+      return "red";
+    }
+    return "white";
+  };
+
+  const activatedDown = () => {
+    if (post.downVotes.includes(uid as string) && uid !== undefined) {
+      return "red";
+    }
+    return "white";
+  };
+
   const getVoteValue = (post: postType): number => {
     let upVoteNum: number;
     if (post.upVotes !== undefined) {
@@ -53,7 +68,7 @@ export function PostBottomIcons({
           onClick={upVote}
           id={`up-vote-btn-${post.id}`}
         >
-          <img src={arrowUp} className="arrow" />
+          <ArrowUp fill={activatedUp()} className="arrow" />
         </button>
         {getVoteValue(post)}
         <button
@@ -62,7 +77,7 @@ export function PostBottomIcons({
           onClick={downVote}
           aria-label="down vote"
         >
-          <img src={arrowDown} className="arrow" />
+          <ArrowDown fill={activatedDown()} className="arrow" />
         </button>
       </div>
     </div>

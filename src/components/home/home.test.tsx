@@ -3,6 +3,7 @@ import postType from "../../types/post";
 import Feed from "../feed/feed";
 
 describe("messages home component", () => {
+  let messages: postType[];
   beforeEach(() => {
     const message1: postType = {
       uid: "123",
@@ -28,15 +29,20 @@ describe("messages home component", () => {
       forum: "gabe2",
       iconURL: null,
     };
-    const messages: postType[] = [message1, message2];
-    render(<Feed posts={messages} home={true} />);
+    messages = [message1, message2];
+  });
+  it("renders home screen", () => {
+    const { container } = render(<Feed posts={messages} home={true} />);
+    expect(container).toMatchSnapshot();
   });
 
-  it("displays messages from two forums", async () => {
+  it("displays messages from two forums", () => {
+    render(<Feed posts={messages} home={true} />);
     expect(document.querySelectorAll(".message").length).toBe(2);
   });
 
   it("shows two separate forum names with home", () => {
+    render(<Feed posts={messages} home={true} />);
     expect(screen.getByTestId("gabe")).toBeInTheDocument;
     expect(screen.getByTestId("gabe2")).toBeInTheDocument;
   });

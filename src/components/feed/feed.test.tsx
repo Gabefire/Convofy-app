@@ -1,7 +1,6 @@
 import Feed from "./feed";
-import { render } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import React from "react";
 import postType from "../../types/post";
 
 describe("feed component", () => {
@@ -19,23 +18,17 @@ describe("feed component", () => {
       forum: "gabe",
       iconURL: null,
     };
-    const message2: postType = {
-      uid: "1234",
-      from: "gabe",
-      content: "test",
-      date: new Date(),
-      title: "test",
-      upVotes: [],
-      downVotes: [],
-      id: "2",
-      forum: "gabe2",
-      iconURL: null,
-    };
-    messages = [message1, message2];
+    messages = [message1];
   });
-  it("mock useEffect", () => {
-    const mockFn = jest.fn();
-    jest.spyOn(React, "useEffect").mockImplementation(mockFn);
+
+  it("renders feed component", async () => {
+    const { container } = render(<Feed posts={messages} home={true} />);
+    expect(container).toMatchSnapshot();
+  });
+
+  it("up vote button on screen", () => {
     render(<Feed posts={messages} home={true} />);
+    const upVote = screen.getByRole("button", { name: "up vote" });
+    expect(upVote).toBeInTheDocument();
   });
 });
