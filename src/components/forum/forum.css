@@ -68,7 +68,7 @@
   flex-direction: column;
   align-self: center;
   background-color: rgb(63, 62, 62);
-  width: clamp(300px, calc(40% + 40px), 740px);
+  width: clamp(300px, calc(95% + 40px), 740px);
   height: 80px;
   margin-top: 20px;
   justify-content: center;
@@ -95,7 +95,7 @@
   align-self: center;
   background-color: rgb(63, 62, 62);
   color: white;
-  width: clamp(260px, 40%, 700px);
+  width: clamp(260px, 95%, 700px);
   padding: 20px;
   justify-content: center;
 }

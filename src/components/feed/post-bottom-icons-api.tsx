@@ -1,5 +1,5 @@
 import postType from "../../types/post";
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useEffect } from "react";
 import { FirebaseApp } from "../../utli/firebase";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { PostBottomIcons } from "./post-bottom-icons";

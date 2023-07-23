@@ -1,15 +1,30 @@
+.bottom-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.comment {
+  display: flex;
+}
+
 .likes {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-.arrow {
+.arrow,
+.comment-icon {
   height: 1.8rem;
   cursor: pointer;
 }
 
-.arrow-btn {
+.arrow-btn,
+.comment-btn {
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  gap: 5px;
   display: flex;
   align-items: center;
   background: none;

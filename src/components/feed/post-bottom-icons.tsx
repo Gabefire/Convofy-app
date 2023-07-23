@@ -5,6 +5,7 @@ import React from "react";
 import { ACTION } from "./feed";
 import { ReactComponent as ArrowUp } from "../../assets/arrow-up-bold.svg";
 import { ReactComponent as ArrowDown } from "../../assets/arrow-down-bold.svg";
+import { ReactComponent as Comment } from "../../assets/comment.svg";
 
 interface postBottomIconsProps {
   post: postType;
@@ -87,6 +88,9 @@ export function PostBottomIcons({
           <ArrowDown fill={activatedDown()} className="arrow" />
         </button>
       </div>
+      <button className="comment-btn">
+        <Comment fill={"white"} className="comment-icon" />0
+      </button>
     </div>
   );
 }
