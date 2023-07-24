@@ -1,7 +1,7 @@
 import dateConverter from "../../utli/date";
 import { PostBottomIconsAPI } from "./post-bottom-icons-api";
 import postType from "../../types/post";
-import { ACTION_TYPE } from "./feed";
+import { ACTION, ACTION_TYPE } from "./feed";
 import { useState } from "react";
 
 interface postPropsType {
@@ -12,8 +12,25 @@ interface postPropsType {
 
 export function Post({ home, post, dispatch }: postPropsType) {
   const [editPost, setEditPost] = useState(false);
+  const [title, setTitle] = useState(post.title);
+  const [content, setContent] = useState(post.content);
 
   const toggleEditPost = () => {
+    setEditPost(!editPost);
+  };
+
+  const submitEdit = (e: React.PointerEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (
+      title &&
+      content &&
+      (post.title !== title || post.content !== content)
+    ) {
+      dispatch({
+        type: ACTION.EDIT_POST,
+        payload: { id: post.id as string, title: title, content: content },
+      });
+    }
     setEditPost(!editPost);
   };
 
@@ -40,7 +57,7 @@ export function Post({ home, post, dispatch }: postPropsType) {
 
   const createEditPost = () => {
     return (
-      <form className="message-content">
+      <form className="message-content" onSubmit={submitEdit}>
         <label
           htmlFor={`edit-input-title-${post.id}`}
           className="edit-message-label"
@@ -50,6 +67,11 @@ export function Post({ home, post, dispatch }: postPropsType) {
             type="text"
             className="message-header edit-title"
             defaultValue={post.title}
+            onChange={(e) => {
+              if (e.target.value !== null) {
+                setTitle(e.target.value);
+              }
+            }}
             id={`edit-input-title-${post.id}`}
           />
         </label>
@@ -61,6 +83,11 @@ export function Post({ home, post, dispatch }: postPropsType) {
             rows={20}
             cols={50}
             defaultValue={post.content}
+            onChange={(e) => {
+              if (e.target.value !== null) {
+                setContent(e.target.value);
+              }
+            }}
           ></textarea>
         </label>
         <input
