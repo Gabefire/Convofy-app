@@ -35,7 +35,7 @@ export default function CreatePost({ createPost }: createPostProps) {
         type="submit"
         value="submit"
         id="message-submit-button"
-        className="submit"
+        className="submit form-btn"
         onClick={createMessageOnClick}
       />
     </form>

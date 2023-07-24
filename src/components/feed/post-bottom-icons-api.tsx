@@ -9,11 +9,13 @@ import { getAuth } from "firebase/auth";
 interface postBottomIconsAPIProps {
   post: postType;
   postFunctions: React.Dispatch<ACTION_TYPE>;
+  toggleEditPost: () => void;
 }
 
 export function PostBottomIconsAPI({
   post,
   postFunctions,
+  toggleEditPost,
 }: postBottomIconsAPIProps) {
   const app = useContext(FirebaseApp);
   const auth = getAuth(app);
@@ -55,6 +57,7 @@ export function PostBottomIconsAPI({
       uid={auth.currentUser?.uid}
       postFunctions={postFunctions}
       deleteAPI={deletePostAPI}
+      toggleEditPost={toggleEditPost}
     />
   );
 }

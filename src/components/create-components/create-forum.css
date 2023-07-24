@@ -24,13 +24,20 @@
   justify-content: space-between;
 }
 
-.submit {
+.form-btn {
   cursor: pointer;
   font-family: inherit;
   height: 2rem;
   font-size: 1.2rem;
   color: white;
-  background-color: rgb(255, 51, 0);
   border: none;
   font-weight: bold;
+}
+
+.submit {
+  background-color: green;
+}
+
+.cancel {
+  background-color: rgb(255, 51, 0);
 }

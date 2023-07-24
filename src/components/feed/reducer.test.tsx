@@ -102,4 +102,20 @@ describe("bottom icons in message component", () => {
     let updatedState = reducer(initialState, updatedAction);
     expect(updatedState.length).toBe(1);
   });
+
+  it("edit post", () => {
+    const initialState = messages;
+    let updatedAction = {
+      type: ACTION.EDIT_POST,
+      payload: {
+        uid: "testuser",
+        id: "2",
+        title: "new title",
+        content: "new content",
+      },
+    };
+    let updatedState = reducer(initialState, updatedAction);
+    expect(updatedState[1].title).toBe("new title");
+    expect(updatedState[1].content).toBe("new content");
+  });
 });

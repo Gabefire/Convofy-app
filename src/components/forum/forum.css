@@ -88,31 +88,3 @@
   line-height: 50px;
   border-radius: 10px;
 }
-
-.message {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  background-color: rgb(63, 62, 62);
-  color: white;
-  width: clamp(260px, 95%, 700px);
-  padding: 20px;
-  justify-content: center;
-}
-
-.message-title {
-  color: lightgray;
-  font-size: 1rem;
-}
-
-.message-content {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-  overflow-wrap: break-word;
-}
-
-.message-content h4 {
-  font-size: 1.5rem;
-  margin: 0;
-}

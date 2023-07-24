@@ -14,6 +14,7 @@ interface postBottomIconsProps {
   postFunctions: React.Dispatch<ACTION_TYPE>;
   uid: string | undefined;
   deleteAPI: () => Promise<void>;
+  toggleEditPost: () => void;
 }
 
 export function PostBottomIcons({
@@ -21,6 +22,7 @@ export function PostBottomIcons({
   postFunctions,
   uid,
   deleteAPI,
+  toggleEditPost,
 }: postBottomIconsProps) {
   const activatedUp = () => {
     if (post.upVotes.includes(uid as string) && uid !== undefined) {
@@ -71,6 +73,18 @@ export function PostBottomIcons({
     }
   };
 
+  const editPost = (e: React.PointerEvent<HTMLButtonElement>) => {
+    if (uid !== undefined) {
+      e.preventDefault();
+      toggleEditPost();
+
+      postFunctions({
+        type: ACTION.EDIT_POST,
+        payload: { uid: uid, id: post.id as string },
+      });
+    }
+  };
+
   const deletePost = (e: React.PointerEvent<HTMLButtonElement>) => {
     if (uid !== undefined) {
       e.preventDefault();
@@ -112,7 +126,7 @@ export function PostBottomIcons({
           <button className="icon-btn" onClick={deletePost}>
             <Delete fill={"white"} className="delete-icon" />
           </button>
-          <button className="icon-btn">
+          <button className="icon-btn" onClick={editPost}>
             <Edit fill={"white"} className="edit-icon" />
           </button>
         </div>

@@ -9,13 +9,19 @@ export const ACTION = {
   UP_VOTE: "up-vote",
   DOWN_VOTE: "down-vote",
   DELETE_POST: "delete-post",
-  EDIT_POST: "delete-post",
+  EDIT_POST: "edit-post",
   RESTART: "restart",
 };
 
 export type ACTION_TYPE = {
   type: string;
-  payload?: { posts?: postType[]; id?: string; uid?: string };
+  payload?: {
+    posts?: postType[];
+    id?: string;
+    uid?: string;
+    title?: string;
+    content?: string;
+  };
 };
 
 const initialState = [] as postType[];
@@ -95,6 +101,25 @@ export function reducer(posts: postType[], action: ACTION_TYPE): postType[] {
         });
       }
       return posts;
+    case ACTION.EDIT_POST:
+      if (
+        action.payload !== undefined &&
+        action.payload.id !== undefined &&
+        action.payload.title !== undefined &&
+        action.payload.content !== undefined
+      ) {
+        return posts.map((post) => {
+          if (post.id === action.payload?.id) {
+            return {
+              ...post,
+              title: action.payload.title as string,
+              content: action.payload.content as string,
+            };
+          }
+          return post;
+        });
+      }
+      return posts;
     default:
       return posts;
   }
@@ -121,27 +146,6 @@ export default function Feed({ posts, home }: feedProps) {
     );
   };
 
-  const createForumComponent = (forumName: string, url: string | null) => {
-    return (
-      <div className="forum-message">
-        {url ? (
-          <img
-            src={url}
-            alt={`forum icon ${forumName}`}
-            className="icon-message"
-          />
-        ) : (
-          <div className="icon-message" style={{ backgroundColor: "red" }}>
-            {forumName.slice(0, 1)}
-          </div>
-        )}
-        <div className="forum-name" data-testid={forumName}>
-          {`r/${forumName}`}
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div id="messages">
       {home ? null : createPostComponent()}
@@ -155,12 +159,7 @@ export default function Feed({ posts, home }: feedProps) {
               key={`message-${index}`}
               id={`message-${post.id}`}
             >
-              <Post
-                home={home}
-                createForumComponent={createForumComponent}
-                post={post}
-                dispatch={dispatch}
-              />
+              <Post home={home} post={post} dispatch={dispatch} />
             </div>
           );
         })

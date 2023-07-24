@@ -42,3 +42,57 @@
   display: flex;
   gap: 20px;
 }
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  background-color: rgb(63, 62, 62);
+  color: white;
+  width: clamp(260px, 95%, 700px);
+  padding: 20px;
+  justify-content: center;
+}
+
+.message-title {
+  color: lightgray;
+  font-size: 1rem;
+}
+
+.message-content .edit-title,
+.message-content .edit-main {
+  font-size: 1rem;
+  background-color: lightgrey;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.message-content label {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-main {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.message-header {
+  font-size: 1.2rem;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.message-main {
+  font-size: 1rem;
+  overflow-wrap: break-word;
+}
