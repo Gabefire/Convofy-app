@@ -10,5 +10,4 @@ export default interface postType {
   id: string | null;
   uid: string;
   forum: string;
-  iconURL: string | null;
 }

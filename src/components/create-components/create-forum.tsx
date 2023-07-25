@@ -49,7 +49,7 @@ export default function CreateForum({ createForum }: createForumProps) {
         type="submit"
         value={"Submit"}
         id="submit-forum"
-        className="submit"
+        className="submit form-btn"
         onClick={createForum}
       />
     </form>

@@ -5,9 +5,13 @@ import { BrowserRouter } from "react-router-dom";
 
 describe("drop down component", () => {
   it("renders forums", () => {
+    const showNav = jest.fn();
     render(
       <BrowserRouter>
-        <DropDownNav forums={["test1", "test2", "test3"]} />
+        <DropDownNav
+          forums={["test1", "test2", "test3"]}
+          showDropDownNav={showNav}
+        />
       </BrowserRouter>
     );
     const forumElements = document.querySelectorAll("li");
@@ -15,9 +19,13 @@ describe("drop down component", () => {
     expect(forumElements[0].textContent).toBe("r/test1");
   });
   it("switches url", async () => {
+    const showNav = jest.fn();
     render(
       <BrowserRouter>
-        <DropDownNav forums={["test1", "test2", "test3"]} />
+        <DropDownNav
+          forums={["test1", "test2", "test3"]}
+          showDropDownNav={showNav}
+        />
       </BrowserRouter>
     );
     const user = userEvent.setup();

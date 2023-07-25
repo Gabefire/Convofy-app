@@ -133,6 +133,7 @@ interface feedProps {
 export default function Feed({ posts, home }: feedProps) {
   const [postsDispatch, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
+    dispatch({ type: ACTION.RESTART });
     dispatch({ type: ACTION.ADD_POSTS, payload: { posts: posts } });
   }, [posts]);
 

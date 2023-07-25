@@ -1,20 +1,14 @@
 import { useEffect, useContext, useState } from "react";
-import { useParams } from "react-router-dom";
-import {
-  QuerySnapshot,
-  deleteField,
-  getFirestore,
-  updateDoc,
-} from "firebase/firestore";
+import { QuerySnapshot, getFirestore } from "firebase/firestore";
 import { getDocs, collection, collectionGroup } from "firebase/firestore";
 import { FirebaseApp } from "../../utli/firebase";
 import postType from "../../types/post";
 import Feed from "./feed";
 
-export default function FeedAPI({ home }: { home: boolean }) {
+export default function FeedAPI({ forumName }: { forumName: string | false }) {
   const [posts, setPosts] = useState([] as postType[]);
-  const param = useParams().id as string;
   const app = useContext(FirebaseApp);
+  const [home, setHome] = useState(false);
 
   const getPosts = async (forum: string) => {
     const db = getFirestore(app);
@@ -53,11 +47,15 @@ export default function FeedAPI({ home }: { home: boolean }) {
   };
 
   useEffect(() => {
+    if (!forumName) {
+      setHome(true);
+    }
     setPosts([]);
     const getPostsData = async () => {
       const db = getFirestore(app);
       try {
-        if (home) {
+        if (!forumName) {
+          setHome(true);
           const forums: QuerySnapshot = await getDocs(
             collectionGroup(db, "forums")
           );
@@ -65,14 +63,14 @@ export default function FeedAPI({ home }: { home: boolean }) {
             getPosts(forum.id);
           });
         } else {
-          getPosts(param);
+          getPosts(forumName);
         }
       } catch (e) {
         console.error(e);
       }
     };
     getPostsData();
-  }, [param]);
+  }, [forumName]);
 
   return <Feed posts={posts} home={home} />;
 }

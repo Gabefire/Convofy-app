@@ -30,9 +30,8 @@ export default function Header() {
     getForums();
   }, [showDropDownNav]);
 
-  const showNav = (e: React.PointerEvent<HTMLImageElement>): void => {
-    e.preventDefault();
-    setShowDropDownNav(!showDropDownNav);
+  const hideNav = (): void => {
+    setShowDropDownNav(false);
   };
 
   return (
@@ -45,20 +44,23 @@ export default function Header() {
       <div id="search-items">
         <div id="drop-down-menu">
           <div id="icons">
-            <Link
-              to="/"
-              onClick={() => {
-                setShowDropDownNav(false);
-              }}
-            >
+            <Link to="/" onClick={hideNav}>
               <div id="home-icons">
                 <img src={home} alt="home icon" />
                 <div>Home</div>
               </div>
             </Link>
-            <img src={chevronDown} alt="expand menu" onClick={showNav} />
+            <img
+              src={chevronDown}
+              alt="expand menu"
+              onClick={() => {
+                setShowDropDownNav(!showDropDownNav);
+              }}
+            />
           </div>
-          {showDropDownNav ? <DropDownNav forums={forumNames} /> : null}
+          {showDropDownNav ? (
+            <DropDownNav forums={forumNames} showDropDownNav={hideNav} />
+          ) : null}
         </div>
         <div id="search-bar">
           <img src={magnify} />
@@ -68,22 +70,12 @@ export default function Header() {
 
       <div id="user-icons">
         <Link to="/create-forum">
-          <div
-            id="add-forum"
-            onClick={() => {
-              setShowDropDownNav(false);
-            }}
-          >
+          <div id="add-forum" onClick={hideNav}>
             +
           </div>
         </Link>
         <Link to="/login" className="header-link">
-          <button
-            id="login-btn"
-            onClick={() => {
-              setShowDropDownNav(false);
-            }}
-          >
+          <button id="login-btn" onClick={hideNav}>
             Login
           </button>
         </Link>

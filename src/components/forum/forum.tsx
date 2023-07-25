@@ -7,13 +7,21 @@ import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import "./forum.css";
 
 export default function Forum() {
-  const param = useParams().id as string;
+  const param = decodeURI(useParams().id as string);
   const app = useContext(FirebaseApp);
-  const [forumExists, setForumExists] = useState(true);
+  const [forumExists, setForumExists] = useState(false);
   const [icon, setIcon] = useState("" as any);
-  const [forumData, setForumData] = useState(
-    {} as { color: string; description: string; icon: string | undefined }
-  );
+  const [forumData, setForumData] = useState({
+    color: "",
+    description: "",
+    icon: "",
+    title: "",
+  } as {
+    color: string;
+    description: string;
+    icon: string | undefined;
+    title: string;
+  });
 
   useEffect(() => {
     const getForumData = async () => {
@@ -27,10 +35,12 @@ export default function Forum() {
             color: string;
             description: string;
             icon: string | undefined;
+            title: string;
           } = {
             color: dataObject.color,
             description: dataObject.description,
             icon: dataObject.icon,
+            title: param,
           };
           setForumData(forumData);
           if (typeof forumData.icon === "string") {
@@ -43,16 +53,14 @@ export default function Forum() {
                 console.error(e);
               });
           }
-        } else {
-          setForumExists(false);
-          return;
+          setForumExists(true);
         }
       } catch (e) {
         console.error(e);
       }
     };
     getForumData();
-  }, [param]);
+  }, []);
 
   const makeForum = () => {
     return (
@@ -74,17 +82,17 @@ export default function Forum() {
                 className="icon default"
                 style={{ backgroundColor: forumData.color }}
               >
-                {param.slice(0, 1)}
+                {forumData.title.slice(0, 1)}
               </div>
             )}
-            <h1>{`r/${param}`}</h1>
+            <h1>{`r/${forumData.title}`}</h1>
           </div>
           <div className="description">
             Description:
             <div id="forum-description">{forumData.description}</div>
           </div>
         </div>
-        <FeedAPI home={false} />
+        <FeedAPI forumName={param} />
       </div>
     );
   };
@@ -94,7 +102,9 @@ export default function Forum() {
       {forumExists ? (
         makeForum()
       ) : (
-        <div id="forum-not-made">Page Does Not Exist</div>
+        <div className="forum-content" id="no-forum">
+          <div id="no-messages">Page Does Not Exist</div>
+        </div>
       )}
     </>
   );
