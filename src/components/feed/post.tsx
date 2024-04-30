@@ -1,19 +1,23 @@
 import dateConverter from "../../utli/date";
-import { PostBottomIconsAPI } from "./post-bottom-icons-api";
+import { PostBottomIcons } from "./post-bottom-icons";
 import postType from "../../types/post";
-import { ACTION, ACTION_TYPE } from "./feed";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { POSTS_ACTION_TYPE } from "../../reducers/postsReducerTypes";
+import { POST_ACTION } from "../../reducers/postsReducer";
 
 interface postPropsType {
   home: boolean;
   post: postType;
-  dispatch: React.Dispatch<ACTION_TYPE>;
 }
 
-export function Post({ home, post, dispatch }: postPropsType) {
+export function Post({ home, post }: postPropsType) {
   const [editPost, setEditPost] = useState(false);
   const [title, setTitle] = useState(post.title);
   const [content, setContent] = useState(post.content);
+
+  useEffect(() => {
+    // API to get post based on Params
+  });
 
   const toggleEditPost = () => {
     setEditPost(!editPost);
@@ -27,7 +31,7 @@ export function Post({ home, post, dispatch }: postPropsType) {
       (post.title !== title || post.content !== content)
     ) {
       dispatch({
-        type: ACTION.EDIT_POST,
+        type: POST_ACTION.EDIT_POST,
         payload: { id: post.id as string, title: title, content: content },
       });
     }
@@ -117,10 +121,11 @@ export function Post({ home, post, dispatch }: postPropsType) {
           <h4 className="message-header">{post.title}</h4>
           <div className="message-main">{post.content}</div>
         </div>
-        <PostBottomIconsAPI
+        <PostBottomIcons
           post={post}
           postFunctions={dispatch}
           toggleEditPost={toggleEditPost}
+          uid={post.id}
         />
       </>
     );

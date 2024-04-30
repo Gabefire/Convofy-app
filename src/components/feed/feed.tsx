@@ -1,141 +1,67 @@
 import { Post } from "./post";
 import { NavLink } from "react-router-dom";
-import postType from "../../types/post";
+import postType from "./types/post";
 import "./feed.css";
-import { useEffect, useReducer } from "react";
-
-export const ACTION = {
-  ADD_POSTS: "add-post",
-  UP_VOTE: "up-vote",
-  DOWN_VOTE: "down-vote",
-  DELETE_POST: "delete-post",
-  EDIT_POST: "edit-post",
-  RESTART: "restart",
-};
-
-export type ACTION_TYPE = {
-  type: string;
-  payload?: {
-    posts?: postType[];
-    id?: string;
-    uid?: string;
-    title?: string;
-    content?: string;
-  };
-};
-
-const initialState = [] as postType[];
-
-export function reducer(posts: postType[], action: ACTION_TYPE): postType[] {
-  switch (action.type) {
-    case ACTION.ADD_POSTS:
-      if (action.payload !== undefined && action.payload.posts !== undefined) {
-        return posts.concat(action.payload.posts);
-      }
-      console.error("no posts to add");
-      return posts;
-    case ACTION.DELETE_POST:
-      if (action.payload !== undefined && action.payload.id !== undefined) {
-        return posts.filter((post) => post.id !== action.payload?.id);
-      }
-      return posts;
-    case ACTION.RESTART:
-      return initialState;
-    case ACTION.UP_VOTE:
-      if (action.payload !== undefined) {
-        return posts.map((post) => {
-          if (
-            action.payload !== undefined &&
-            post.id === action.payload.id &&
-            action.payload.uid !== undefined &&
-            post.upVotes !== undefined
-          ) {
-            if (!post.upVotes.includes(action.payload.uid)) {
-              return {
-                ...post,
-                upVotes: post.upVotes.concat(action.payload.uid),
-                downVotes: post.downVotes.filter(
-                  (uid) => uid !== action.payload?.uid
-                ),
-              };
-            } else {
-              return {
-                ...post,
-                upVotes: post.upVotes.filter(
-                  (uid) => uid !== action.payload?.uid
-                ),
-              };
-            }
-          }
-          return post;
-        });
-      }
-      return posts;
-    case ACTION.DOWN_VOTE:
-      if (action.payload !== undefined) {
-        return posts.map((post) => {
-          if (
-            action.payload !== undefined &&
-            post.id === action.payload.id &&
-            action.payload.uid !== undefined &&
-            post.downVotes !== undefined
-          ) {
-            if (!post.downVotes.includes(action.payload.uid)) {
-              return {
-                ...post,
-                downVotes: post.downVotes.concat(action.payload.uid),
-                upVotes: post.upVotes.filter(
-                  (uid) => uid !== action.payload?.uid
-                ),
-              };
-            } else {
-              return {
-                ...post,
-                downVotes: post.downVotes.filter(
-                  (uid) => uid !== action.payload?.uid
-                ),
-              };
-            }
-          }
-          return post;
-        });
-      }
-      return posts;
-    case ACTION.EDIT_POST:
-      if (
-        action.payload !== undefined &&
-        action.payload.id !== undefined &&
-        action.payload.title !== undefined &&
-        action.payload.content !== undefined
-      ) {
-        return posts.map((post) => {
-          if (post.id === action.payload?.id) {
-            return {
-              ...post,
-              title: action.payload.title as string,
-              content: action.payload.content as string,
-            };
-          }
-          return post;
-        });
-      }
-      return posts;
-    default:
-      return posts;
-  }
-}
+import { useEffect, useReducer, useState } from "react";
+import {
+  POST_ACTION,
+  postsInitialState,
+  postsReducer,
+} from "../../reducers/postsReducer";
 
 interface feedProps {
-  posts: postType[];
-  home: boolean;
+  forumId: string;
 }
 
-export default function Feed({ posts, home }: feedProps) {
-  const [postsDispatch, dispatch] = useReducer(reducer, initialState);
+export default function Feed({ forumId }: feedProps) {
+  const [home, setHome] = useState(true);
+  const [postsDispatch, dispatch] = useReducer(postsReducer, postsInitialState);
   useEffect(() => {
-    dispatch({ type: ACTION.RESTART });
-    dispatch({ type: ACTION.ADD_POSTS, payload: { posts: posts } });
-  }, [posts]);
+    // API for getting all posts based on params
+    const getPosts = async () => {
+      console.log(forumId);
+      try {
+        const posts = [
+          {
+            from: "Gabe",
+            content: "I like dogs",
+            date: new Date(),
+            title: "dogs",
+            upVotes: 6,
+            downVotes: 8,
+            id: 1,
+            owner: true,
+          },
+          {
+            from: "Leah",
+            content: "Yup dogs are cool",
+            date: new Date(),
+            title: "dogs v2",
+            upVotes: 15,
+            downVotes: 8,
+            id: 2,
+            owner: false,
+          },
+          {
+            from: "Cece",
+            content: "But I like cats",
+            date: new Date(),
+            title: "dogs v67",
+            upVotes: 15000,
+            downVotes: 8,
+            id: 3,
+            owner: false,
+          },
+        ];
+        dispatch({ type: POST_ACTION.RESTART });
+        dispatch({ type: POST_ACTION.ADD_POSTS, payload: { posts: posts } });
+        setHome(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getPosts();
+  }, []);
 
   const createPostComponent = () => {
     return (
@@ -160,7 +86,7 @@ export default function Feed({ posts, home }: feedProps) {
               key={`message-${index}`}
               id={`message-${post.id}`}
             >
-              <Post home={home} post={post} dispatch={dispatch} />
+              <Post home={home} post={post} />
             </div>
           );
         })

@@ -1,18 +1,18 @@
 /// <reference types="vite-plugin-svgr/client" />
-import postType from "../../types/post";
-import { ACTION_TYPE } from "./feed";
+import postType from "./post";
 import React from "react";
-import { ACTION } from "./feed";
 import { ReactComponent as ArrowUp } from "../../assets/arrow-up-bold.svg";
 import { ReactComponent as ArrowDown } from "../../assets/arrow-down-bold.svg";
 import { ReactComponent as Comment } from "../../assets/comment.svg";
 import { ReactComponent as Delete } from "../../assets/delete.svg";
 import { ReactComponent as Edit } from "../../assets/file-edit.svg";
+import { POST_ACTION } from "../../reducers/postsReducer";
+import { POSTS_ACTION_TYPE } from "../../reducers/postsReducerTypes";
 
 interface postBottomIconsProps {
   post: postType;
-  postFunctions: React.Dispatch<ACTION_TYPE>;
-  uid: string | undefined;
+  postFunctions: React.Dispatch<POSTS_ACTION_TYPE>;
+  uid: string | null;
   deleteAPI: () => Promise<void>;
   toggleEditPost: () => void;
 }
@@ -58,7 +58,10 @@ export function PostBottomIcons({
     if (uid !== undefined) {
       e.preventDefault();
       let id = (e.currentTarget.id as string).split("-");
-      postFunctions({ type: ACTION.UP_VOTE, payload: { uid: uid, id: id[3] } });
+      postFunctions({
+        type: POST_ACTION.UP_VOTE,
+        payload: { uid: uid, id: id[3] },
+      });
     }
   };
 
@@ -67,7 +70,7 @@ export function PostBottomIcons({
       e.preventDefault();
       let id = (e.currentTarget.id as string).split("-");
       postFunctions({
-        type: ACTION.DOWN_VOTE,
+        type: POST_ACTION.DOWN_VOTE,
         payload: { uid: uid, id: id[3] },
       });
     }
@@ -79,18 +82,18 @@ export function PostBottomIcons({
       toggleEditPost();
 
       postFunctions({
-        type: ACTION.EDIT_POST,
+        type: POST_ACTION.EDIT_POST,
         payload: { uid: uid, id: post.id as string },
       });
     }
   };
 
   const deletePost = (e: React.PointerEvent<HTMLButtonElement>) => {
-    if (uid !== undefined) {
+    if (uid) {
       e.preventDefault();
       postFunctions({
-        type: ACTION.DELETE_POST,
-        payload: { uid: uid, id: post.id as string },
+        type: POST_ACTION.DELETE_POST,
+        payload: { uid, id: post.id as string },
       });
       deleteAPI();
     }

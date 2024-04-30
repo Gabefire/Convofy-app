@@ -2,6 +2,7 @@ import { addDays, addSeconds, addYears } from "date-fns";
 import dateConverter from "./date";
 import addHours from "date-fns/addHours";
 import addMinutes from "date-fns/addMinutes";
+import { describe, expect, it } from "vitest";
 
 describe("date function", () => {
   it("converst something from 30 secs to now", () => {

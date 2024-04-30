@@ -1,10 +1,6 @@
 import "./create-forum.css";
 
-interface createForumProps {
-  createForum: (e: React.PointerEvent<HTMLInputElement>) => Promise<void>;
-}
-
-export default function CreateForum({ createForum }: createForumProps) {
+export default function CreateForum() {
   // ToDO form validation with tests
   return (
     <form className="content">
@@ -50,7 +46,7 @@ export default function CreateForum({ createForum }: createForumProps) {
         value={"Submit"}
         id="submit-forum"
         className="submit form-btn"
-        onClick={createForum}
+        onClick={() => console.log("submitted")}
       />
     </form>
   );

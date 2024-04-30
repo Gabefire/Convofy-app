@@ -1,4 +1,4 @@
-import postType from "../../types/post";
+import postType from "./post";
 import { ACTION, reducer } from "./feed";
 
 describe("bottom icons in message component", () => {

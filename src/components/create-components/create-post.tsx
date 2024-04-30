@@ -4,7 +4,7 @@ interface createPostProps {
   createPost: (forumName: string | null) => Promise<void>;
 }
 
-export default function CreatePost({ createPost }: createPostProps) {
+export default function CreatePost() {
   const forumNameRegex = useLocation().pathname.match(
     /\/r\/(.*)\/create-message/i
   ) as RegExpMatchArray;
@@ -17,7 +17,6 @@ export default function CreatePost({ createPost }: createPostProps) {
     } else {
       forumName = null;
     }
-    createPost(forumName);
   };
 
   // ToDO form validation with tests
