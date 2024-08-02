@@ -15,44 +15,54 @@ export default function Forum() {
 		const getForumData = async () => {
 			try {
 				// api to get forumData and posts
+				const user = {
+					displayName: "gabe",
+					id: "1",
+				};
+				const leah = {
+					displayName: "leah",
+					id: "2",
+				};
+				const cece = {
+					displayName: "cece",
+					id: "3",
+				};
 				const forumData: forumDataType = {
 					color: "#ff0000",
 					description: "Test description",
 					following: true,
 					title: param.id as string,
+					owner: user,
 				};
 				const posts: postType[] = [
 					{
-						from: "Gabe",
+						owner: user,
 						content: "I like dogs",
 						date: new Date(),
 						title: "dogs",
 						upVotes: 6,
 						downVotes: 8,
 						id: "1",
-						ownerUid: "test",
 						forumData,
 					},
 					{
-						from: "Leah",
+						owner: leah,
 						content: "Yup dogs are cool",
 						date: new Date(),
 						title: "dogs v2",
 						upVotes: 15,
 						downVotes: 8,
 						id: "2",
-						ownerUid: "id",
 						forumData,
 					},
 					{
-						from: "Cece",
+						owner: cece,
 						content: "But I like cats",
 						date: new Date(),
 						title: "dogs v67",
 						upVotes: 15000,
 						downVotes: 8,
 						id: "3",
-						ownerUid: "id_2",
 						forumData,
 					},
 				];

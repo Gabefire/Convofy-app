@@ -5,33 +5,37 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint src -c ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "build": "tsc && vite build --base=/",
+    "test": "vitest run --mode development",
+    "watch": "vitest watch --mode development",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "date-fns": "^2.30.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.1",
-    "vite-plugin-biome": "^1.0.12",
-    "vite-plugin-svgr": "^3.2.0",
-    "vitest": "^1.5.2"
+    "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
+    "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.1.0",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",
     "globals": "^15.1.0",
     "identity-obj-proxy": "^3.0.0",
-    "ts-jest": "^29.1.1",
-    "ts-node": "^10.9.1",
+    "jsdom": "^24.1.1",
     "typescript": "^5.0.2",
-    "vite": "^4.3.9"
+    "vite": "^4.3.9",
+    "vite-plugin-biome": "^1.0.12",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^2.0.5"
   }
 }

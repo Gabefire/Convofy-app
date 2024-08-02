@@ -2,7 +2,7 @@ import type postType from "../types/post";
 import type { POSTS_ACTION_TYPE } from "./postsReducerTypes";
 
 export const POST_ACTION = {
-	ADD_POSTS: "add-post",
+	ADD_POST: "add-post",
 	UP_VOTE: "up-vote",
 	DOWN_VOTE: "down-vote",
 	DELETE_POST: "delete-post",
@@ -17,14 +17,18 @@ export function postsReducer(
 	action: POSTS_ACTION_TYPE,
 ): postType[] {
 	switch (action.type) {
-		case POST_ACTION.ADD_POSTS:
+		case POST_ACTION.ADD_POST:
 			posts.push(action.payload.post);
 			return posts;
 		case POST_ACTION.DELETE_POST:
 			return posts.filter((post) => {
-				if (post.ownerUid === action.payload.uid) {
-					post.id !== action.payload.post.id;
+				if (
+					post.owner.id === action.payload.uid &&
+					post.id === action.payload.post.id
+				) {
+					return false;
 				}
+				return true;
 			});
 
 		case POST_ACTION.RESTART:
@@ -34,23 +38,23 @@ export function postsReducer(
 			return posts.map((post) => {
 				if (post.id === action.payload.post.id) {
 					if (post.liked === false) {
-						post.upVotes += 1;
-						post.downVotes -= 1;
 						return {
 							...post,
+							upVotes: post.upVotes + 1,
+							downVotes: post.downVotes - 1,
 							liked: true,
 						};
 					}
 					if (post.liked === true) {
-						post.upVotes -= 1;
 						return {
 							...post,
+							upVotes: post.upVotes - 1,
 							liked: undefined,
 						};
 					}
-					post.upVotes += 1;
 					return {
 						...post,
+						upVotes: post.upVotes + 1,
 						liked: true,
 					};
 				}
@@ -62,23 +66,23 @@ export function postsReducer(
 				return posts.map((post) => {
 					if (post.id === action.payload.post.id) {
 						if (post.liked === true) {
-							post.downVotes += 1;
-							post.upVotes -= 1;
 							return {
 								...post,
+								upVotes: post.upVotes - 1,
+								downVotes: post.downVotes + 1,
 								liked: false,
 							};
 						}
 						if (post.liked === false) {
-							post.downVotes -= 1;
 							return {
 								...post,
+								downVotes: post.downVotes - 1,
 								liked: undefined,
 							};
 						}
-						post.downVotes -= 1;
 						return {
 							...post,
+							downVotes: post.downVotes + 1,
 							liked: false,
 						};
 					}
@@ -90,7 +94,7 @@ export function postsReducer(
 			return posts.map((post) => {
 				if (
 					post.id === action.payload.post.id &&
-					post.ownerUid === action.payload.uid &&
+					post.owner.id === action.payload.uid &&
 					action.payload.newTitle &&
 					action.payload.newContent
 				) {

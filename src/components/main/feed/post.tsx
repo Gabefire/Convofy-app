@@ -118,7 +118,7 @@ export function Post({ showForumInfo, post }: postPropsType) {
 					{showForumInfo
 						? createForumTitle(post.forumData.title, post.forumData.icon)
 						: null}
-					<div className="from">{`Posted by u/${post.from} ${dateConverter(
+					<div className="from">{`Posted by u/${post.owner.displayName} ${dateConverter(
 						post.date,
 					)}`}</div>
 				</div>

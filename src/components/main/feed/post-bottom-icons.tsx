@@ -15,7 +15,7 @@ interface postBottomIconsProps {
 }
 
 // auth context for uid
-const uid = "test";
+const uid = "1";
 
 export function PostBottomIcons({
 	post,
@@ -31,26 +31,10 @@ export function PostBottomIcons({
 	};
 
 	const activatedDown = () => {
-		if (!post.downVotes) {
+		if (post.liked === false) {
 			return "red";
 		}
 		return "white";
-	};
-
-	const getVoteValue = (post: postType): number => {
-		let upVoteNum: number;
-		if (post.upVotes !== undefined) {
-			upVoteNum = post.upVotes;
-		} else {
-			upVoteNum = 0;
-		}
-		let downVoteNum: number;
-		if (post.downVotes !== undefined) {
-			downVoteNum = post.downVotes;
-		} else {
-			downVoteNum = 0;
-		}
-		return upVoteNum - downVoteNum;
 	};
 
 	const upVote = (e: React.PointerEvent<HTMLButtonElement>) => {
@@ -92,7 +76,7 @@ export function PostBottomIcons({
 				>
 					<ArrowUp fill={activatedUp()} className="arrow" />
 				</button>
-				{getVoteValue(post)}
+				{post.upVotes - post.downVotes}
 				<button
 					type="button"
 					className="down-vote-btn icon-btn"
@@ -107,7 +91,7 @@ export function PostBottomIcons({
 				<Comment fill={"white"} className="comment-icon" />
 				{0}
 			</button>
-			{post.ownerUid === uid ? (
+			{post.owner.id === uid ? (
 				<div className="auth-icons">
 					<button type="button" className="icon-btn" onClick={deletePost}>
 						<Delete fill={"white"} className="delete-icon" />
