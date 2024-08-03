@@ -3,8 +3,8 @@ import Header from "./header/header";
 
 export default function MainRoot() {
 	return (
-		<div className="content">
-			<Header />
+		<div>
+			{/*<Header />*/}
 			<Outlet />
 		</div>
 	);

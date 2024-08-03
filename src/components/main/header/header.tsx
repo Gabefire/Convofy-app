@@ -26,7 +26,7 @@ export default function Header() {
 			<div id="search-items">
 				<div id="drop-down-menu">
 					<div id="icons">
-						<Link to="/" onClick={hideNav}>
+						<Link to="/r" onClick={hideNav}>
 							<div id="home-icons">
 								<img src={home} alt="home icon" />
 								<div>Home</div>

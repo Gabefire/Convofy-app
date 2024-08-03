@@ -2,21 +2,6 @@
   margin-top: 80px;
 }
 
-.icon-message {
-  align-self: center;
-  text-align: center;
-  line-height: 2rem;
-  font-size: 1.2rem;
-  height: 2rem;
-  width: 2rem;
-  border-radius: 50%;
-  border: 2px solid black;
-}
-
-.forum-name {
-  align-self: center;
-}
-
 .forum-message {
   display: flex;
   gap: 5px;

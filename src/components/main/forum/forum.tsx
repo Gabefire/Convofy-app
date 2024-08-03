@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./forum.css";
 import Feed from "../feed/feed";
-import type postType from "../feed/types/post";
+import type { postType } from "../feed/types/post";
 import type { forumDataType } from "./types/forumData";
 import { useParams } from "react-router-dom";
 
@@ -18,14 +18,17 @@ export default function Forum() {
 				const user = {
 					displayName: "gabe",
 					id: "1",
+					color: "#78858B",
 				};
 				const leah = {
 					displayName: "leah",
 					id: "2",
+					color: "#EFA94A",
 				};
 				const cece = {
 					displayName: "cece",
 					id: "3",
+					color: "#31372B",
 				};
 				const forumData: forumDataType = {
 					color: "#ff0000",
@@ -108,7 +111,7 @@ export default function Forum() {
 						<div id="forum-description">{forumData.description}</div>
 					</div>
 				</div>
-				<Feed initialPosts={posts} showForumInfo={true} />
+				<Feed initialPosts={posts} showForumInfo={false} />
 			</div>
 		);
 	};

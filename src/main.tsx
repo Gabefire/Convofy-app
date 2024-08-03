@@ -7,9 +7,9 @@ import SignUp from "./components/auth/signUp.tsx";
 import CreateForum from "./components/main/create-components/create-forum.tsx";
 import Forum from "./components/main/forum/forum.tsx";
 import CreatePost from "./components/main/create-components/create-post.tsx";
-import "./App.css";
 import Home from "./components/main/home/home.tsx";
 import MainRoot from "./components/main/mainRoot.tsx";
+import "./index.css";
 
 const router = createBrowserRouter([
 	/*

@@ -1,7 +1,7 @@
 import type { user } from "../../../auth/types/user";
 import type { forumDataType } from "../../forum/types/forumData";
 
-export default interface postType {
+export interface postType {
 	content: string;
 	date: Date;
 	title: string;
