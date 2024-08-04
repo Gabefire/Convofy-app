@@ -43,6 +43,7 @@ export default function Home() {
 					downVotes: 8,
 					id: "1",
 					forumData,
+					comments: 2200000,
 				},
 				{
 					owner: leah,
@@ -54,6 +55,7 @@ export default function Home() {
 					downVotes: 8,
 					id: "2",
 					forumData,
+					comments: 22222,
 				},
 				{
 					owner: cece,
@@ -64,6 +66,7 @@ export default function Home() {
 					downVotes: 8,
 					id: "3",
 					forumData,
+					comments: 0,
 				},
 			];
 

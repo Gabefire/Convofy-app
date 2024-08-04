@@ -10,5 +10,6 @@ export interface postType {
 	id: string;
 	owner: user;
 	liked?: boolean; // if current user has upvote, downvote or neither (undefined)
+	comments: number;
 	forumData: forumDataType;
 }

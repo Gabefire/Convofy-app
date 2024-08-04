@@ -43,6 +43,7 @@ export const generatePosts = () => {
 		downVotes: 0,
 		id: "1",
 		forumData: forumData1,
+		comments: 0,
 	};
 	const message2: postType = {
 		owner: owner1,
@@ -53,6 +54,7 @@ export const generatePosts = () => {
 		downVotes: 0,
 		id: "2",
 		forumData: forumData2,
+		comments: 0,
 	};
 	const message3: postType = {
 		owner: owner1,
@@ -63,6 +65,7 @@ export const generatePosts = () => {
 		downVotes: 0,
 		id: "3",
 		forumData: forumData3,
+		comments: 0,
 	};
 
 	return [message1, message2, message3];

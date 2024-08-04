@@ -93,7 +93,7 @@ export default function PostBottomIcons({
 				className="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
 			>
 				<Comment fill={"white"} className="size-4" />
-				<div>{0}</div>
+				<div>{truncateNumber(post.comments)}</div>
 			</button>
 			{post.owner.id === uid ? (
 				<div className="flex gap-5 items-center justify-center text-sm border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-20 min-w-20 truncate">

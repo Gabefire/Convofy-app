@@ -32,8 +32,9 @@ export default function Forum() {
 				};
 				const forumData: forumDataType = {
 					color: "#ff0000",
-					description: "Test description",
-					following: true,
+					description:
+						"Just the day before, our host had written of the challenges of writing short. In journalism–my friend’s chosen trade, and mostly my own, too–Mark Twain’s observation undoubtedly applies: “I didn’t have time to write a short letter, so I wrote a long one instead.” The principle holds across genres, in letters, reporting, and other writing. It’s harder to be concise than to blather. (Full disclosure, this blog post will clock in at a blather-esque 803 words.) Good writing is boiled down, not baked full of air like a souffl??. No matter how yummy souffl??s may be. Which they are. Yummy like a Grisham novel.",
+					following: false,
 					title: param.id as string,
 					owner: user,
 				};
@@ -47,6 +48,7 @@ export default function Forum() {
 						downVotes: 8,
 						id: "1",
 						forumData,
+						comments: 0,
 					},
 					{
 						owner: leah,
@@ -57,6 +59,7 @@ export default function Forum() {
 						downVotes: 8,
 						id: "2",
 						forumData,
+						comments: 500,
 					},
 					{
 						owner: cece,
@@ -67,6 +70,7 @@ export default function Forum() {
 						downVotes: 8,
 						id: "3",
 						forumData,
+						comments: 22222,
 					},
 				];
 
@@ -80,36 +84,67 @@ export default function Forum() {
 		getForumData();
 	}, [param.id]);
 
+	const joinButtonStyle = (
+		forumData: forumDataType,
+	): undefined | React.CSSProperties => {
+		if (!forumData.following) {
+			return {
+				background: "#1e3a8a",
+				border: "1px solid #1e3a8a",
+			};
+		}
+		return;
+	};
+
 	const makeForum = () => {
 		return (
-			<div className="forum-content">
-				<div id="forum-header">
+			<div className="flex flex-col">
+				<div className="bg-neutral-700 flex flex-col gap-5 pb-8 pt-8">
 					<div
-						className="banner"
+						className="h-1/3 min-h-44 w-full"
 						style={{ backgroundColor: forumData.color }}
 					/>
-					<div className="title">
-						{forumData.icon ? (
-							<img
-								src={forumData.icon}
-								className="icon image"
-								alt={`${forumData.title} icon`}
-								style={{ backgroundColor: forumData.color }}
-							/>
-						) : (
-							<div
-								className="icon default"
-								style={{ backgroundColor: forumData.color }}
+					<div className="flex pl-8 pr-8 *:items-center gap-2 text-white justify-between">
+						<div className="flex items-center gap-2 text-white">
+							{" "}
+							{forumData.icon ? (
+								<img
+									src={forumData.icon}
+									className="text-center size-14 rounded-full
+								text-5xl"
+									alt={`${forumData.title} icon`}
+									style={{ backgroundColor: forumData.color }}
+								/>
+							) : (
+								<div
+									className="text-center size-14 rounded-full
+								text-5xl"
+									style={{ backgroundColor: forumData.color }}
+								>
+									{forumData.title.slice(0, 1)}
+								</div>
+							)}
+							<h1 className="text-3xl">{`r/${forumData.title}`}</h1>
+						</div>
+						<div className="flex gap-2">
+							<button
+								type="button"
+								className="text-sm border
+								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer"
 							>
-								{forumData.title.slice(0, 1)}
-							</div>
-						)}
-						<h1>{`r/${forumData.title}`}</h1>
+								Create Post
+							</button>
+							<button
+								type="button"
+								className="text-sm border
+								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer"
+								style={joinButtonStyle(forumData)}
+							>
+								{forumData.following ? "Joined" : "Join"}
+							</button>
+						</div>
 					</div>
-					<div className="description">
-						Description:
-						<div id="forum-description">{forumData.description}</div>
-					</div>
+					<div className="pl-8 pr-8 text-white">{forumData.description}</div>
 				</div>
 				<Feed initialPosts={posts} showForumInfo={false} />
 			</div>
