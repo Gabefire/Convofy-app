@@ -31,9 +31,6 @@ export function postsReducer(
 				return true;
 			});
 
-		case POST_ACTION.RESTART:
-			return postsInitialState;
-
 		case POST_ACTION.UP_VOTE:
 			return posts.map((post) => {
 				if (post.id === action.payload.post.id) {
@@ -62,34 +59,31 @@ export function postsReducer(
 			});
 
 		case POST_ACTION.DOWN_VOTE:
-			if (action.payload !== undefined) {
-				return posts.map((post) => {
-					if (post.id === action.payload.post.id) {
-						if (post.liked === true) {
-							return {
-								...post,
-								upVotes: post.upVotes - 1,
-								downVotes: post.downVotes + 1,
-								liked: false,
-							};
-						}
-						if (post.liked === false) {
-							return {
-								...post,
-								downVotes: post.downVotes - 1,
-								liked: undefined,
-							};
-						}
+			return posts.map((post) => {
+				if (post.id === action.payload.post.id) {
+					if (post.liked === true) {
 						return {
 							...post,
+							upVotes: post.upVotes - 1,
 							downVotes: post.downVotes + 1,
 							liked: false,
 						};
 					}
-					return post;
-				});
-			}
-			return posts;
+					if (post.liked === false) {
+						return {
+							...post,
+							downVotes: post.downVotes - 1,
+							liked: undefined,
+						};
+					}
+					return {
+						...post,
+						downVotes: post.downVotes + 1,
+						liked: false,
+					};
+				}
+				return post;
+			});
 		case POST_ACTION.EDIT_POST:
 			return posts.map((post) => {
 				if (

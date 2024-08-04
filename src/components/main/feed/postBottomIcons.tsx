@@ -8,6 +8,7 @@ import { ReactComponent as Edit } from "../../../assets/file-edit.svg";
 import { POST_ACTION } from "./reducers/postsReducer";
 import { usePostsDispatch } from "./context/postReducerContext";
 import type { postType } from "./types/post";
+import { truncateNumber } from "../../../utli/truncate";
 
 interface postBottomIconsProps {
 	post: postType;
@@ -64,15 +65,6 @@ export default function PostBottomIcons({
 		});
 	};
 
-	const roundThousands = (upVote: number, downVote: number) => {
-		let votes = (upVote - downVote).toString();
-		if (upVote - downVote >= 1000) {
-			votes = (Math.round(upVote - downVote) / 1000).toString();
-			return `${votes.slice(0, -4)}k`;
-		}
-		return votes;
-	};
-
 	return (
 		<div className="flex gap-5">
 			<div className="flex gap-2 items-center justify-center text-sm border rounded-2xl pt-1 pb-1 pl-2 pr-2 w-24 min-w-24 max-w-24 truncate">
@@ -85,7 +77,7 @@ export default function PostBottomIcons({
 					<ArrowUp fill={activatedUp()} preserveAspectRatio="none" />
 				</button>
 				<div className="w-7 text-center">
-					{roundThousands(post.upVotes, post.downVotes)}
+					{truncateNumber(post.upVotes - post.downVotes)}
 				</div>
 				<button
 					type="button"

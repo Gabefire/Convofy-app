@@ -1,7 +1,7 @@
 import { POST_ACTION, postsReducer } from "../reducers/postsReducer";
 import { beforeEach, describe, expect, it } from "vitest";
 import type { postType } from "../types/post";
-import { generatePosts } from "./posts";
+import { generatePosts } from "../../../../test-util/posts";
 
 describe("Reducer for post management", () => {
 	let messages: postType[];
@@ -78,7 +78,7 @@ describe("Reducer for post management", () => {
 			payload: { uid: "1", id: "2", post: messages[1] },
 		};
 		const updatedState = postsReducer(initialState, updatedAction);
-		expect(updatedState.length).toBe(1);
+		expect(updatedState.length).toBe(2);
 	});
 
 	it("edit post", () => {
@@ -96,5 +96,52 @@ describe("Reducer for post management", () => {
 		const updatedState = postsReducer(initialState, updatedAction);
 		expect(updatedState[1].title).toBe("new title");
 		expect(updatedState[1].content).toBe("new content");
+	});
+	it("adds post", () => {
+		const initialState = messages;
+		const new_post: postType = { ...messages[0], id: "3" };
+		const updatedAction = {
+			type: POST_ACTION.ADD_POST,
+			payload: {
+				uid: "1",
+				post: new_post,
+			},
+		};
+
+		expect(initialState.length).toBe(3);
+		const updatedState = postsReducer(initialState, updatedAction);
+		expect(updatedState.length).toBe(4);
+		expect(updatedState[3]).toBe(new_post);
+	});
+	it("unable to edit post not ours", () => {
+		const initialState = messages;
+		const updatedAction = {
+			type: POST_ACTION.EDIT_POST,
+			payload: {
+				uid: "not correct id",
+				id: "2",
+				newTitle: "new title",
+				newContent: "new content",
+				post: messages[0],
+			},
+		};
+		const updatedState = postsReducer(initialState, updatedAction);
+		expect(updatedState[0].title).toBe("test");
+		expect(updatedState[0].content).toBe("test");
+	});
+	it("returns default if no action matches", () => {
+		const initialState = messages;
+		const updatedAction = {
+			type: "nothing",
+			payload: {
+				uid: "not correct id",
+				id: "2",
+				newTitle: "new title",
+				newContent: "new content",
+				post: messages[0],
+			},
+		};
+		const updatedState = postsReducer(initialState, updatedAction);
+		expect(updatedState).toBe(initialState);
 	});
 });

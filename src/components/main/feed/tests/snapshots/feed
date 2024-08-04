@@ -289,6 +289,128 @@
             </button>
           </div>
         </div>
+        <div
+          class="flex flex-col
+								flex-1
+								bg-neutral-700 self-center
+								pl-5
+								pr-5
+								pb-3
+								pt-3
+								max-w-2xl
+								w-11/12
+								rounded-xl"
+          id="message-3"
+        >
+          <div
+            class="flex text-neutral-300 text-base items-center text-center"
+          >
+            <div
+              class="flex gap-6"
+            >
+              <a
+                href="/test1"
+              >
+                <div
+                  class="flex gap-1"
+                >
+                  <img
+                    alt="test1 icon"
+                    class="h-6 w-6 rounded-2xl border border-neutral-300"
+                    src="icon"
+                  />
+                  <div
+                    class="self-center text-sm text-center"
+                  >
+                    r/test1
+                  </div>
+                </div>
+              </a>
+              <div
+                class="text-sm self-center"
+              >
+                Posted by u/owner1 • Now
+              </div>
+            </div>
+          </div>
+          <div
+            class="mt-3 mb-3 flex flex-col gap-2"
+          >
+            <h3
+              class="flex font-bold text-l"
+            >
+              test
+            </h3>
+            <div
+              class="font-light line-clamp-6 text-base"
+            >
+              test
+            </div>
+          </div>
+          <div
+            class="flex gap-5"
+          >
+            <div
+              class="flex gap-2 items-center justify-center text-sm border rounded-2xl pt-1 pb-1 pl-2 pr-2 w-24 min-w-24 max-w-24 truncate"
+            >
+              <button
+                aria-label="up vote"
+                class="cursor-pointer p-0 m-0 size-4 min-w-4 max-w-4"
+                type="button"
+              >
+                <svg
+                  fill="white"
+                  preserveAspectRatio="none"
+                  viewBox="4.16 4.16 15.68 15.84"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z"
+                  />
+                </svg>
+              </button>
+              <div
+                class="w-7 text-center"
+              >
+                0
+              </div>
+              <button
+                aria-label="down vote"
+                class="cursor-pointer p-0 m-0 size-4 min-w-4 max-w-4"
+                type="button"
+              >
+                <svg
+                  fill="white"
+                  preserveAspectRatio="none"
+                  viewBox="4.16 4 15.68 15.84"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <button
+              class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+              type="button"
+            >
+              <svg
+                class="size-4"
+                fill="white"
+                viewBox="2 2 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"
+                />
+              </svg>
+              <div>
+                0
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </body>,
@@ -492,6 +614,128 @@
                   class="self-center text-sm text-center"
                 >
                   r/test2
+                </div>
+              </div>
+            </a>
+            <div
+              class="text-sm self-center"
+            >
+              Posted by u/owner1 • Now
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-3 mb-3 flex flex-col gap-2"
+        >
+          <h3
+            class="flex font-bold text-l"
+          >
+            test
+          </h3>
+          <div
+            class="font-light line-clamp-6 text-base"
+          >
+            test
+          </div>
+        </div>
+        <div
+          class="flex gap-5"
+        >
+          <div
+            class="flex gap-2 items-center justify-center text-sm border rounded-2xl pt-1 pb-1 pl-2 pr-2 w-24 min-w-24 max-w-24 truncate"
+          >
+            <button
+              aria-label="up vote"
+              class="cursor-pointer p-0 m-0 size-4 min-w-4 max-w-4"
+              type="button"
+            >
+              <svg
+                fill="white"
+                preserveAspectRatio="none"
+                viewBox="4.16 4.16 15.68 15.84"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z"
+                />
+              </svg>
+            </button>
+            <div
+              class="w-7 text-center"
+            >
+              0
+            </div>
+            <button
+              aria-label="down vote"
+              class="cursor-pointer p-0 m-0 size-4 min-w-4 max-w-4"
+              type="button"
+            >
+              <svg
+                fill="white"
+                preserveAspectRatio="none"
+                viewBox="4.16 4 15.68 15.84"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z"
+                />
+              </svg>
+            </button>
+          </div>
+          <button
+            class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+            type="button"
+          >
+            <svg
+              class="size-4"
+              fill="white"
+              viewBox="2 2 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"
+              />
+            </svg>
+            <div>
+              0
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="flex flex-col
+								flex-1
+								bg-neutral-700 self-center
+								pl-5
+								pr-5
+								pb-3
+								pt-3
+								max-w-2xl
+								w-11/12
+								rounded-xl"
+        id="message-3"
+      >
+        <div
+          class="flex text-neutral-300 text-base items-center text-center"
+        >
+          <div
+            class="flex gap-6"
+          >
+            <a
+              href="/test1"
+            >
+              <div
+                class="flex gap-1"
+              >
+                <img
+                  alt="test1 icon"
+                  class="h-6 w-6 rounded-2xl border border-neutral-300"
+                  src="icon"
+                />
+                <div
+                  class="self-center text-sm text-center"
+                >
+                  r/test1
                 </div>
               </div>
             </a>

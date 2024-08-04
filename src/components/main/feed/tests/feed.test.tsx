@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { postType } from "../types/post";
-import { generatePosts } from "./posts";
+import { generatePosts } from "../../../../test-util/posts";
 import Post from "../post";
 import { render, renderHook, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
@@ -12,7 +12,6 @@ import {
 	PostsDispatchContext,
 	usePostsDispatch,
 } from "../context/postReducerContext";
-import { POST_ACTION } from "../reducers/postsReducer";
 import { EditPost } from "../editPost";
 
 describe("Post component", () => {
@@ -261,7 +260,7 @@ describe("Post reducer context", () => {
 	beforeEach(() => {
 		messages = generatePosts();
 	});
-	it("Provides expect context obj to child", async () => {
+	it("Provides expected context obj to child", async () => {
 		const mock = vi.fn();
 		const user = userEvent.setup();
 
