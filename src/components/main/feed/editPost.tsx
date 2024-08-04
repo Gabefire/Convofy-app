@@ -27,7 +27,7 @@ export function EditPost({ post, toggleEditPost }: editPostType) {
 					post: post,
 					newTitle: title,
 					newContent: content,
-					uid: "test",
+					uid: "2",
 				},
 			});
 		}
@@ -57,9 +57,15 @@ export function EditPost({ post, toggleEditPost }: editPostType) {
 					value={"Submit"}
 				/>
 			</div>
-			<label className="w-full" htmlFor={`edit-input-title-${post.id}`}>
+			<label
+				className="w-full border rounded-xl p-2"
+				htmlFor={`edit-input-title-${post.id}`}
+			>
+				<div className="text-xs text-gray-300 ">
+					Title<span className="text-red-600">*</span>
+				</div>
 				<textarea
-					className="bg-inherit font-bold text-l w-full line-clamp-3 resize-none focus:outline-none focus:ring-0"
+					className="bg-inherit font-bold text-l w-full resize-none focus:outline-none focus:ring-0"
 					id={`edit-input-title-${post.id}`}
 					maxLength={150}
 					rows={3}
@@ -71,9 +77,15 @@ export function EditPost({ post, toggleEditPost }: editPostType) {
 					}}
 				/>
 			</label>
-			<label className="w-full" htmlFor={`edit-input-content-${post.id}`}>
+			<label
+				className="w-full border rounded-xl p-2"
+				htmlFor={`edit-input-content-${post.id}`}
+			>
+				<div className="text-xs text-gray-300 ">
+					Content<span className="text-red-600">*</span>
+				</div>
 				<textarea
-					className="bg-inherit w-full focus:outline-none focus:ring-0 resize-y"
+					className="bg-inherit w-full focus:outline-none focus:ring-0 resize-y "
 					id={`edit-input-content-${post.id}`}
 					rows={20}
 					defaultValue={post.content}

@@ -1,4 +1,4 @@
-import { Post } from "./post";
+import Post from "./post";
 import type { postType } from "./types/post";
 import { useReducer } from "react";
 import { postsReducer } from "./reducers/postsReducer";

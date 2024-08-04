@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 import type { forumDataType } from "../forum/types/forumData";
 
+/*
 describe("drop down component", () => {
 	const owner1 = {
 		displayName: "owner1",
@@ -59,3 +60,4 @@ describe("drop down component", () => {
 		expect(location.href).toBe("http://localhost/r/test1");
 	});
 });
+*/

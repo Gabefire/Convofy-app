@@ -1,5 +1,5 @@
 import dateConverter from "../../../utli/date";
-import { PostBottomIcons } from "./postBottomIcons";
+import PostBottomIcons from "./postBottomIcons";
 import type { postType } from "./types/post";
 import { useState } from "react";
 import { EditPost } from "./editPost";
@@ -12,7 +12,7 @@ interface postPropsType {
 	post: postType;
 }
 
-export function Post({ showForumInfo, post }: postPropsType) {
+export default function Post({ showForumInfo, post }: postPropsType) {
 	const [editPost, setEditPost] = useState(false);
 
 	const toggleEditPost = () => {

@@ -1,4 +1,4 @@
-import type postType from "../types/post";
+import type { postType } from "../types/post";
 import type { POSTS_ACTION_TYPE } from "./postsReducerTypes";
 
 export const POST_ACTION = {

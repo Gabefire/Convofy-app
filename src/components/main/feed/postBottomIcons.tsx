@@ -15,9 +15,9 @@ interface postBottomIconsProps {
 }
 
 // auth context for uid
-const uid = "1";
+const uid = "2";
 
-export function PostBottomIcons({
+export default function PostBottomIcons({
 	post,
 	toggleEditPost,
 }: postBottomIconsProps) {
@@ -104,12 +104,12 @@ export function PostBottomIcons({
 				<div>{0}</div>
 			</button>
 			{post.owner.id === uid ? (
-				<div className="flex gap-5 items-center justify-center text-sm border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-20 truncate">
-					<button type="button" onClick={deletePost}>
-						<Delete fill={"white"} className="size-4" />
+				<div className="flex gap-5 items-center justify-center text-sm border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-20 min-w-20 truncate">
+					<button type="button" aria-label="delete post" onClick={deletePost}>
+						<Delete fill={"white"} className="size-4 min-w-4" />
 					</button>
-					<button type="button" onClick={toggleEditPost}>
-						<Edit fill={"white"} className="size-4" />
+					<button type="button" aria-label="edit post" onClick={toggleEditPost}>
+						<Edit fill={"white"} className="size-4 min-w-4" />
 					</button>
 				</div>
 			) : null}

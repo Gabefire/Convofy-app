@@ -1,5 +1,9 @@
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+	BrowserRouter,
+	RouterProvider,
+	createBrowserRouter,
+} from "react-router-dom";
 import { StrictMode } from "react";
 import AuthRoot from "./components/auth/authRoot.tsx";
 import Login from "./components/auth/login.tsx";

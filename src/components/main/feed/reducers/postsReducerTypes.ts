@@ -1,4 +1,4 @@
-import type postType from "../types/post";
+import type { postType } from "../types/post";
 
 export type POSTS_ACTION_TYPE = {
 	type: string;
