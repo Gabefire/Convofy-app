@@ -14,7 +14,7 @@ export default function Feed({ initialPosts, showForumInfo }: FeedType) {
 
 	return (
 		<PostsDispatchContext.Provider value={dispatch}>
-			<div className="flex flex-col justify-center gap-3 				text-white mt-3 mb-3">
+			<div className="flex flex-col justify-center gap-3 				text-white m-3">
 				{posts.length === 0 ? (
 					<div className="self-center text-lg">No Messages</div>
 				) : (
@@ -29,8 +29,10 @@ export default function Feed({ initialPosts, showForumInfo }: FeedType) {
 								pb-3
 								pt-3
 								max-w-2xl
-								w-11/12
-								rounded-xl"
+								w-screen
+								md:w-11/12
+								rounded-xl
+								"
 								key={`message-${post.id}`}
 								id={`message-${post.id}`}
 							>

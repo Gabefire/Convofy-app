@@ -66,42 +66,60 @@ export default function PostBottomIcons({
 	};
 
 	return (
-		<div className="flex gap-5">
-			<div className="flex gap-2 items-center justify-center text-sm border rounded-2xl pt-1 pb-1 pl-2 pr-2 w-24 min-w-24 max-w-24 truncate">
+		<div className="flex gap-5 text-xs md:text-sm">
+			<div className="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate">
 				<button
 					type="button"
-					className="cursor-pointer p-0 m-0 size-4 min-w-4 max-w-4"
+					className="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
 					aria-label="up vote"
 					onClick={upVote}
 				>
-					<ArrowUp fill={activatedUp()} preserveAspectRatio="none" />
+					<ArrowUp
+						fill={activatedUp()}
+						preserveAspectRatio="none"
+						className="size-3 md:size-4"
+					/>
 				</button>
-				<div className="w-7 text-center">
+				<div className="text-center">
 					{truncateNumber(post.upVotes - post.downVotes)}
 				</div>
 				<button
 					type="button"
-					className="cursor-pointer p-0 m-0 size-4 min-w-4 max-w-4"
+					className="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
 					onClick={downVote}
 					aria-label="down vote"
 				>
-					<ArrowDown fill={activatedDown()} preserveAspectRatio="none" />
+					<ArrowDown
+						fill={activatedDown()}
+						preserveAspectRatio="none"
+						className="size-3 md:size-4"
+					/>
 				</button>
 			</div>
 			<button
 				type="button"
 				className="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
 			>
-				<Comment fill={"white"} className="size-4" />
+				<Comment fill={"white"} className="size-3 md:size-4" />
 				<div>{truncateNumber(post.comments)}</div>
 			</button>
 			{post.owner.id === uid ? (
-				<div className="flex gap-5 items-center justify-center text-sm border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-20 min-w-20 truncate">
-					<button type="button" aria-label="delete post" onClick={deletePost}>
-						<Delete fill={"white"} className="size-4 min-w-4" />
+				<div className="flex gap-4 items-center justify-center border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2">
+					<button
+						type="button"
+						aria-label="delete post"
+						onClick={deletePost}
+						className="cursor-pointer"
+					>
+						<Delete fill={"white"} className="size-3 md:size-4 min-w-4" />
 					</button>
-					<button type="button" aria-label="edit post" onClick={toggleEditPost}>
-						<Edit fill={"white"} className="size-4 min-w-4" />
+					<button
+						type="button"
+						aria-label="edit post"
+						onClick={toggleEditPost}
+						className="cursor-pointer"
+					>
+						<Edit fill={"white"} className="size-3 md:size-4 min-w-4" />
 					</button>
 				</div>
 			) : null}
