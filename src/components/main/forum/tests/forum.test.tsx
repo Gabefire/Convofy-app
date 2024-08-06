@@ -1,19 +1,11 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
-import { generatePosts } from "../../../../test-util/posts";
-import { render, renderHook, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Forum from "../forum";
-import type { postType } from "../../feed/types/post";
 import userEvent from "@testing-library/user-event";
 
 describe("Forum component", () => {
-	let messages: postType[];
-
-	beforeEach(() => {
-		messages = generatePosts();
-	});
-
 	it("renders correctly", async () => {
 		const tree = render(
 			<MemoryRouter initialEntries={["/r/test"]}>
@@ -56,7 +48,7 @@ describe("Forum component", () => {
 		expect(joinButton).toBeInTheDocument();
 		expect(joinButton.style.background).toBe("rgb(30, 58, 138)");
 	});
-	it("icon is shown in forum data if present over just color", async () => {
+	it("icon is shown in forum data if present over just color", () => {
 		render(
 			<MemoryRouter initialEntries={["/r/icon"]}>
 				<Routes>
@@ -66,5 +58,45 @@ describe("Forum component", () => {
 		);
 
 		expect(screen.getByRole("img", { name: /icon icon/ })).toBeInTheDocument();
+	});
+	it("deletes forum (switches url location)", async () => {
+		const user = userEvent.setup();
+		render(
+			<MemoryRouter initialEntries={["/r/icon"]}>
+				<Routes>
+					<Route path="/r/:id" Component={() => <Forum />} />
+					<Route path="/r" Component={() => <h1>test123</h1>} />
+				</Routes>
+			</MemoryRouter>,
+		);
+
+		const deleteButton = screen.getAllByRole("button", {
+			name: /delete forum/,
+		})[0];
+		await user.click(deleteButton);
+
+		expect(
+			screen.getByRole("heading", { name: "test123" }),
+		).toBeInTheDocument();
+	});
+	it("edit forum (switches url location)", async () => {
+		const user = userEvent.setup();
+		render(
+			<MemoryRouter initialEntries={["/r/icon"]}>
+				<Routes>
+					<Route path="/r/:id" Component={() => <Forum />} />
+					<Route path="/r" Component={() => <h1>test123</h1>} />
+				</Routes>
+			</MemoryRouter>,
+		);
+
+		const deleteButton = screen.getAllByRole("button", {
+			name: /edit forum/,
+		})[0];
+		await user.click(deleteButton);
+
+		expect(
+			screen.getByRole("heading", { name: "test123" }),
+		).toBeInTheDocument();
 	});
 });

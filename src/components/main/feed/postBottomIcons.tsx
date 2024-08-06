@@ -3,12 +3,11 @@ import type React from "react";
 import { ReactComponent as ArrowUp } from "../../../assets/arrow-up-bold.svg";
 import { ReactComponent as ArrowDown } from "../../../assets/arrow-down-bold.svg";
 import { ReactComponent as Comment } from "../../../assets/comment.svg";
-import { ReactComponent as Delete } from "../../../assets/delete.svg";
-import { ReactComponent as Edit } from "../../../assets/file-edit.svg";
 import { POST_ACTION } from "./reducers/postsReducer";
 import { usePostsDispatch } from "./context/postReducerContext";
 import type { postType } from "./types/post";
 import { truncateNumber } from "../../../utli/truncate";
+import { EditDelete } from "../shared/editDelete";
 
 interface postBottomIconsProps {
 	post: postType;
@@ -103,26 +102,12 @@ export default function PostBottomIcons({
 				<Comment fill={"white"} className="size-3 md:size-4" />
 				<div>{truncateNumber(post.comments)}</div>
 			</button>
-			{post.owner.id === uid ? (
-				<div className="flex gap-4 items-center justify-center border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2">
-					<button
-						type="button"
-						aria-label="delete post"
-						onClick={deletePost}
-						className="cursor-pointer"
-					>
-						<Delete fill={"white"} className="size-3 md:size-4 min-w-4" />
-					</button>
-					<button
-						type="button"
-						aria-label="edit post"
-						onClick={toggleEditPost}
-						className="cursor-pointer"
-					>
-						<Edit fill={"white"} className="size-3 md:size-4 min-w-4" />
-					</button>
-				</div>
-			) : null}
+			<EditDelete
+				deleteObj={deletePost}
+				editObj={toggleEditPost}
+				ownerUid={post.owner.id}
+				type="post"
+			/>
 		</div>
 	);
 }

@@ -7,12 +7,13 @@ import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import PostBottomIcons from "../postBottomIcons";
 import userEvent from "@testing-library/user-event";
-import Feed from "../feed";
+import Feed from "../../header/feed";
 import {
 	PostsDispatchContext,
 	usePostsDispatch,
 } from "../context/postReducerContext";
 import { EditPost } from "../editPost";
+import type { POSTS_ACTION_TYPE } from "../reducers/postsReducerTypes";
 
 describe("Post component", () => {
 	let messages: postType[];
@@ -24,14 +25,14 @@ describe("Post component", () => {
 	it("renders correctly", () => {
 		const tree = render(
 			<BrowserRouter>
-				<Feed showForumInfo={true} initialPosts={messages} />
+				<Post showForumInfo={true} post={messages[0]} />
 			</BrowserRouter>,
 		);
 
-		expect(tree).toMatchFileSnapshot("./snapshots/feed");
+		expect(tree).toMatchFileSnapshot("./snapshots/post");
 	});
 
-	it("Shows forum information", () => {
+	it("shows forum information", () => {
 		render(
 			<BrowserRouter>
 				<Post showForumInfo={true} post={messages[0]} />
@@ -42,7 +43,7 @@ describe("Post component", () => {
 		expect(header).toBeInTheDocument();
 	});
 
-	it("Shows user information", () => {
+	it("shows user information", () => {
 		render(
 			<BrowserRouter>
 				<Post showForumInfo={false} post={messages[0]} />
@@ -54,14 +55,14 @@ describe("Post component", () => {
 	});
 });
 
-describe("Post bottom icons component", () => {
+describe("post bottom icons component", () => {
 	let messages: postType[];
 
 	beforeEach(() => {
 		messages = generatePosts();
 	});
 
-	it("Activates edit post function", async () => {
+	it("activates edit post function", async () => {
 		const user = userEvent.setup();
 		const mock = vi.fn(() => 0);
 		render(
@@ -77,7 +78,7 @@ describe("Post bottom icons component", () => {
 		expect(mock).toBeCalled();
 	});
 
-	it("Up vote increases value", async () => {
+	it("up vote increases value", async () => {
 		const user = userEvent.setup();
 		render(
 			<BrowserRouter>
@@ -96,7 +97,7 @@ describe("Post bottom icons component", () => {
 		expect(count).toBe("1");
 	});
 
-	it("Down vote decreases value", async () => {
+	it("down vote decreases value", async () => {
 		const user = userEvent.setup();
 		render(
 			<BrowserRouter>
@@ -115,7 +116,7 @@ describe("Post bottom icons component", () => {
 		expect(count).toBe("-1");
 	});
 
-	it("Deletes post", async () => {
+	it("deletes post", async () => {
 		const user = userEvent.setup();
 		render(
 			<BrowserRouter>
@@ -134,7 +135,7 @@ describe("Post bottom icons component", () => {
 		expect(deleteButton).not.toBeInTheDocument();
 	});
 
-	it("Delete and edit don't show up for non owner", () => {
+	it("delete and edit don't show up for non owner", () => {
 		render(
 			<BrowserRouter>
 				<Post showForumInfo={false} post={messages[1]} />
@@ -150,14 +151,14 @@ describe("Post bottom icons component", () => {
 	});
 });
 
-describe("Edit posts component", () => {
+describe("edit posts component", () => {
 	let messages: postType[];
 
 	beforeEach(() => {
 		messages = generatePosts();
 	});
 
-	it("Edit post header pops up", async () => {
+	it("edit post header pops up", async () => {
 		const user = userEvent.setup();
 		render(
 			<BrowserRouter>
@@ -173,7 +174,7 @@ describe("Edit posts component", () => {
 		expect(header).toBeInTheDocument();
 	});
 
-	it("Submits new title and content to post", async () => {
+	it("submits new title and content to post", async () => {
 		const user = userEvent.setup();
 		render(
 			<BrowserRouter>
@@ -200,7 +201,7 @@ describe("Edit posts component", () => {
 		expect(screen.getByText("new content")).toBeInTheDocument();
 	});
 
-	it("Same title or content does not submit new title or content to post", async () => {
+	it("same title or content does not submit new title or content to post", async () => {
 		const user = userEvent.setup();
 		const mock = vi.fn();
 		render(
@@ -226,7 +227,7 @@ describe("Edit posts component", () => {
 		expect(mock).not.toBeCalled();
 	});
 
-	it("Cancels does not submit new title or content to post", async () => {
+	it("cancels does not submit new title or content to post", async () => {
 		const user = userEvent.setup();
 		render(
 			<BrowserRouter>
@@ -254,13 +255,13 @@ describe("Edit posts component", () => {
 	});
 });
 
-describe("Post reducer context", () => {
+describe("post reducer context", () => {
 	let messages: postType[];
 
 	beforeEach(() => {
 		messages = generatePosts();
 	});
-	it("Provides expected context obj to child", async () => {
+	it("provides expected context obj to child", async () => {
 		const mock = vi.fn();
 		const user = userEvent.setup();
 
@@ -288,13 +289,29 @@ describe("Post reducer context", () => {
 
 	it("usePostsDispatch hook returns default values", () => {
 		const { result } = renderHook(usePostsDispatch);
+		const func = result.current;
 		expect(result).toBeTruthy();
-		expect(result.current).not.toBeTruthy();
+		expect(result.current).toBeInstanceOf(Function);
+		expect(func("fake" as unknown as POSTS_ACTION_TYPE)).toBe(undefined);
 	});
 });
 
 describe("Feed component", () => {
-	it("No messages is shown if no posts provided", () => {
+	let messages: postType[];
+
+	beforeEach(() => {
+		messages = generatePosts();
+	});
+	it("renders correctly", () => {
+		const tree = render(
+			<BrowserRouter>
+				<Feed showForumInfo={true} initialPosts={messages} />
+			</BrowserRouter>,
+		);
+
+		expect(tree).toMatchFileSnapshot("./snapshots/feed");
+	});
+	it("no messages is shown if no posts provided", () => {
 		render(
 			<BrowserRouter>
 				<Feed initialPosts={[]} showForumInfo={true} />

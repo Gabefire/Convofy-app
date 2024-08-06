@@ -1,8 +1,8 @@
-import Post from "./post";
-import type { postType } from "./types/post";
+import Post from "../feed/post";
+import type { postType } from "../feed/types/post";
 import { useReducer } from "react";
-import { postsReducer } from "./reducers/postsReducer";
-import { PostsDispatchContext } from "./context/postReducerContext";
+import { postsReducer } from "../feed/reducers/postsReducer";
+import { PostsDispatchContext } from "../feed/context/postReducerContext";
 
 interface FeedType {
 	initialPosts: postType[];

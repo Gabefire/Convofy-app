@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Feed from "../feed/feed";
+import Feed from "../header/feed";
 import type { postType } from "../feed/types/post";
 import type { forumDataType } from "../forum/types/forumData";
 

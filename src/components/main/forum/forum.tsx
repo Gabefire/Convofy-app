@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import Feed from "../feed/feed";
+import Feed from "../header/feed";
 import type { postType } from "../feed/types/post";
 import type { forumDataType } from "./types/forumData";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { EditDelete } from "../shared/editDelete";
 
 export default function Forum() {
 	const [loading, setLoading] = useState(true);
 	const [forumData, setForumData] = useState({} as forumDataType);
 	const [posts, setPosts] = useState([] as postType[]);
 	const param = useParams();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const getForumData = async () => {
@@ -33,7 +35,7 @@ export default function Forum() {
 					"Just the day before, our host had written of the challenges of writing short. In journalism–my friend’s chosen trade, and mostly my own, too–Mark Twain’s observation undoubtedly applies: “I didn’t have time to write a short letter, so I wrote a long one instead.” The principle holds across genres, in letters, reporting, and other writing. It’s harder to be concise than to blather. (Full disclosure, this blog post will clock in at a blather-esque 803 words.) Good writing is boiled down, not baked full of air like a souffl??. No matter how yummy souffl??s may be. Which they are. Yummy like a Grisham novel.",
 				following: true,
 				title: param.id as string,
-				owner: user,
+				owner: leah,
 			};
 			const posts: postType[] = [
 				{
@@ -97,7 +99,7 @@ export default function Forum() {
 					"Just the day before, our host had written of the challenges of writing short. In journalism–my friend’s chosen trade, and mostly my own, too–Mark Twain’s observation undoubtedly applies: “I didn’t have time to write a short letter, so I wrote a long one instead.” The principle holds across genres, in letters, reporting, and other writing. It’s harder to be concise than to blather. (Full disclosure, this blog post will clock in at a blather-esque 803 words.) Good writing is boiled down, not baked full of air like a souffl??. No matter how yummy souffl??s may be. Which they are. Yummy like a Grisham novel.",
 				following: true,
 				title: param.id as string,
-				owner: user,
+				owner: leah,
 				icon: "cool",
 			};
 			const posts: postType[] = [
@@ -167,6 +169,18 @@ export default function Forum() {
 		return;
 	};
 
+	const deleteForum = (e: React.PointerEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+		// api to delete forum
+		navigate("/r");
+	};
+
+	const editForum = (e: React.PointerEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+		// move to editing page will be create forum component
+		navigate("/r");
+	};
+
 	return (
 		<>
 			{loading ? null : (
@@ -183,7 +197,7 @@ export default function Forum() {
 									<img
 										src={forumData.icon}
 										className="text-center size-14 rounded-full
-								object-scale-down"
+								object-fill"
 										alt={`${forumData.title} icon`}
 									/>
 								) : (
@@ -197,11 +211,11 @@ export default function Forum() {
 								)}
 								<h1 className="text-3xl">{`r/${forumData.title}`}</h1>
 							</div>
-							<div className="flex gap-2">
+							<div className="flex gap-2 flex-wrap justify-end">
 								<button
 									type="button"
 									className="text-xs md:text-sm border
-								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer"
+								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer h-7 min-h-7 text-center"
 								>
 									Create Post
 								</button>
@@ -209,12 +223,18 @@ export default function Forum() {
 									type="button"
 									className="text-xs md:text-sm border
 								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer
-								w-16 min-w-16 max-w-16"
+								w-16 min-w-16 max-w-16 h-7 min-h-7 text-center"
 									style={joinButtonStyle(forumData)}
 									onClick={toggleJoinForum}
 								>
 									{forumData.following ? "Joined" : "Join"}
 								</button>
+								<EditDelete
+									deleteObj={deleteForum}
+									editObj={editForum}
+									ownerUid={forumData.owner.id}
+									type="forum"
+								/>
 							</div>
 						</div>
 						<div className="pl-2 pr-2 text-white max-w-6xl">
