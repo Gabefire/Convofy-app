@@ -7,7 +7,7 @@ import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import PostBottomIcons from "../postBottomIcons";
 import userEvent from "@testing-library/user-event";
-import Feed from "../../header/feed";
+import Feed from "../feed";
 import {
 	PostsDispatchContext,
 	usePostsDispatch,

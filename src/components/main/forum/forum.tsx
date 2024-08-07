@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Feed from "../header/feed";
+import Feed from "../feed/feed";
 import type { postType } from "../feed/types/post";
 import type { forumDataType } from "./types/forumData";
 import { useNavigate, useParams } from "react-router-dom";
@@ -185,12 +185,12 @@ export default function Forum() {
 		<>
 			{loading ? null : (
 				<div className="flex flex-col">
-					<div className="bg-neutral-700 flex flex-col gap-5 pb-8 pt-8">
+					<div className="bg-neutral-700 flex flex-col gap-5 pb-8 pt-14">
 						<div
 							className="h-1/3 min-h-44 w-full"
 							style={{ backgroundColor: forumData.color }}
 						/>
-						<div className="flex pl-2 pr-2 *:items-center gap-2 text-white justify-between">
+						<div className="flex pl-2 pr-2 items-center gap-2 text-white justify-between flex-wrap">
 							<div className="flex items-center gap-2 text-white">
 								{" "}
 								{forumData.icon ? (
@@ -211,11 +211,11 @@ export default function Forum() {
 								)}
 								<h1 className="text-3xl">{`r/${forumData.title}`}</h1>
 							</div>
-							<div className="flex gap-2 flex-wrap justify-end">
+							<div className="flex gap-2 justify-end">
 								<button
 									type="button"
 									className="text-xs md:text-sm border
-								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer h-7 min-h-7 text-center"
+								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer h-7 min-h-7 text-center leading-normal"
 								>
 									Create Post
 								</button>
@@ -223,7 +223,7 @@ export default function Forum() {
 									type="button"
 									className="text-xs md:text-sm border
 								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer
-								w-16 min-w-16 max-w-16 h-7 min-h-7 text-center"
+								w-16 min-w-16 max-w-16 h-7 min-h-7 text-center leading-none"
 									style={joinButtonStyle(forumData)}
 									onClick={toggleJoinForum}
 								>

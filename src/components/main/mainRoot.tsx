@@ -3,9 +3,9 @@ import Header from "./header/header";
 
 export default function MainRoot() {
 	return (
-		<div>
-			{/*<Header />*/}
+		<>
+			<Header />
 			<Outlet />
-		</div>
+		</>
 	);
 }

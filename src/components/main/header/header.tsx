@@ -1,63 +1,48 @@
-import DropDownNav from "./drop-down-nav";
-import { Link } from "react-router-dom";
-import "./header.css";
+/// <reference types="vite-plugin-svgr/client" />
+import { Link, useNavigate } from "react-router-dom";
+import { ReactComponent as Magnify } from "../../../assets/magnify.svg";
 import mainIcon from "../../../assets/reddit-circle.svg";
-import chevronDown from "../../../assets/chevron-down.svg";
-import home from "../../../assets/home.svg";
-import magnify from "../../../assets/magnify.svg";
-import { useState } from "react";
-import type { forumDataType } from "../forum/types/forumData";
 
 export default function Header() {
-	const [showDropDownNav, setShowDropDownNav] = useState(false as boolean);
-	const [forums, setForums] = useState([] as forumDataType[]);
-
-	const hideNav = (): void => {
-		setShowDropDownNav(false);
-	};
-
+	const navigate = useNavigate();
 	return (
-		<div id="header">
-			<div id="title">
-				<img src={mainIcon} alt="site symbol" />
-				<h3>Fake Forum</h3>
+		<div className="fixed top-0 flex bg-neutral-700 w-full justify-between h-14 min-h-14 text-white pl-2 pr-2 items-center">
+			<div className="flex items-center gap-2">
+				<button
+					type="button"
+					className="cursor-pointer"
+					onClick={() => navigate("/r")}
+				>
+					<img src={mainIcon} alt="site symbol" className="size-10" />
+				</button>
+				<h1 className="text-2xl">Convofy</h1>
+			</div>
+			<div className="min-w-64 w-64 sm:flex self-center rounded-2xl p-1 bg-neutral-500 h-10 hidden">
+				<Magnify className="size-6 self-center" />
+				<input
+					type="text"
+					className="bg-inherit focus:outline-none focus:ring-0"
+				/>
 			</div>
 
-			<div id="search-items">
-				<div id="drop-down-menu">
-					<div id="icons">
-						<Link to="/r" onClick={hideNav}>
-							<div id="home-icons">
-								<img src={home} alt="home icon" />
-								<div>Home</div>
-							</div>
-						</Link>
-						<img
-							src={chevronDown}
-							alt="expand menu"
-							onKeyDown={() => {
-								setShowDropDownNav(!showDropDownNav);
-							}}
-						/>
-					</div>
-					{showDropDownNav ? (
-						<DropDownNav forums={forums} showDropDownNav={hideNav} />
-					) : null}
-				</div>
-				<div id="search-bar">
-					<img alt="search icon" src={magnify} />
-					<input type="text" />
-				</div>
-			</div>
-
-			<div id="user-icons">
+			<div className="flex items-center sm:gap-4 gap-2">
+				<Magnify className="size-7" fill="white" />
 				<Link to="/create-forum">
-					<div id="add-forum" onKeyDown={hideNav}>
-						+
-					</div>
+					<button
+						type="button"
+						className="cursor-pointer flex items-center gap-1 rounded-2xl pl-2 pr-2 leading-normal text-center
+						sm:text-lg text-3xl border-none border sm:border-solid"
+						title="Create forum"
+					>
+						<span className="text-center">+</span>
+						<span className="sm:block hidden">Create</span>
+					</button>
 				</Link>
-				<Link to="/login" className="header-link">
-					<button type="button" id="login-btn" onClick={hideNav}>
+				<Link to="/login">
+					<button
+						type="button"
+						className="cursor-pointer flex items-center gap-1  border border-red-600 rounded-2xl pl-2 pr-2 bg-red-600 leading-normal text-center sm:text-lg text-base"
+					>
 						Login
 					</button>
 				</Link>

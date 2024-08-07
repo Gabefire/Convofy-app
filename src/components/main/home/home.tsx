@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Feed from "../header/feed";
+import Feed from "../feed/feed";
 import type { postType } from "../feed/types/post";
 import type { forumDataType } from "../forum/types/forumData";
 
@@ -77,7 +77,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div className="m-0 w-auto">
+		<div className="m-0 w-auto pt-14">
 			{loaded ? <Feed initialPosts={posts} showForumInfo={true} /> : null}
 		</div>
 	);
