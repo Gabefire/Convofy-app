@@ -1,8 +1,6 @@
 import { render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
-import { describe, expect, it, vi } from "vitest";
-import type { forumDataType } from "../../forum/types/forumData";
+import { describe, expect, it } from "vitest";
 import type { postType } from "../../feed/types/post";
 import { generatePosts } from "../../../../test-util/posts";
 import Header from "../header";

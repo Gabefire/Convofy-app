@@ -1,19 +1,13 @@
 import ReactDOM from "react-dom/client";
-import {
-	BrowserRouter,
-	RouterProvider,
-	createBrowserRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { StrictMode } from "react";
-import AuthRoot from "./components/auth/authRoot.tsx";
-import Login from "./components/auth/login.tsx";
-import SignUp from "./components/auth/signUp.tsx";
 import CreateForum from "./components/main/create-components/create-forum.tsx";
 import Forum from "./components/main/forum/forum.tsx";
 import CreatePost from "./components/main/create-components/create-post.tsx";
 import Home from "./components/main/home/home.tsx";
 import MainRoot from "./components/main/mainRoot.tsx";
 import "./index.css";
+import { ThemeProvider } from "./global-contexts/themeContext.tsx";
 
 const router = createBrowserRouter([
 	/*
@@ -40,6 +34,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<StrictMode>
-		<RouterProvider router={router} />
+		<ThemeProvider>
+			<RouterProvider router={router} />
+		</ThemeProvider>
 	</StrictMode>,
 );

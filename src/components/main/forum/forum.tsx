@@ -164,6 +164,7 @@ export default function Forum() {
 			return {
 				background: "#1e3a8a",
 				border: "1px solid #1e3a8a",
+				color: "white",
 			};
 		}
 		return;
@@ -185,14 +186,13 @@ export default function Forum() {
 		<>
 			{loading ? null : (
 				<div className="flex flex-col">
-					<div className="bg-neutral-700 flex flex-col gap-5 pb-8 pt-14">
+					<div className="dark:bg-neutral-700 bg-white flex flex-col gap-5 pb-8 pt-14 border-b-neutral-400 border-b dark:border-none">
 						<div
 							className="h-1/3 min-h-44 w-full"
 							style={{ backgroundColor: forumData.color }}
 						/>
-						<div className="flex pl-2 pr-2 items-center gap-2 text-white justify-between flex-wrap">
-							<div className="flex items-center gap-2 text-white">
-								{" "}
+						<div className="flex pl-2 pr-2 items-center gap-2 dark:text-white justify-between flex-wrap">
+							<div className="flex items-center gap-2">
 								{forumData.icon ? (
 									<img
 										src={forumData.icon}
@@ -203,7 +203,7 @@ export default function Forum() {
 								) : (
 									<div
 										className="text-center size-14 rounded-full
-								text-5xl"
+								text-5xl text-white"
 										style={{ backgroundColor: forumData.color }}
 									>
 										{forumData.title.slice(0, 1)}
@@ -214,8 +214,7 @@ export default function Forum() {
 							<div className="flex gap-2 justify-end">
 								<button
 									type="button"
-									className="text-xs md:text-sm border
-								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer h-7 min-h-7 text-center leading-normal"
+									className="text-xs md:text-sm rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer h-7 min-h-7 text-center leading-normal dark:border-white dark:border bg-neutral-300 dark:bg-transparent font-bold"
 								>
 									Create Post
 								</button>
@@ -223,7 +222,7 @@ export default function Forum() {
 									type="button"
 									className="text-xs md:text-sm border
 								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer
-								w-16 min-w-16 max-w-16 h-7 min-h-7 text-center leading-none"
+								w-16 min-w-16 max-w-16 h-7 min-h-7 text-center leading-none dark:border-white dark:border bg-neutral-300 dark:bg-transparent font-bold"
 									style={joinButtonStyle(forumData)}
 									onClick={toggleJoinForum}
 								>
@@ -237,7 +236,7 @@ export default function Forum() {
 								/>
 							</div>
 						</div>
-						<div className="pl-2 pr-2 text-white max-w-6xl">
+						<div className="pl-2 pr-2 dark:text-white max-w-6xl ">
 							{forumData.description}
 						</div>
 					</div>

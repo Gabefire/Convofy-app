@@ -33,13 +33,11 @@ export default function Post({ showForumInfo, post }: postPropsType) {
 					<img
 						src={obj.icon}
 						alt={`${displayName} icon`}
-						className="h-6 w-6 rounded-2xl border border-neutral-300"
+						className="h-6 w-6 rounded-2xl dark:border border-neutral-400 "
 					/>
 				) : (
 					<div
-						className="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
-										text-white
-										"
+						className="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400  text-white"
 						style={{ backgroundColor: obj.color }}
 					>
 						{displayName.slice(0, 1)}
@@ -55,7 +53,7 @@ export default function Post({ showForumInfo, post }: postPropsType) {
 				<EditPost post={post} toggleEditPost={toggleEditPost} />
 			) : (
 				<>
-					<div className="flex text-neutral-300 text-base items-center text-center">
+					<div className="flex dark:text-neutral-300 text-base items-center text-center text-neutral-500">
 						{showForumInfo ? (
 							<div className="flex gap-6">
 								<Link to={`${post.forumData.title}`}>

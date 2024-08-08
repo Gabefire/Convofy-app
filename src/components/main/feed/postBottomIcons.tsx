@@ -8,6 +8,8 @@ import { usePostsDispatch } from "./context/postReducerContext";
 import type { postType } from "./types/post";
 import { truncateNumber } from "../../../utli/truncate";
 import { EditDelete } from "../shared/editDelete";
+import { ThemeContext } from "../../../global-contexts/themeContext";
+import { useContext } from "react";
 
 interface postBottomIconsProps {
 	post: postType;
@@ -22,19 +24,20 @@ export default function PostBottomIcons({
 	toggleEditPost,
 }: postBottomIconsProps) {
 	const dispatch = usePostsDispatch();
+	const { enabled } = useContext(ThemeContext);
 
 	const activatedUp = () => {
 		if (post.liked) {
 			return "red";
 		}
-		return "white";
+		return enabled ? "white" : "black";
 	};
 
 	const activatedDown = () => {
 		if (post.liked === false) {
 			return "red";
 		}
-		return "white";
+		return enabled ? "white" : "black";
 	};
 
 	const upVote = (e: React.PointerEvent<HTMLButtonElement>) => {
@@ -66,7 +69,7 @@ export default function PostBottomIcons({
 
 	return (
 		<div className="flex gap-5 text-xs md:text-sm">
-			<div className="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate">
+			<div className="flex gap-2 items-center justify-around rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate dark:border-white dark:border bg-neutral-300 dark:bg-transparent">
 				<button
 					type="button"
 					className="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
@@ -97,9 +100,12 @@ export default function PostBottomIcons({
 			</div>
 			<button
 				type="button"
-				className="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+				className="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
 			>
-				<Comment fill={"white"} className="size-3 md:size-4" />
+				<Comment
+					fill={enabled ? "white" : "black"}
+					className="size-3 md:size-4"
+				/>
 				<div>{truncateNumber(post.comments)}</div>
 			</button>
 			<EditDelete

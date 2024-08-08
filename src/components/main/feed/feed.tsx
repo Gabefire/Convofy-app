@@ -14,7 +14,7 @@ export default function Feed({ initialPosts, showForumInfo }: FeedType) {
 
 	return (
 		<PostsDispatchContext.Provider value={dispatch}>
-			<div className="flex flex-col justify-center gap-3 				text-white m-3">
+			<div className="flex flex-col justify-center gap-3 dark:text-white text-black m-3">
 				{posts.length === 0 ? (
 					<div className="self-center text-lg">No Messages</div>
 				) : (
@@ -23,7 +23,11 @@ export default function Feed({ initialPosts, showForumInfo }: FeedType) {
 							<div
 								className="flex flex-col
 								flex-1
-								bg-neutral-700 self-center
+								dark:bg-neutral-700 
+								bg-white self-center
+								dark:border-none
+								border-neutral-400
+								border
 								pl-5
 								pr-5
 								pb-3
