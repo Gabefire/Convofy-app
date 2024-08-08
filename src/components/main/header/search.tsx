@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import type { forumDataType } from "../forum/types/forumData";
 import { TailSpin } from "react-loader-spinner";
 import { ObjIcon } from "./objIcon";
+import { ThemeContext } from "../../../global-contexts/themeContext";
 
 interface searchBoxType {
 	displaySearchBox: boolean;
@@ -11,19 +12,22 @@ interface searchBoxType {
 export function SearchBox({ displaySearchBox, searchBoxRef }: searchBoxType) {
 	const [forums, setForums] = useState([] as forumDataType[]);
 	const [loadingSearchResults, setLoadingSearchResults] = useState(true);
+	const { enabled } = useContext(ThemeContext);
 
 	return (
 		<>
 			{displaySearchBox ? (
-				<div className="search-box popover" ref={searchBoxRef}>
+				<div className="pl-2 flex flex-col h-full" ref={searchBoxRef}>
 					{loadingSearchResults ? (
-						<TailSpin
-							height="20"
-							width="20"
-							color="white"
-							ariaLabel="tail-spin-loading"
-							wrapperClass="load-search"
-						/>
+						<div className="self-center flex flex-col m-5 h-full">
+							<TailSpin
+								height="20"
+								width="20"
+								color={enabled ? "white" : "black"}
+								ariaLabel="tail-spin-loading"
+								wrapperClass="load-search"
+							/>
+						</div>
 					) : (
 						<>
 							<div className="users-search-section search-section">
