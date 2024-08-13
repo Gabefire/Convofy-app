@@ -41,28 +41,36 @@ export default function Header() {
 					Convofy
 				</h1>
 			</div>
-			<div className="min-w-64 w-64 sm:flex self-center rounded-full p-1 dark:bg-neutral-500 bg-neutral-300 h-10 hidden relative">
+			<div
+				className={`min-w-64 w-64 sm:flex self-center ${displaySearchBox ? "rounded-t-2xl" : "rounded-2xl"} p-1 dark:bg-neutral-500 bg-neutral-300 h-10 hidden relative`}
+			>
 				<Magnify
-					className="size-4 ml-1 mr-1 self-center z-10"
+					className="size-4 ml-1 mr-1 self-center z-10 cursor-pointer"
 					fill={enabled ? "white" : "black"}
+					onClick={() => searchBarRef.current?.focus()}
 				/>
 				<input
 					type="text"
 					className="bg-inherit focus:outline-none focus:ring-0 w-52 z-10"
 					ref={searchBarRef}
 					onChange={(e) => {
-						if (searchTerm) {
+						setSearchTerm(e.target.value);
+						if (e.target.value) {
 							setDisplaySearchBox(true);
+						} else if (!e.target.value) {
+							setDisplaySearchBox(false);
+							return;
 						}
 						setSearchTerm(e.target.value);
 					}}
 					value={searchTerm}
 				/>
 				{displaySearchBox ? (
-					<div className="max-w-64 w-full absolute dark:bg-neutral-500 bg-neutral-300 right-1 left-0 top-5 h-32 z-0 pt-4">
+					<div className="max-w-64 w-full absolute dark:bg-neutral-500 bg-neutral-300 right-1 left-0 top-5 min-h-32 z-0 mt-4 rounded-b-2xl max-h-80 overflow-y-scroll overflow-x-hidden">
 						<SearchBox
 							displaySearchBox={displaySearchBox}
 							searchBoxRef={searchBoxRef}
+							searchTerm={searchTerm}
 						/>
 					</div>
 				) : null}
