@@ -207,7 +207,7 @@ describe("edit posts component", () => {
 		render(
 			<BrowserRouter>
 				<PostsDispatchContext.Provider value={mock}>
-					<EditPost post={messages[0]} toggleEditPost={vi.fn()} />
+					<EditPost post={messages[0]} toggleEditCreatePost={vi.fn()} />
 				</PostsDispatchContext.Provider>
 			</BrowserRouter>,
 		);

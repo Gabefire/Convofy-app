@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { StrictMode } from "react";
 import CreateForum from "./components/main/create-components/createForum.tsx";
 import Forum from "./components/main/forum/forum.tsx";
-import CreatePost from "./components/main/create-components/create-post.tsx";
+import CreatePost from "./components/main/create-components/createPost.tsx";
 import Home from "./components/main/home/home.tsx";
 import MainRoot from "./components/main/mainRoot.tsx";
 import "./index.css";

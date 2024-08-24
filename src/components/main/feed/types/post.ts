@@ -13,3 +13,9 @@ export interface postType {
 	comments: number;
 	forumData: forumDataType;
 }
+
+export interface submitPostType {
+	content: string;
+	title: string;
+	forumData: forumDataType;
+}

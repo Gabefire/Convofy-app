@@ -50,7 +50,7 @@ export default function Post({ showForumInfo, post }: postPropsType) {
 	return (
 		<>
 			{editPost ? (
-				<EditPost post={post} toggleEditPost={toggleEditPost} />
+				<EditPost post={post} toggleEditCreatePost={toggleEditPost} />
 			) : (
 				<>
 					<div className="flex dark:text-neutral-300 text-base items-center text-center text-neutral-500">

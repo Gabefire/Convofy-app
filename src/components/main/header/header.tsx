@@ -21,7 +21,6 @@ export default function Header() {
 	// mobile support
 	const [showMobileSearch, setShowMobileSearch] = useState(false);
 	const cancelMobileSearch = () => {
-		console.log("test");
 		setShowMobileSearch(false);
 	};
 
