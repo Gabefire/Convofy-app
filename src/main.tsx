@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { StrictMode } from "react";
-import CreateForum from "./components/main/create-components/create-forum.tsx";
+import CreateForum from "./components/main/create-components/createForum.tsx";
 import Forum from "./components/main/forum/forum.tsx";
 import CreatePost from "./components/main/create-components/create-post.tsx";
 import Home from "./components/main/home/home.tsx";

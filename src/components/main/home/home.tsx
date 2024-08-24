@@ -77,7 +77,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div className="m-0 w-auto pt-14">
+		<div className="m-0 w-auto">
 			{loaded ? <Feed initialPosts={posts} showForumInfo={true} /> : null}
 		</div>
 	);

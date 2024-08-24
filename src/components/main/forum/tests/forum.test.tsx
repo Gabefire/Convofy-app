@@ -14,7 +14,6 @@ describe("Forum component", () => {
 				</Routes>
 			</MemoryRouter>,
 		);
-
 		expect(tree).toMatchFileSnapshot("./snapshots/forum");
 	});
 

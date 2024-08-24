@@ -186,7 +186,7 @@ export default function Forum() {
 		<>
 			{loading ? null : (
 				<div className="flex flex-col">
-					<div className="dark:bg-neutral-700 bg-white flex flex-col gap-5 pb-8 pt-14 border-b-neutral-400 border-b dark:border-none">
+					<div className="dark:bg-neutral-700 bg-white flex flex-col gap-5 pb-8 border-b-neutral-400 border-b dark:border-none">
 						<div
 							className="h-1/3 min-h-44 w-full"
 							style={{ backgroundColor: forumData.color }}

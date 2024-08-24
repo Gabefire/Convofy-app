@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import type { postType } from "./types/post";
 import { usePostsDispatch } from "./context/postReducerContext";
 import { POST_ACTION } from "./reducers/postsReducer";
@@ -53,7 +53,7 @@ export function EditPost({ post, toggleEditPost }: editPostType) {
 				<input
 					type="submit"
 					className="cursor-pointer h-8 text-base w-20
-                    p-1 rounded-xl bg-green-900 text-center dark:text-black text-white"
+                    p-1 rounded-xl bg-green-900 text-center text-white"
 					value={"Submit"}
 				/>
 			</div>

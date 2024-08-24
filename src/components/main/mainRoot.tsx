@@ -5,7 +5,9 @@ export default function MainRoot() {
 	return (
 		<>
 			<Header />
-			<Outlet />
+			<div className="pt-14 flex flex-col self-center">
+				<Outlet />
+			</div>
 		</>
 	);
 }
