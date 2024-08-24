@@ -1,0 +1,922 @@
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="m-0 w-auto"
+      >
+        <div
+          class="flex flex-col justify-center gap-3 				text-white m-3"
+        >
+          <div
+            class="flex flex-col
+								flex-1
+								bg-neutral-700 self-center
+								pl-5
+								pr-5
+								pb-3
+								pt-3
+								max-w-2xl
+								w-screen
+								md:w-11/12
+								rounded-xl
+								"
+            id="message-1"
+          >
+            <div
+              class="flex text-neutral-300 text-base items-center text-center"
+            >
+              <div
+                class="flex gap-6"
+              >
+                <a
+                  href="/test"
+                >
+                  <div
+                    class="flex gap-1"
+                  >
+                    <div
+                      class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
+										text-white
+										"
+                      style="background-color: rgb(0, 0, 255);"
+                    >
+                      t
+                    </div>
+                    <div
+                      class="self-center text-sm text-center"
+                    >
+                      r/test
+                    </div>
+                  </div>
+                </a>
+                <div
+                  class="text-sm self-center"
+                >
+                  Posted by u/gabe • Now
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-3 mb-3 flex flex-col gap-2"
+            >
+              <h3
+                class="flex font-bold text-l"
+              >
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque.
+              </h3>
+              <div
+                class="font-light line-clamp-6 text-base"
+              >
+                I like dogs
+              </div>
+            </div>
+            <div
+              class="flex gap-5 text-xs md:text-sm"
+            >
+              <div
+                class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+              >
+                <button
+                  aria-label="up vote"
+                  class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                  type="button"
+                >
+                  <svg
+                    class="size-3 md:size-4"
+                    fill="white"
+                    preserveAspectRatio="none"
+                    viewBox="4.16 4.16 15.68 15.84"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z"
+                    />
+                  </svg>
+                </button>
+                <div
+                  class="text-center"
+                >
+                  -2
+                </div>
+                <button
+                  aria-label="down vote"
+                  class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                  type="button"
+                >
+                  <svg
+                    class="size-3 md:size-4"
+                    fill="white"
+                    preserveAspectRatio="none"
+                    viewBox="4.16 4 15.68 15.84"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <button
+                class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+                type="button"
+              >
+                <svg
+                  class="size-3 md:size-4"
+                  fill="white"
+                  viewBox="2 2 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"
+                  />
+                </svg>
+                <div>
+                  2.2m
+                </div>
+              </button>
+            </div>
+          </div>
+          <div
+            class="flex flex-col
+								flex-1
+								bg-neutral-700 self-center
+								pl-5
+								pr-5
+								pb-3
+								pt-3
+								max-w-2xl
+								w-screen
+								md:w-11/12
+								rounded-xl
+								"
+            id="message-2"
+          >
+            <div
+              class="flex text-neutral-300 text-base items-center text-center"
+            >
+              <div
+                class="flex gap-6"
+              >
+                <a
+                  href="/test"
+                >
+                  <div
+                    class="flex gap-1"
+                  >
+                    <div
+                      class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
+										text-white
+										"
+                      style="background-color: rgb(0, 0, 255);"
+                    >
+                      t
+                    </div>
+                    <div
+                      class="self-center text-sm text-center"
+                    >
+                      r/test
+                    </div>
+                  </div>
+                </a>
+                <div
+                  class="text-sm self-center"
+                >
+                  Posted by u/leah • Now
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-3 mb-3 flex flex-col gap-2"
+            >
+              <h3
+                class="flex font-bold text-l"
+              >
+                dogs v2
+              </h3>
+              <div
+                class="font-light line-clamp-6 text-base"
+              >
+                Just the day before, our host had written of the challenges of writing short. In journalism–my friend’s chosen trade, and mostly my own, too–Mark Twain’s observation undoubtedly applies: “I didn’t have time to write a short letter, so I wrote a long one instead.” The principle holds across genres, in letters, reporting, and other writing. It’s harder to be concise than to blather. (Full disclosure, this blog post will clock in at a blather-esque 803 words.) Good writing is boiled down, not baked full of air like a souffl??. No matter how yummy souffl??s may be. Which they are. Yummy like a Grisham novel.
+              </div>
+            </div>
+            <div
+              class="flex gap-5 text-xs md:text-sm"
+            >
+              <div
+                class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+              >
+                <button
+                  aria-label="up vote"
+                  class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                  type="button"
+                >
+                  <svg
+                    class="size-3 md:size-4"
+                    fill="white"
+                    preserveAspectRatio="none"
+                    viewBox="4.16 4.16 15.68 15.84"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z"
+                    />
+                  </svg>
+                </button>
+                <div
+                  class="text-center"
+                >
+                  142
+                </div>
+                <button
+                  aria-label="down vote"
+                  class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                  type="button"
+                >
+                  <svg
+                    class="size-3 md:size-4"
+                    fill="white"
+                    preserveAspectRatio="none"
+                    viewBox="4.16 4 15.68 15.84"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <button
+                class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+                type="button"
+              >
+                <svg
+                  class="size-3 md:size-4"
+                  fill="white"
+                  viewBox="2 2 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"
+                  />
+                </svg>
+                <div>
+                  22.2k
+                </div>
+              </button>
+              <div
+                class="flex gap-4 items-center justify-center border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7"
+              >
+                <button
+                  aria-label="delete post"
+                  class="cursor-pointer"
+                  type="button"
+                >
+                  <svg
+                    class="size-3 md:size-4 min-w-4"
+                    fill="white"
+                    viewBox="5 3 14 18"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
+                    />
+                  </svg>
+                </button>
+                <button
+                  aria-label="edit post"
+                  class="cursor-pointer"
+                  type="button"
+                >
+                  <svg
+                    class="size-3 md:size-4 min-w-4"
+                    fill="white"
+                    viewBox="4 2 17.95 21"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 2C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H10V20.1L20 10.1V8L14 2H6M13 3.5L18.5 9H13V3.5M20.1 13C20 13 19.8 13.1 19.7 13.2L18.7 14.2L20.8 16.3L21.8 15.3C22 15.1 22 14.7 21.8 14.5L20.5 13.2C20.4 13.1 20.3 13 20.1 13M18.1 14.8L12 20.9V23H14.1L20.2 16.9L18.1 14.8Z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col
+								flex-1
+								bg-neutral-700 self-center
+								pl-5
+								pr-5
+								pb-3
+								pt-3
+								max-w-2xl
+								w-screen
+								md:w-11/12
+								rounded-xl
+								"
+            id="message-3"
+          >
+            <div
+              class="flex text-neutral-300 text-base items-center text-center"
+            >
+              <div
+                class="flex gap-6"
+              >
+                <a
+                  href="/test"
+                >
+                  <div
+                    class="flex gap-1"
+                  >
+                    <div
+                      class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
+										text-white
+										"
+                      style="background-color: rgb(0, 0, 255);"
+                    >
+                      t
+                    </div>
+                    <div
+                      class="self-center text-sm text-center"
+                    >
+                      r/test
+                    </div>
+                  </div>
+                </a>
+                <div
+                  class="text-sm self-center"
+                >
+                  Posted by u/cece • Now
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-3 mb-3 flex flex-col gap-2"
+            >
+              <h3
+                class="flex font-bold text-l"
+              >
+                dogs v67
+              </h3>
+              <div
+                class="font-light line-clamp-6 text-base"
+              >
+                But I like cats
+              </div>
+            </div>
+            <div
+              class="flex gap-5 text-xs md:text-sm"
+            >
+              <div
+                class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+              >
+                <button
+                  aria-label="up vote"
+                  class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                  type="button"
+                >
+                  <svg
+                    class="size-3 md:size-4"
+                    fill="white"
+                    preserveAspectRatio="none"
+                    viewBox="4.16 4.16 15.68 15.84"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z"
+                    />
+                  </svg>
+                </button>
+                <div
+                  class="text-center"
+                >
+                  15.0k
+                </div>
+                <button
+                  aria-label="down vote"
+                  class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                  type="button"
+                >
+                  <svg
+                    class="size-3 md:size-4"
+                    fill="white"
+                    preserveAspectRatio="none"
+                    viewBox="4.16 4 15.68 15.84"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <button
+                class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+                type="button"
+              >
+                <svg
+                  class="size-3 md:size-4"
+                  fill="white"
+                  viewBox="2 2 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"
+                  />
+                </svg>
+                <div>
+                  0
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="m-0 w-auto"
+    >
+      <div
+        class="flex flex-col justify-center gap-3 				text-white m-3"
+      >
+        <div
+          class="flex flex-col
+								flex-1
+								bg-neutral-700 self-center
+								pl-5
+								pr-5
+								pb-3
+								pt-3
+								max-w-2xl
+								w-screen
+								md:w-11/12
+								rounded-xl
+								"
+          id="message-1"
+        >
+          <div
+            class="flex text-neutral-300 text-base items-center text-center"
+          >
+            <div
+              class="flex gap-6"
+            >
+              <a
+                href="/test"
+              >
+                <div
+                  class="flex gap-1"
+                >
+                  <div
+                    class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
+										text-white
+										"
+                    style="background-color: rgb(0, 0, 255);"
+                  >
+                    t
+                  </div>
+                  <div
+                    class="self-center text-sm text-center"
+                  >
+                    r/test
+                  </div>
+                </div>
+              </a>
+              <div
+                class="text-sm self-center"
+              >
+                Posted by u/gabe • Now
+              </div>
+            </div>
+          </div>
+          <div
+            class="mt-3 mb-3 flex flex-col gap-2"
+          >
+            <h3
+              class="flex font-bold text-l"
+            >
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque.
+            </h3>
+            <div
+              class="font-light line-clamp-6 text-base"
+            >
+              I like dogs
+            </div>
+          </div>
+          <div
+            class="flex gap-5 text-xs md:text-sm"
+          >
+            <div
+              class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+            >
+              <button
+                aria-label="up vote"
+                class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                type="button"
+              >
+                <svg
+                  class="size-3 md:size-4"
+                  fill="white"
+                  preserveAspectRatio="none"
+                  viewBox="4.16 4.16 15.68 15.84"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z"
+                  />
+                </svg>
+              </button>
+              <div
+                class="text-center"
+              >
+                -2
+              </div>
+              <button
+                aria-label="down vote"
+                class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                type="button"
+              >
+                <svg
+                  class="size-3 md:size-4"
+                  fill="white"
+                  preserveAspectRatio="none"
+                  viewBox="4.16 4 15.68 15.84"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <button
+              class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+              type="button"
+            >
+              <svg
+                class="size-3 md:size-4"
+                fill="white"
+                viewBox="2 2 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"
+                />
+              </svg>
+              <div>
+                2.2m
+              </div>
+            </button>
+          </div>
+        </div>
+        <div
+          class="flex flex-col
+								flex-1
+								bg-neutral-700 self-center
+								pl-5
+								pr-5
+								pb-3
+								pt-3
+								max-w-2xl
+								w-screen
+								md:w-11/12
+								rounded-xl
+								"
+          id="message-2"
+        >
+          <div
+            class="flex text-neutral-300 text-base items-center text-center"
+          >
+            <div
+              class="flex gap-6"
+            >
+              <a
+                href="/test"
+              >
+                <div
+                  class="flex gap-1"
+                >
+                  <div
+                    class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
+										text-white
+										"
+                    style="background-color: rgb(0, 0, 255);"
+                  >
+                    t
+                  </div>
+                  <div
+                    class="self-center text-sm text-center"
+                  >
+                    r/test
+                  </div>
+                </div>
+              </a>
+              <div
+                class="text-sm self-center"
+              >
+                Posted by u/leah • Now
+              </div>
+            </div>
+          </div>
+          <div
+            class="mt-3 mb-3 flex flex-col gap-2"
+          >
+            <h3
+              class="flex font-bold text-l"
+            >
+              dogs v2
+            </h3>
+            <div
+              class="font-light line-clamp-6 text-base"
+            >
+              Just the day before, our host had written of the challenges of writing short. In journalism–my friend’s chosen trade, and mostly my own, too–Mark Twain’s observation undoubtedly applies: “I didn’t have time to write a short letter, so I wrote a long one instead.” The principle holds across genres, in letters, reporting, and other writing. It’s harder to be concise than to blather. (Full disclosure, this blog post will clock in at a blather-esque 803 words.) Good writing is boiled down, not baked full of air like a souffl??. No matter how yummy souffl??s may be. Which they are. Yummy like a Grisham novel.
+            </div>
+          </div>
+          <div
+            class="flex gap-5 text-xs md:text-sm"
+          >
+            <div
+              class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+            >
+              <button
+                aria-label="up vote"
+                class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                type="button"
+              >
+                <svg
+                  class="size-3 md:size-4"
+                  fill="white"
+                  preserveAspectRatio="none"
+                  viewBox="4.16 4.16 15.68 15.84"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z"
+                  />
+                </svg>
+              </button>
+              <div
+                class="text-center"
+              >
+                142
+              </div>
+              <button
+                aria-label="down vote"
+                class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                type="button"
+              >
+                <svg
+                  class="size-3 md:size-4"
+                  fill="white"
+                  preserveAspectRatio="none"
+                  viewBox="4.16 4 15.68 15.84"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <button
+              class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+              type="button"
+            >
+              <svg
+                class="size-3 md:size-4"
+                fill="white"
+                viewBox="2 2 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"
+                />
+              </svg>
+              <div>
+                22.2k
+              </div>
+            </button>
+            <div
+              class="flex gap-4 items-center justify-center border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7"
+            >
+              <button
+                aria-label="delete post"
+                class="cursor-pointer"
+                type="button"
+              >
+                <svg
+                  class="size-3 md:size-4 min-w-4"
+                  fill="white"
+                  viewBox="5 3 14 18"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
+                  />
+                </svg>
+              </button>
+              <button
+                aria-label="edit post"
+                class="cursor-pointer"
+                type="button"
+              >
+                <svg
+                  class="size-3 md:size-4 min-w-4"
+                  fill="white"
+                  viewBox="4 2 17.95 21"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 2C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H10V20.1L20 10.1V8L14 2H6M13 3.5L18.5 9H13V3.5M20.1 13C20 13 19.8 13.1 19.7 13.2L18.7 14.2L20.8 16.3L21.8 15.3C22 15.1 22 14.7 21.8 14.5L20.5 13.2C20.4 13.1 20.3 13 20.1 13M18.1 14.8L12 20.9V23H14.1L20.2 16.9L18.1 14.8Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col
+								flex-1
+								bg-neutral-700 self-center
+								pl-5
+								pr-5
+								pb-3
+								pt-3
+								max-w-2xl
+								w-screen
+								md:w-11/12
+								rounded-xl
+								"
+          id="message-3"
+        >
+          <div
+            class="flex text-neutral-300 text-base items-center text-center"
+          >
+            <div
+              class="flex gap-6"
+            >
+              <a
+                href="/test"
+              >
+                <div
+                  class="flex gap-1"
+                >
+                  <div
+                    class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
+										text-white
+										"
+                    style="background-color: rgb(0, 0, 255);"
+                  >
+                    t
+                  </div>
+                  <div
+                    class="self-center text-sm text-center"
+                  >
+                    r/test
+                  </div>
+                </div>
+              </a>
+              <div
+                class="text-sm self-center"
+              >
+                Posted by u/cece • Now
+              </div>
+            </div>
+          </div>
+          <div
+            class="mt-3 mb-3 flex flex-col gap-2"
+          >
+            <h3
+              class="flex font-bold text-l"
+            >
+              dogs v67
+            </h3>
+            <div
+              class="font-light line-clamp-6 text-base"
+            >
+              But I like cats
+            </div>
+          </div>
+          <div
+            class="flex gap-5 text-xs md:text-sm"
+          >
+            <div
+              class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+            >
+              <button
+                aria-label="up vote"
+                class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                type="button"
+              >
+                <svg
+                  class="size-3 md:size-4"
+                  fill="white"
+                  preserveAspectRatio="none"
+                  viewBox="4.16 4.16 15.68 15.84"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z"
+                  />
+                </svg>
+              </button>
+              <div
+                class="text-center"
+              >
+                15.0k
+              </div>
+              <button
+                aria-label="down vote"
+                class="cursor-pointer p-0 m-0 min-w-4 max-w-4 flex justify-center"
+                type="button"
+              >
+                <svg
+                  class="size-3 md:size-4"
+                  fill="white"
+                  preserveAspectRatio="none"
+                  viewBox="4.16 4 15.68 15.84"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <button
+              class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+              type="button"
+            >
+              <svg
+                class="size-3 md:size-4"
+                fill="white"
+                viewBox="2 2 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"
+                />
+              </svg>
+              <div>
+                0
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
