@@ -8,3 +8,10 @@ export type forumDataType = {
 	following: boolean;
 	owner: user;
 };
+
+export type forumFormData = {
+	title: string;
+	content: string;
+	bannerColor: string;
+	file?: Blob;
+};
