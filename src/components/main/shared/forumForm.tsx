@@ -27,15 +27,14 @@ export default function ForumForm({
 	defaultTitle,
 	defaultDescription,
 }: ForumFormType) {
-	const { register, handleSubmit, setError, watch } =
-		useForm<forumFormSchemaType>({
-			resolver: zodResolver(forumFormSchema),
-			defaultValues: {
-				title: defaultTitle,
-				description: defaultDescription,
-				color: "#ff3300",
-			},
-		});
+	const { register, handleSubmit, watch } = useForm<forumFormSchemaType>({
+		resolver: zodResolver(forumFormSchema),
+		defaultValues: {
+			title: defaultTitle,
+			description: defaultDescription,
+			color: "#ff3300",
+		},
+	});
 
 	const navigate = useNavigate();
 
@@ -75,6 +74,7 @@ export default function ForumForm({
 						background: watch("color"),
 					}}
 					fill={textColorBasedOnBackground(watch("color"))}
+					className="size-52 p-10 absolute left-1/2 -translate-x-1/2 bottom-1/2 translate-y-1/2"
 				/>
 			);
 		}
@@ -93,36 +93,11 @@ export default function ForumForm({
 					   pt-3 mt-3 max-w-2xl w-screen md:w-11/12 rounded-xl dark:text-white self-center gap-4"
 			onSubmit={handleSubmit(submitForm)}
 		>
-			<section className="flex flex-col justify-between min-w-full p-2 text-sm gap-3">
-				<label
-					htmlFor="forum-icon"
-					className="flex flex-col size-30 self-center"
-				>
-					<div className="rounded-full overflow-hidden size-52 relative">
-						{imgSrc()}
-						<input
-							type="file"
-							id="forum-icon"
-							className="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 absolute -bottom-4"
-							{...register("file")}
-						/>
-					</div>
-				</label>
-				<label htmlFor="forum-banner-color" className="flex flex-col">
-					Banner Color
-					<input
-						type="color"
-						id="forum-banner-color"
-						className="cursor-pointer"
-						{...register("color")}
-					/>
-				</label>
-			</section>
-			<div className="flex justify-between items-center w-full">
+			<section className="flex justify-between items-center w-full">
 				<input
 					type="button"
 					value="x"
-					className="cursor-pointer size-8 text-2xl font-light"
+					className="cursor-pointer size-8 text-2xl font-light w-20"
 					onClick={(e) => {
 						e.preventDefault();
 						navigate(-1);
@@ -135,7 +110,39 @@ export default function ForumForm({
                     p-1 rounded-xl bg-green-900 text-center text-white"
 					value={"Submit"}
 				/>
-			</div>
+			</section>
+			<section className="flex flex-col justify-between min-w-full p-2 text-sm gap-3">
+				<div className="rounded-full overflow-hidden size-52 relative flex flex-col size-30 self-center">
+					{imgSrc()}
+					<label
+						htmlFor="icon-add"
+						className="absolute left-1/2 bg-black -translate-x-1/2 bottom-3 translate-y-1/2 w-52 text-center h-10 text-white pt-1 text-xs cursor-pointer"
+					>
+						Edit Image
+						<input
+							type="file"
+							id="icon-add"
+							className="hidden"
+							{...register("file")}
+							accept="image/*"
+						/>
+					</label>
+				</div>
+				<label htmlFor="forum-banner-color" className="flex flex-col w-full">
+					<div style={{ backgroundColor: watch("color") }} className="h-20" />
+					<input
+						type="color"
+						id="forum-banner-color"
+						className="cursor-pointer hidden"
+						{...register("color")}
+					/>
+					<div className="dark:bg-black p-2 border-gray-400 border dark:border-none ">
+						<span>Forum Theme Color</span>
+						<br />
+						<span>{`${watch("color")}`}</span>
+					</div>
+				</label>
+			</section>
 			<div className="flex flex-col">
 				<label
 					htmlFor="forum-name"
@@ -153,7 +160,7 @@ export default function ForumForm({
 						{...register("title")}
 					/>
 				</label>
-				<div className="self-end">{`${watch("title") ? watch("title").length : 0}/20`}</div>
+				<div className="self-end sm:text-base text-xs">{`${watch("title") ? watch("title").length : 0}/20`}</div>
 			</div>
 			<div className="flex flex-col">
 				<label
@@ -173,7 +180,7 @@ export default function ForumForm({
 						{...register("description")}
 					/>
 				</label>
-				<div className="self-end mt-0">{`${watch("description") ? watch("description")?.length : 0}/600`}</div>
+				<div className="self-end mt-0 sm:text-base text-xs">{`${watch("description") ? watch("description")?.length : 0}/600`}</div>
 			</div>
 		</form>
 	);
