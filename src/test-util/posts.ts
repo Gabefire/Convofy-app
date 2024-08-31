@@ -25,7 +25,7 @@ export const generatePosts = () => {
 		following: true,
 		title: "test1",
 		owner: owner1,
-		icon: "icon",
+		file: "icon",
 	};
 	const forumData2: forumDataType = {
 		color: "#ff0000",

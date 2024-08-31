@@ -6,7 +6,7 @@ import { ReactComponent as Sun } from "../../../assets/sun.svg";
 import mainIcon from "../../../assets/reddit-circle.svg";
 import { useContext, useRef, useState } from "react";
 import { ThemeContext } from "../../../global-contexts/themeContext";
-import { SearchBox } from "./search";
+import SearchBox from "./search";
 import useClickOutside from "./hooks/useClickOutside";
 import { MobileSearch } from "./mobileSearch";
 

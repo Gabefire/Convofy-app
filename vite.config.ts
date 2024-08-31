@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigpath from "vite-tsconfig-paths";
 import svgr from "vite-plugin-svgr";
+import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
@@ -24,5 +25,6 @@ export default defineConfig(() => ({
 		coverage: {
 			provider: "v8",
 		},
+		setupFiles: [resolve(__dirname, "src/test-util/setup.ts")],
 	},
 }));

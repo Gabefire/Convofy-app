@@ -8,9 +8,9 @@ interface objIconType {
 export function ObjIcon({ obj }: objIconType) {
 	return (
 		<>
-			{obj.icon ? (
+			{obj.file ? (
 				<img
-					src={obj.icon}
+					src={obj.file}
 					alt={`${"title" in obj ? obj.title : obj.displayName} icon`}
 					className="h-6 w-6 min-h-6 min-w-6 rounded-2xl dark:border border-neutral-400 "
 				/>

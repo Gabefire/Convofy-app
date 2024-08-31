@@ -1,6 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
 import { useContext, useRef, useState } from "react";
-import { SearchBox } from "./search";
+import SearchBox from "./search";
 import useClickOutside from "./hooks/useClickOutside";
 import { ReactComponent as Magnify } from "../../../assets/magnify.svg";
 import { ThemeContext } from "../../../global-contexts/themeContext";

@@ -12,15 +12,17 @@ export function EditPost({ post, toggleEditCreatePost }: editPostType) {
 	const dispatch = usePostsDispatch();
 
 	const submitEdit = (data: postFormSchemaType) => {
-		dispatch({
-			type: POST_ACTION.EDIT_POST,
-			payload: {
-				post: post,
-				newTitle: data.title,
-				newContent: data.content,
-				uid: "2",
-			},
-		});
+		if (data.title !== post.title && data.content !== post.content) {
+			dispatch({
+				type: POST_ACTION.EDIT_POST,
+				payload: {
+					post: post,
+					newTitle: data.title,
+					newContent: data.content,
+					uid: "2",
+				},
+			});
+		}
 
 		toggleEditCreatePost();
 	};

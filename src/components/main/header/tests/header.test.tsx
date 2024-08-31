@@ -1,9 +1,9 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import type { postType } from "../../feed/types/post";
 import { generatePosts } from "../../../../test-util/posts";
-import Header from "../header";
+import SearchBox from "../search";
 
 describe("drop down component", () => {
 	let messages: postType[];
@@ -11,13 +11,21 @@ describe("drop down component", () => {
 		messages = generatePosts();
 	});
 	it("renders forums", () => {
+		const displaySearchBox = true;
+		const searchBoxRef = vi.fn();
+		const searchTerm = "test";
 		render(
 			<BrowserRouter>
-				<Header />
+				<SearchBox
+					displaySearchBox={displaySearchBox}
+					searchBoxRef={searchBoxRef}
+					searchTerm={searchTerm}
+				/>
 			</BrowserRouter>,
-		);
-		const forumElements = document.querySelectorAll("li");
-		expect(forumElements.length).toBe(3);
-		expect(forumElements[0].textContent).toBe("r/test1");
+		).debug();
+		const forumElements = screen.getAllByRole("link");
+
+		expect(forumElements.length).toBe(2);
+		expect(forumElements[1].textContent).toBe("r/test1");
 	});
 });

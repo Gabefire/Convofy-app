@@ -1,6 +1,6 @@
 export interface user {
 	displayName: string;
 	id: string;
-	icon?: string;
+	file?: string;
 	color: string;
 }

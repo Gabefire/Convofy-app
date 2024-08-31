@@ -84,7 +84,7 @@ describe("Forum component", () => {
 			<MemoryRouter initialEntries={["/r/icon"]}>
 				<Routes>
 					<Route path="/r/:id" Component={() => <Forum />} />
-					<Route path="/r" Component={() => <h1>test123</h1>} />
+					<Route path="/r/:id/edit-forum" Component={() => <h1>test123</h1>} />
 				</Routes>
 			</MemoryRouter>,
 		);

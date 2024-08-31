@@ -6,22 +6,21 @@
         class="flex flex-col"
       >
         <div
-          class="bg-neutral-700 flex flex-col gap-5 pb-8 pt-8"
+          class="dark:bg-neutral-700 bg-white flex flex-col gap-5 pb-8 border-b-neutral-400 border-b dark:border-none"
         >
           <div
             class="h-1/3 min-h-44 w-full"
             style="background-color: rgb(255, 0, 0);"
           />
           <div
-            class="flex pl-2 pr-2 *:items-center gap-2 text-white justify-between"
+            class="flex pl-2 pr-2 items-center gap-2 dark:text-white justify-between flex-wrap"
           >
             <div
-              class="flex items-center gap-2 text-white"
+              class="flex items-center gap-2"
             >
-               
               <div
                 class="text-center size-14 rounded-full
-								text-5xl"
+								text-5xl text-white"
                 style="background-color: rgb(255, 0, 0);"
               >
                 t
@@ -33,11 +32,10 @@
               </h1>
             </div>
             <div
-              class="flex gap-2 flex-wrap justify-end"
+              class="flex gap-2 justify-end"
             >
               <button
-                class="text-xs md:text-sm border
-								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer h-7 min-h-7 text-center"
+                class="text-xs md:text-sm rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer h-7 min-h-7 text-center leading-normal dark:border-white dark:border bg-neutral-300 dark:bg-transparent font-bold"
                 type="button"
               >
                 Create Post
@@ -45,13 +43,13 @@
               <button
                 class="text-xs md:text-sm border
 								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer
-								w-16 min-w-16 max-w-16 h-7 min-h-7 text-center"
+								w-16 min-w-16 max-w-16 h-7 min-h-7 text-center leading-none dark:border-white dark:border bg-neutral-300 dark:bg-transparent font-bold"
                 type="button"
               >
                 Joined
               </button>
               <div
-                class="flex gap-4 items-center justify-center border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7"
+                class="flex gap-4 items-center justify-center rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
               >
                 <button
                   aria-label="delete forum"
@@ -60,7 +58,7 @@
                 >
                   <svg
                     class="size-3 md:size-4 min-w-4"
-                    fill="white"
+                    fill="black"
                     viewBox="5 3 14 18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -76,7 +74,7 @@
                 >
                   <svg
                     class="size-3 md:size-4 min-w-4"
-                    fill="white"
+                    fill="black"
                     viewBox="4 2 17.95 21"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -89,18 +87,22 @@
             </div>
           </div>
           <div
-            class="pl-2 pr-2 text-white max-w-6xl"
+            class="pl-2 pr-2 dark:text-white max-w-6xl "
           >
             Just the day before, our host had written of the challenges of writing short. In journalism–my friend’s chosen trade, and mostly my own, too–Mark Twain’s observation undoubtedly applies: “I didn’t have time to write a short letter, so I wrote a long one instead.” The principle holds across genres, in letters, reporting, and other writing. It’s harder to be concise than to blather. (Full disclosure, this blog post will clock in at a blather-esque 803 words.) Good writing is boiled down, not baked full of air like a souffl??. No matter how yummy souffl??s may be. Which they are. Yummy like a Grisham novel.
           </div>
         </div>
         <div
-          class="flex flex-col justify-center gap-3 				text-white m-3"
+          class="flex flex-col justify-center gap-3 dark:text-white text-black m-3"
         >
           <div
             class="flex flex-col
 								flex-1
-								bg-neutral-700 self-center
+								dark:bg-neutral-700 
+								bg-white self-center
+								dark:border-none
+								border-neutral-400
+								border
 								pl-5
 								pr-5
 								pb-3
@@ -113,7 +115,7 @@
             id="message-1"
           >
             <div
-              class="flex text-neutral-300 text-base items-center text-center"
+              class="flex dark:text-neutral-300 text-base items-center text-center text-neutral-500"
             >
               <div
                 class="flex gap-6"
@@ -122,9 +124,7 @@
                   class="flex gap-1"
                 >
                   <div
-                    class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
-										text-white
-										"
+                    class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400  text-white"
                     style="background-color: rgb(120, 133, 139);"
                   >
                     g
@@ -155,7 +155,7 @@
               class="flex gap-5 text-xs md:text-sm"
             >
               <div
-                class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+                class="flex gap-2 items-center justify-around rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
               >
                 <button
                   aria-label="up vote"
@@ -164,7 +164,7 @@
                 >
                   <svg
                     class="size-3 md:size-4"
-                    fill="white"
+                    fill="black"
                     preserveAspectRatio="none"
                     viewBox="4.16 4.16 15.68 15.84"
                     xmlns="http://www.w3.org/2000/svg"
@@ -186,7 +186,7 @@
                 >
                   <svg
                     class="size-3 md:size-4"
-                    fill="white"
+                    fill="black"
                     preserveAspectRatio="none"
                     viewBox="4.16 4 15.68 15.84"
                     xmlns="http://www.w3.org/2000/svg"
@@ -198,12 +198,12 @@
                 </button>
               </div>
               <button
-                class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+                class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
                 type="button"
               >
                 <svg
                   class="size-3 md:size-4"
-                  fill="white"
+                  fill="black"
                   viewBox="2 2 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -220,7 +220,11 @@
           <div
             class="flex flex-col
 								flex-1
-								bg-neutral-700 self-center
+								dark:bg-neutral-700 
+								bg-white self-center
+								dark:border-none
+								border-neutral-400
+								border
 								pl-5
 								pr-5
 								pb-3
@@ -233,7 +237,7 @@
             id="message-2"
           >
             <div
-              class="flex text-neutral-300 text-base items-center text-center"
+              class="flex dark:text-neutral-300 text-base items-center text-center text-neutral-500"
             >
               <div
                 class="flex gap-6"
@@ -242,9 +246,7 @@
                   class="flex gap-1"
                 >
                   <div
-                    class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
-										text-white
-										"
+                    class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400  text-white"
                     style="background-color: rgb(239, 169, 74);"
                   >
                     l
@@ -275,7 +277,7 @@
               class="flex gap-5 text-xs md:text-sm"
             >
               <div
-                class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+                class="flex gap-2 items-center justify-around rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
               >
                 <button
                   aria-label="up vote"
@@ -284,7 +286,7 @@
                 >
                   <svg
                     class="size-3 md:size-4"
-                    fill="white"
+                    fill="black"
                     preserveAspectRatio="none"
                     viewBox="4.16 4.16 15.68 15.84"
                     xmlns="http://www.w3.org/2000/svg"
@@ -306,7 +308,7 @@
                 >
                   <svg
                     class="size-3 md:size-4"
-                    fill="white"
+                    fill="black"
                     preserveAspectRatio="none"
                     viewBox="4.16 4 15.68 15.84"
                     xmlns="http://www.w3.org/2000/svg"
@@ -318,12 +320,12 @@
                 </button>
               </div>
               <button
-                class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+                class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
                 type="button"
               >
                 <svg
                   class="size-3 md:size-4"
-                  fill="white"
+                  fill="black"
                   viewBox="2 2 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -336,7 +338,7 @@
                 </div>
               </button>
               <div
-                class="flex gap-4 items-center justify-center border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7"
+                class="flex gap-4 items-center justify-center rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
               >
                 <button
                   aria-label="delete post"
@@ -345,7 +347,7 @@
                 >
                   <svg
                     class="size-3 md:size-4 min-w-4"
-                    fill="white"
+                    fill="black"
                     viewBox="5 3 14 18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -361,7 +363,7 @@
                 >
                   <svg
                     class="size-3 md:size-4 min-w-4"
-                    fill="white"
+                    fill="black"
                     viewBox="4 2 17.95 21"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -376,7 +378,11 @@
           <div
             class="flex flex-col
 								flex-1
-								bg-neutral-700 self-center
+								dark:bg-neutral-700 
+								bg-white self-center
+								dark:border-none
+								border-neutral-400
+								border
 								pl-5
 								pr-5
 								pb-3
@@ -389,7 +395,7 @@
             id="message-3"
           >
             <div
-              class="flex text-neutral-300 text-base items-center text-center"
+              class="flex dark:text-neutral-300 text-base items-center text-center text-neutral-500"
             >
               <div
                 class="flex gap-6"
@@ -398,9 +404,7 @@
                   class="flex gap-1"
                 >
                   <div
-                    class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
-										text-white
-										"
+                    class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400  text-white"
                     style="background-color: rgb(49, 55, 43);"
                   >
                     c
@@ -431,7 +435,7 @@
               class="flex gap-5 text-xs md:text-sm"
             >
               <div
-                class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+                class="flex gap-2 items-center justify-around rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
               >
                 <button
                   aria-label="up vote"
@@ -440,7 +444,7 @@
                 >
                   <svg
                     class="size-3 md:size-4"
-                    fill="white"
+                    fill="black"
                     preserveAspectRatio="none"
                     viewBox="4.16 4.16 15.68 15.84"
                     xmlns="http://www.w3.org/2000/svg"
@@ -462,7 +466,7 @@
                 >
                   <svg
                     class="size-3 md:size-4"
-                    fill="white"
+                    fill="black"
                     preserveAspectRatio="none"
                     viewBox="4.16 4 15.68 15.84"
                     xmlns="http://www.w3.org/2000/svg"
@@ -474,12 +478,12 @@
                 </button>
               </div>
               <button
-                class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+                class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
                 type="button"
               >
                 <svg
                   class="size-3 md:size-4"
-                  fill="white"
+                  fill="black"
                   viewBox="2 2 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -492,7 +496,7 @@
                 </div>
               </button>
               <div
-                class="flex gap-4 items-center justify-center border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7"
+                class="flex gap-4 items-center justify-center rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
               >
                 <button
                   aria-label="delete post"
@@ -501,7 +505,7 @@
                 >
                   <svg
                     class="size-3 md:size-4 min-w-4"
-                    fill="white"
+                    fill="black"
                     viewBox="5 3 14 18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -517,7 +521,7 @@
                 >
                   <svg
                     class="size-3 md:size-4 min-w-4"
-                    fill="white"
+                    fill="black"
                     viewBox="4 2 17.95 21"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -538,22 +542,21 @@
       class="flex flex-col"
     >
       <div
-        class="bg-neutral-700 flex flex-col gap-5 pb-8 pt-8"
+        class="dark:bg-neutral-700 bg-white flex flex-col gap-5 pb-8 border-b-neutral-400 border-b dark:border-none"
       >
         <div
           class="h-1/3 min-h-44 w-full"
           style="background-color: rgb(255, 0, 0);"
         />
         <div
-          class="flex pl-2 pr-2 *:items-center gap-2 text-white justify-between"
+          class="flex pl-2 pr-2 items-center gap-2 dark:text-white justify-between flex-wrap"
         >
           <div
-            class="flex items-center gap-2 text-white"
+            class="flex items-center gap-2"
           >
-             
             <div
               class="text-center size-14 rounded-full
-								text-5xl"
+								text-5xl text-white"
               style="background-color: rgb(255, 0, 0);"
             >
               t
@@ -565,11 +568,10 @@
             </h1>
           </div>
           <div
-            class="flex gap-2 flex-wrap justify-end"
+            class="flex gap-2 justify-end"
           >
             <button
-              class="text-xs md:text-sm border
-								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer h-7 min-h-7 text-center"
+              class="text-xs md:text-sm rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer h-7 min-h-7 text-center leading-normal dark:border-white dark:border bg-neutral-300 dark:bg-transparent font-bold"
               type="button"
             >
               Create Post
@@ -577,13 +579,13 @@
             <button
               class="text-xs md:text-sm border
 								rounded-2xl pt-1 pb-1 pl-2 pr-2 cursor-pointer
-								w-16 min-w-16 max-w-16 h-7 min-h-7 text-center"
+								w-16 min-w-16 max-w-16 h-7 min-h-7 text-center leading-none dark:border-white dark:border bg-neutral-300 dark:bg-transparent font-bold"
               type="button"
             >
               Joined
             </button>
             <div
-              class="flex gap-4 items-center justify-center border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7"
+              class="flex gap-4 items-center justify-center rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
             >
               <button
                 aria-label="delete forum"
@@ -592,7 +594,7 @@
               >
                 <svg
                   class="size-3 md:size-4 min-w-4"
-                  fill="white"
+                  fill="black"
                   viewBox="5 3 14 18"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -608,7 +610,7 @@
               >
                 <svg
                   class="size-3 md:size-4 min-w-4"
-                  fill="white"
+                  fill="black"
                   viewBox="4 2 17.95 21"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -621,18 +623,22 @@
           </div>
         </div>
         <div
-          class="pl-2 pr-2 text-white max-w-6xl"
+          class="pl-2 pr-2 dark:text-white max-w-6xl "
         >
           Just the day before, our host had written of the challenges of writing short. In journalism–my friend’s chosen trade, and mostly my own, too–Mark Twain’s observation undoubtedly applies: “I didn’t have time to write a short letter, so I wrote a long one instead.” The principle holds across genres, in letters, reporting, and other writing. It’s harder to be concise than to blather. (Full disclosure, this blog post will clock in at a blather-esque 803 words.) Good writing is boiled down, not baked full of air like a souffl??. No matter how yummy souffl??s may be. Which they are. Yummy like a Grisham novel.
         </div>
       </div>
       <div
-        class="flex flex-col justify-center gap-3 				text-white m-3"
+        class="flex flex-col justify-center gap-3 dark:text-white text-black m-3"
       >
         <div
           class="flex flex-col
 								flex-1
-								bg-neutral-700 self-center
+								dark:bg-neutral-700 
+								bg-white self-center
+								dark:border-none
+								border-neutral-400
+								border
 								pl-5
 								pr-5
 								pb-3
@@ -645,7 +651,7 @@
           id="message-1"
         >
           <div
-            class="flex text-neutral-300 text-base items-center text-center"
+            class="flex dark:text-neutral-300 text-base items-center text-center text-neutral-500"
           >
             <div
               class="flex gap-6"
@@ -654,9 +660,7 @@
                 class="flex gap-1"
               >
                 <div
-                  class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
-										text-white
-										"
+                  class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400  text-white"
                   style="background-color: rgb(120, 133, 139);"
                 >
                   g
@@ -687,7 +691,7 @@
             class="flex gap-5 text-xs md:text-sm"
           >
             <div
-              class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+              class="flex gap-2 items-center justify-around rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
             >
               <button
                 aria-label="up vote"
@@ -696,7 +700,7 @@
               >
                 <svg
                   class="size-3 md:size-4"
-                  fill="white"
+                  fill="black"
                   preserveAspectRatio="none"
                   viewBox="4.16 4.16 15.68 15.84"
                   xmlns="http://www.w3.org/2000/svg"
@@ -718,7 +722,7 @@
               >
                 <svg
                   class="size-3 md:size-4"
-                  fill="white"
+                  fill="black"
                   preserveAspectRatio="none"
                   viewBox="4.16 4 15.68 15.84"
                   xmlns="http://www.w3.org/2000/svg"
@@ -730,12 +734,12 @@
               </button>
             </div>
             <button
-              class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+              class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
               type="button"
             >
               <svg
                 class="size-3 md:size-4"
-                fill="white"
+                fill="black"
                 viewBox="2 2 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -752,7 +756,11 @@
         <div
           class="flex flex-col
 								flex-1
-								bg-neutral-700 self-center
+								dark:bg-neutral-700 
+								bg-white self-center
+								dark:border-none
+								border-neutral-400
+								border
 								pl-5
 								pr-5
 								pb-3
@@ -765,7 +773,7 @@
           id="message-2"
         >
           <div
-            class="flex text-neutral-300 text-base items-center text-center"
+            class="flex dark:text-neutral-300 text-base items-center text-center text-neutral-500"
           >
             <div
               class="flex gap-6"
@@ -774,9 +782,7 @@
                 class="flex gap-1"
               >
                 <div
-                  class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
-										text-white
-										"
+                  class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400  text-white"
                   style="background-color: rgb(239, 169, 74);"
                 >
                   l
@@ -807,7 +813,7 @@
             class="flex gap-5 text-xs md:text-sm"
           >
             <div
-              class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+              class="flex gap-2 items-center justify-around rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
             >
               <button
                 aria-label="up vote"
@@ -816,7 +822,7 @@
               >
                 <svg
                   class="size-3 md:size-4"
-                  fill="white"
+                  fill="black"
                   preserveAspectRatio="none"
                   viewBox="4.16 4.16 15.68 15.84"
                   xmlns="http://www.w3.org/2000/svg"
@@ -838,7 +844,7 @@
               >
                 <svg
                   class="size-3 md:size-4"
-                  fill="white"
+                  fill="black"
                   preserveAspectRatio="none"
                   viewBox="4.16 4 15.68 15.84"
                   xmlns="http://www.w3.org/2000/svg"
@@ -850,12 +856,12 @@
               </button>
             </div>
             <button
-              class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+              class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
               type="button"
             >
               <svg
                 class="size-3 md:size-4"
-                fill="white"
+                fill="black"
                 viewBox="2 2 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -868,7 +874,7 @@
               </div>
             </button>
             <div
-              class="flex gap-4 items-center justify-center border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7"
+              class="flex gap-4 items-center justify-center rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
             >
               <button
                 aria-label="delete post"
@@ -877,7 +883,7 @@
               >
                 <svg
                   class="size-3 md:size-4 min-w-4"
-                  fill="white"
+                  fill="black"
                   viewBox="5 3 14 18"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -893,7 +899,7 @@
               >
                 <svg
                   class="size-3 md:size-4 min-w-4"
-                  fill="white"
+                  fill="black"
                   viewBox="4 2 17.95 21"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -908,7 +914,11 @@
         <div
           class="flex flex-col
 								flex-1
-								bg-neutral-700 self-center
+								dark:bg-neutral-700 
+								bg-white self-center
+								dark:border-none
+								border-neutral-400
+								border
 								pl-5
 								pr-5
 								pb-3
@@ -921,7 +931,7 @@
           id="message-3"
         >
           <div
-            class="flex text-neutral-300 text-base items-center text-center"
+            class="flex dark:text-neutral-300 text-base items-center text-center text-neutral-500"
           >
             <div
               class="flex gap-6"
@@ -930,9 +940,7 @@
                 class="flex gap-1"
               >
                 <div
-                  class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400
-										text-white
-										"
+                  class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400  text-white"
                   style="background-color: rgb(49, 55, 43);"
                 >
                   c
@@ -963,7 +971,7 @@
             class="flex gap-5 text-xs md:text-sm"
           >
             <div
-              class="flex gap-2 items-center justify-around border rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate"
+              class="flex gap-2 items-center justify-around rounded-2xl pt-1 pb-1 pl-2 pr-2 truncate dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
             >
               <button
                 aria-label="up vote"
@@ -972,7 +980,7 @@
               >
                 <svg
                   class="size-3 md:size-4"
-                  fill="white"
+                  fill="black"
                   preserveAspectRatio="none"
                   viewBox="4.16 4.16 15.68 15.84"
                   xmlns="http://www.w3.org/2000/svg"
@@ -994,7 +1002,7 @@
               >
                 <svg
                   class="size-3 md:size-4"
-                  fill="white"
+                  fill="black"
                   preserveAspectRatio="none"
                   viewBox="4.16 4 15.68 15.84"
                   xmlns="http://www.w3.org/2000/svg"
@@ -1006,12 +1014,12 @@
               </button>
             </div>
             <button
-              class="cursor-pointer flex gap-2 items-center border rounded-2xl pt-1 pb-1 pl-2 pr-2"
+              class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
               type="button"
             >
               <svg
                 class="size-3 md:size-4"
-                fill="white"
+                fill="black"
                 viewBox="2 2 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -1024,7 +1032,7 @@
               </div>
             </button>
             <div
-              class="flex gap-4 items-center justify-center border rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7"
+              class="flex gap-4 items-center justify-center rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
             >
               <button
                 aria-label="delete post"
@@ -1033,7 +1041,7 @@
               >
                 <svg
                   class="size-3 md:size-4 min-w-4"
-                  fill="white"
+                  fill="black"
                   viewBox="5 3 14 18"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -1049,7 +1057,7 @@
               >
                 <svg
                   class="size-3 md:size-4 min-w-4"
-                  fill="white"
+                  fill="black"
                   viewBox="4 2 17.95 21"
                   xmlns="http://www.w3.org/2000/svg"
                 >

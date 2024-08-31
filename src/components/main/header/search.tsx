@@ -12,7 +12,7 @@ interface searchBoxType {
 	searchTerm: string;
 }
 
-export function SearchBox({
+export default function SearchBox({
 	displaySearchBox,
 	searchBoxRef,
 	searchTerm,
@@ -45,15 +45,12 @@ export function SearchBox({
 			const forumTwo: forumDataType = {
 				color: "red",
 				description: "test",
-				title: "this is a test 2",
+				title: "test1",
 				following: true,
 				owner: userTwo,
+				file: "test",
 			};
-			const forums: forumDataType[] = [];
-			for (let i = 0; i < 10; i += 1) {
-				console.log(forums);
-				forums.push(forumOne, forumTwo);
-			}
+			const forums: forumDataType[] = [forumOne, forumTwo];
 			setForums(forums);
 			setLoadingSearchResults(false);
 		};
