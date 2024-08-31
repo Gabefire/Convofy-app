@@ -1,7 +1,16 @@
-import { type FormEventHandler, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+
+const postFormSchema = z.object({
+	title: z.string().min(1, "Title is required").max(20),
+	content: z.string().min(1, "Content is required"),
+});
+
+export type postFormSchemaType = z.infer<typeof postFormSchema>;
 
 interface postFormType {
-	submitForm: FormEventHandler<HTMLFormElement>;
+	submitAction: (data: postFormSchemaType) => void;
 	togglePostForm: () => void;
 	defaultTitle?: string;
 	defaultContent?: string;
@@ -9,19 +18,33 @@ interface postFormType {
 }
 
 export default function PostForm({
-	submitForm,
+	submitAction,
 	togglePostForm,
 	defaultTitle,
 	defaultContent,
 	componentTitle,
 }: postFormType) {
-	const [title, setTitle] = useState(defaultTitle);
-	const [content, setContent] = useState(defaultContent);
+	const { register, handleSubmit } = useForm<postFormSchemaType>({
+		resolver: zodResolver(postFormSchema),
+		defaultValues: {
+			title: defaultTitle,
+			content: defaultContent,
+		},
+	});
+
+	const submitForm: SubmitHandler<postFormSchemaType> = async (data) => {
+		try {
+			const results = await submitAction(data);
+			console.log(results);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	return (
 		<form
 			className="flex flex-col justify-center items-center gap-4 dark:text-white"
-			onSubmit={submitForm}
+			onSubmit={handleSubmit(submitForm)}
 		>
 			<div className="flex justify-between items-center w-full">
 				<input
@@ -53,12 +76,7 @@ export default function PostForm({
 					id="create-input-title"
 					maxLength={150}
 					rows={3}
-					defaultValue={defaultTitle}
-					onChange={(e) => {
-						if (e.target.value !== null) {
-							setTitle(e.target.value);
-						}
-					}}
+					{...register("title")}
 				/>
 			</label>
 			<label
@@ -72,12 +90,7 @@ export default function PostForm({
 					className="bg-inherit w-full focus:outline-none focus:ring-0 resize-y "
 					id={"edit-input-content"}
 					rows={20}
-					defaultValue={defaultContent}
-					onChange={(e) => {
-						if (e.target.value !== null) {
-							setContent(e.target.value);
-						}
-					}}
+					{...register("content")}
 				/>
 			</label>
 		</form>

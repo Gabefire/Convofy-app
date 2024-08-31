@@ -4,37 +4,45 @@ import { z } from "zod";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReactComponent as DefaultForum } from "../../../assets/default-forum.svg";
+import { useEffect } from "react";
 
 const forumFormSchema = z.object({
 	title: z.string().min(1, "Title is required").max(20),
 	description: z.string().max(600).optional(),
 	color: z.string().length(7, "Not a valid color"),
-	file: typeof window === "undefined" ? z.undefined() : z.instanceof(FileList),
+	file:
+		typeof window === "undefined"
+			? z.undefined()
+			: z.instanceof(FileList)
+				? z.instanceof(FileList)
+				: z.instanceof(Blob), // Zod does not handle Files very well and I need two types of Blob objects to be allowed
 });
 
 export type forumFormSchemaType = z.infer<typeof forumFormSchema>;
 
 interface ForumFormType {
-	title: string;
+	componentTitle: string;
 	submitAction: (data: forumFormSchemaType) => void;
-	defaultTitle?: string;
-	defaultDescription?: string;
+	defaultForum?: forumFormSchemaType;
 }
 
 export default function ForumForm({
-	title,
+	componentTitle,
 	submitAction,
-	defaultTitle,
-	defaultDescription,
+	defaultForum,
 }: ForumFormType) {
-	const { register, handleSubmit, watch } = useForm<forumFormSchemaType>({
-		resolver: zodResolver(forumFormSchema),
-		defaultValues: {
-			title: defaultTitle,
-			description: defaultDescription,
-			color: "#ff3300",
+	const { register, handleSubmit, watch, reset } = useForm<forumFormSchemaType>(
+		{
+			resolver: zodResolver(forumFormSchema),
+			defaultValues: {
+				color: "#ff3300",
+			},
 		},
-	});
+	);
+
+	useEffect(() => {
+		reset(defaultForum);
+	}, [defaultForum, reset]);
 
 	const navigate = useNavigate();
 
@@ -67,30 +75,38 @@ export default function ForumForm({
 
 	const imgSrc = () => {
 		const file = watch("file");
-		if (file === undefined || file.length === 0) {
+		if (file instanceof FileList && file.length > 0) {
 			return (
-				<DefaultForum
-					style={{
-						background: watch("color"),
-					}}
-					fill={textColorBasedOnBackground(watch("color"))}
-					className="size-52 p-10 absolute left-1/2 -translate-x-1/2 bottom-1/2 translate-y-1/2"
+				<img
+					alt="forum-icon"
+					src={URL.createObjectURL(file[0])}
+					className="absolute left-1/2 -translate-x-1/2 bottom-1/2 translate-y-1/2"
+				/>
+			);
+		}
+		if (file instanceof Blob) {
+			return (
+				<img
+					alt="forum-icon"
+					src={URL.createObjectURL(file)}
+					className="absolute left-1/2 -translate-x-1/2 bottom-1/2 translate-y-1/2"
 				/>
 			);
 		}
 		return (
-			<img
-				alt="forum-icon"
-				src={URL.createObjectURL(file[0])}
-				className="absolute left-1/2 -translate-x-1/2 bottom-1/2 translate-y-1/2"
+			<DefaultForum
+				style={{
+					background: watch("color"),
+				}}
+				fill={textColorBasedOnBackground(watch("color"))}
+				className="size-52 p-10 absolute left-1/2 -translate-x-1/2 bottom-1/2 translate-y-1/2"
 			/>
 		);
 	};
 
 	return (
 		<form
-			className="flex flex-col flex-1 dark:bg-neutral-700 bg-white dark:border-none border-neutral-400 border pl-2 pr-2 pb-3
-					   pt-3 mt-3 max-w-2xl w-screen md:w-11/12 rounded-xl dark:text-white self-center gap-4"
+			className="flex flex-col flex-1 dark:bg-neutral-700 bg-white dark:border-none border-neutral-400 border p-4 mt-3 max-w-2xl w-screen md:w-11/12 rounded-xl dark:text-white self-center gap-4"
 			onSubmit={handleSubmit(submitForm)}
 		>
 			<section className="flex justify-between items-center w-full">
@@ -103,7 +119,7 @@ export default function ForumForm({
 						navigate(-1);
 					}}
 				/>
-				<h5>{title}</h5>
+				<h5>{componentTitle}</h5>
 				<input
 					type="submit"
 					className="cursor-pointer h-8 text-base w-20
@@ -111,7 +127,7 @@ export default function ForumForm({
 					value={"Submit"}
 				/>
 			</section>
-			<section className="flex flex-col justify-between min-w-full p-2 text-sm gap-3">
+			<section className="flex flex-col justify-between min-w-full text-sm gap-3 dark:border-white border-gray-400 border rounded-lg p-2">
 				<div className="rounded-full overflow-hidden size-52 relative flex flex-col size-30 self-center">
 					{imgSrc()}
 					<label
@@ -173,8 +189,8 @@ export default function ForumForm({
 					</div>
 					<textarea
 						id="forum-desc"
-						className="text-base bg-inherit focus:outline-none focus:ring-0 w-full"
-						rows={4}
+						className="text-base bg-inherit focus:outline-none focus:ring-0 w-full resize-y"
+						rows={9}
 						maxLength={600}
 						required={true}
 						{...register("description")}

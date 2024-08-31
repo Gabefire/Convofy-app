@@ -42,7 +42,7 @@ export default function ForumHeader({ forumData }: forumHeaderType) {
 	const editForum = (e: React.PointerEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 		// move to editing page will be create forum component
-		navigate("/r");
+		navigate(`/r/${forumData.title}/edit-forum`);
 	};
 
 	return (
@@ -53,9 +53,9 @@ export default function ForumHeader({ forumData }: forumHeaderType) {
 			/>
 			<div className="flex pl-2 pr-2 items-center gap-2 dark:text-white justify-between flex-wrap">
 				<div className="flex items-center gap-2">
-					{headerForumData.icon ? (
+					{headerForumData.file ? (
 						<img
-							src={headerForumData.icon}
+							src={headerForumData.file}
 							className="text-center size-14 rounded-full
 								object-fill"
 							alt={`${headerForumData.title} icon`}

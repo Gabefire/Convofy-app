@@ -8,6 +8,7 @@ import Home from "./components/main/home/home.tsx";
 import MainRoot from "./components/main/mainRoot.tsx";
 import "./index.css";
 import { ThemeProvider } from "./global-contexts/themeContext.tsx";
+import EditForum from "./components/main/forum/editForum.tsx";
 
 const router = createBrowserRouter([
 	/*
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
 			{ path: "create-forum", element: <CreateForum /> },
 			{ path: ":id", element: <Forum /> },
 			{ path: ":id/create-post", element: <CreatePost /> },
+			{ path: ":id/edit-forum", element: <EditForum /> },
 		],
 	},
 ]);
