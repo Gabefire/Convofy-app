@@ -22,7 +22,7 @@ describe("drop down component", () => {
 					searchTerm={searchTerm}
 				/>
 			</BrowserRouter>,
-		).debug();
+		);
 		const forumElements = screen.getAllByRole("link");
 
 		expect(forumElements.length).toBe(2);

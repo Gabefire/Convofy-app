@@ -110,7 +110,11 @@ export default function Header() {
 							</button>
 						</Link>
 						<div className="items-center flex">
-							<button type="button" onClick={() => toggleDarkMode(!enabled)}>
+							<button
+								type="button"
+								onClick={() => toggleDarkMode(!enabled)}
+								aria-label="toggle theme"
+							>
 								{enabled ? (
 									<Moon className="size-6" fill="white" />
 								) : (

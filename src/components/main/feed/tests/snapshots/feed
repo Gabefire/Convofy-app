@@ -334,12 +334,11 @@
                 <div
                   class="flex gap-1"
                 >
-                  <div
-                    class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400  text-white"
-                    style="background-color: rgb(255, 0, 0);"
-                  >
-                    t
-                  </div>
+                  <img
+                    alt="test1 icon"
+                    class="h-6 w-6 rounded-2xl dark:border border-neutral-400 "
+                    src="icon"
+                  />
                   <div
                     class="self-center text-sm text-center"
                   >
@@ -770,12 +769,11 @@
               <div
                 class="flex gap-1"
               >
-                <div
-                  class="h-6 w-6 rounded-2xl text-sm text-center border border-neutral-400  text-white"
-                  style="background-color: rgb(255, 0, 0);"
-                >
-                  t
-                </div>
+                <img
+                  alt="test1 icon"
+                  class="h-6 w-6 rounded-2xl dark:border border-neutral-400 "
+                  src="icon"
+                />
                 <div
                   class="self-center text-sm text-center"
                 >

@@ -1,17 +1,17 @@
 import { type ReactElement, createContext, useEffect, useState } from "react";
+import { boolean } from "zod";
 
-export interface themeContextType {
+interface themeContextType {
 	enabled: boolean;
 	toggleDarkMode: (option: boolean) => void;
 }
 
-export const ThemeContext: React.Context<themeContextType> = createContext({
-	enabled: window.matchMedia("(prefers-color-scheme: dark)").matches,
-	toggleDarkMode: (() => {}) as (option: boolean) => void,
-});
+export const ThemeContext: React.Context<themeContextType> = createContext(
+	{} as themeContextType,
+);
 
 export function ThemeProvider({ children }: { children: ReactElement }) {
-	const [darkMode, setDarkMode] = useState(true);
+	const [darkMode, setDarkMode] = useState<boolean | undefined>();
 	const prefersDarkMode = window.matchMedia(
 		"(prefers-color-scheme: dark)",
 	).matches;

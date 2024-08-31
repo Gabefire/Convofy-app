@@ -29,9 +29,9 @@ export default function Post({ showForumInfo, post }: postPropsType) {
 		// api call for icon
 		return (
 			<>
-				{obj.icon ? (
+				{obj.file ? (
 					<img
-						src={obj.icon}
+						src={obj.file}
 						alt={`${displayName} icon`}
 						className="h-6 w-6 rounded-2xl dark:border border-neutral-400 "
 					/>
