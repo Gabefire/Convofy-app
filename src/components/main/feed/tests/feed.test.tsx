@@ -296,7 +296,7 @@ describe("post reducer context", () => {
 	});
 });
 
-describe("Feed component", () => {
+describe("feed component", () => {
 	let messages: postType[];
 
 	beforeEach(() => {

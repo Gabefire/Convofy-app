@@ -4,6 +4,8 @@ import react from "@vitejs/plugin-react";
 import tsconfigpath from "vite-tsconfig-paths";
 import svgr from "vite-plugin-svgr";
 import { resolve } from "node:path";
+import postcss, { plugin } from "postcss";
+import tailwindcss from "tailwindcss";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
@@ -18,8 +20,8 @@ export default defineConfig(() => ({
 		environment: "jsdom",
 		testTimeout: 2000,
 		css: {
-			modules: {
-				classNameStrategy: "non-scoped",
+			postcss: {
+				plugin: [tailwindcss()],
 			},
 		},
 		coverage: {

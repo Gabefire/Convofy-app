@@ -59,13 +59,18 @@ export default function Header() {
 					<div
 						className={`min-w-64 w-64 sm:flex self-center ${displaySearchBox ? "rounded-t-2xl" : "rounded-2xl"} p-1 dark:bg-neutral-500 bg-neutral-300 h-10 hidden relative`}
 					>
-						<Magnify
-							className="size-4 ml-1 mr-1 self-center z-10 cursor-pointer"
-							fill={enabled ? "white" : "black"}
+						<button
+							type="button"
 							onClick={() => searchBarRef.current?.focus()}
-						/>
+							aria-label="icon to focus on search"
+						>
+							<Magnify
+								className="size-4 ml-1 mr-1 self-center z-10 cursor-pointer"
+								fill={enabled ? "white" : "black"}
+							/>
+						</button>
 						<input
-							type="text"
+							type="search"
 							className="bg-inherit focus:outline-none focus:ring-0 w-52 z-10"
 							ref={searchBarRef}
 							onChange={(e) => {
@@ -93,11 +98,17 @@ export default function Header() {
 
 					<div className="flex items-center sm:gap-4 gap-2">
 						{/* mobile support */}
-						<Magnify
-							className="size-5 sm:hidden items-center cursor-pointer"
-							fill={enabled ? "white" : "black"}
+						<button
+							type="button"
 							onClick={() => setShowMobileSearch(true)}
-						/>
+							aria-label="mobile search"
+							className="sm:hidden"
+						>
+							<Magnify
+								className="size-5 items-center cursor-pointer"
+								fill={enabled ? "white" : "black"}
+							/>
+						</button>
 						<Link to="/r/create-forum">
 							<button
 								type="button"

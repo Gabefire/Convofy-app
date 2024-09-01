@@ -77,6 +77,7 @@ export default function SearchBox({
 								forums.map((forum) => {
 									return (
 										<Link
+											reloadDocument
 											to={`/r/${forum.title}`}
 											key={forum.title}
 											className="flex gap-1 text-sm items-center"

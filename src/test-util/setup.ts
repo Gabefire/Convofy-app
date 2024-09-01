@@ -1,5 +1,6 @@
 import { vi } from "vitest";
 import "@testing-library/jest-dom";
+import "../index.css";
 
 Object.defineProperty(window, "matchMedia", {
 	writable: true,

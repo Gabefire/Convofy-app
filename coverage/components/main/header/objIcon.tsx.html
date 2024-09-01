@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.76% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/17</span>
+                <span class='fraction'>17/17</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">60% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.76% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/17</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -98,25 +98,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { user } from "../../auth/types/user";
 import type { forumDataType } from "../forum/types/forumData";
 &nbsp;
@@ -124,26 +124,26 @@ interface objIconType {
 	obj: forumDataType | user;
 }
 &nbsp;
-export <span class="fstat-no" title="function not covered" >function ObjIcon({ obj }: objIconType) {</span>
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;&gt;</span>
-<span class="cstat-no" title="statement not covered" >			{obj.file ? (</span>
-<span class="cstat-no" title="statement not covered" >				&lt;img</span>
-<span class="cstat-no" title="statement not covered" >					src={obj.file}</span>
-<span class="cstat-no" title="statement not covered" >					alt={`${"title" in obj ? obj.title : obj.displayName} icon`}</span>
-<span class="cstat-no" title="statement not covered" >					className="h-6 w-6 min-h-6 min-w-6 rounded-2xl dark:border border-neutral-400 "</span>
-<span class="cstat-no" title="statement not covered" >				/&gt;</span>
+export function ObjIcon({ obj }: objIconType) {
+	return (
+		&lt;&gt;
+			{obj.file ? (
+				&lt;img
+					src={obj.file}
+					alt={`${"title" in obj ? obj.<span class="branch-0 cbranch-no" title="branch not covered" >title : obj.displayName}</span> icon`}
+					className="h-6 w-6 min-h-6 min-w-6 rounded-2xl dark:border border-neutral-400 "
+				/&gt;
 			) : (
-<span class="cstat-no" title="statement not covered" >				&lt;div</span>
-<span class="cstat-no" title="statement not covered" >					className="h-6 w-6 min-h-6 min-w-6 rounded-2xl text-sm text-center border border-neutral-400  text-white"</span>
-<span class="cstat-no" title="statement not covered" >					style={{ backgroundColor: obj.color }}</span>
+				&lt;div
+					className="h-6 w-6 min-h-6 min-w-6 rounded-2xl text-sm text-center border border-neutral-400  text-white"
+					style={{ backgroundColor: obj.color }}
 				&gt;
-<span class="cstat-no" title="statement not covered" >					{"title" in obj ? obj.title.slice(0, 1) : obj.displayName.slice(0, 1)}</span>
-<span class="cstat-no" title="statement not covered" >				&lt;/div&gt;</span>
+					{"title" in obj ? obj.title.slice(0, 1<span class="branch-0 cbranch-no" title="branch not covered" >) : obj.displayName.slice(0, 1)}</span>
+				&lt;/div&gt;
 			)}
-<span class="cstat-no" title="statement not covered" >		&lt;/&gt;</span>
+		&lt;/&gt;
 	);
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -151,7 +151,7 @@ export <span class="fstat-no" title="function not covered" >function ObjIcon({ o
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-31T20:19:01.057Z
+                at 2024-09-01T02:44:21.735Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
