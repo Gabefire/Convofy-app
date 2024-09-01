@@ -26,6 +26,12 @@ export default defineConfig(() => ({
 		},
 		coverage: {
 			provider: "v8",
+			exclude: [
+				"src/main.tsx",
+				"postcss.config.js",
+				"tailwind.config.ts",
+				"vite.config.ts",
+			],
 		},
 		setupFiles: [resolve(__dirname, "src/test-util/setup.ts")],
 	},

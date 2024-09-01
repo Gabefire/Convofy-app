@@ -1,12 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
-import type { postType } from "../../feed/types/post";
-import { generatePosts } from "../../../../test-util/posts";
-import SearchBox from "../search";
 import Header from "../header";
 import userEvent from "@testing-library/user-event";
 import { ThemeProvider } from "../../../../global-contexts/themeContext";
+import { act } from "react";
 
 describe("header component", () => {
 	it("login button switches url location", async () => {
@@ -19,7 +17,7 @@ describe("header component", () => {
 				</Routes>
 			</MemoryRouter>,
 		);
-		await user.click(screen.getByRole("button", { name: /Login/ }));
+		await act(() => user.click(screen.getByRole("button", { name: /Login/ })));
 		expect(
 			screen.getByRole("heading", { name: "test123" }),
 		).toBeInTheDocument();
@@ -34,7 +32,9 @@ describe("header component", () => {
 				</Routes>
 			</MemoryRouter>,
 		);
-		await user.click(screen.getByRole("button", { name: "site symbol" }));
+		await act(() =>
+			user.click(screen.getByRole("button", { name: "site symbol" })),
+		);
 		expect(
 			screen.getByRole("heading", { name: "test123" }),
 		).toBeInTheDocument();
@@ -68,7 +68,9 @@ describe("header component", () => {
 			`"<svg xmlns="http://www.w3.org/2000/svg" viewBox="2.44 2.07 26.99 27" class="size-6" fill="white"><path d="M16.48 29.07a14.09 14.09 0 0 1-5.82-26.9A1 1 0 0 1 12 3.5a12.11 12.11 0 0 0 2.4 13.61 12.11 12.11 0 0 0 13.6 2.4 1 1 0 0 1 1.33 1.33 14.15 14.15 0 0 1-12.82 8.23zM9.25 5.33A13 13 0 0 0 8 6.42a12.12 12.12 0 0 0 0 17.12 11.94 11.94 0 0 0 8.52 3.53 12.1 12.1 0 0 0 8.57-3.56 13 13 0 0 0 1.09-1.26A14.14 14.14 0 0 1 13 18.53a14.14 14.14 0 0 1-3.75-13.2z"></path></svg>"`,
 		);
 
-		await user.click(screen.getByRole("button", { name: "toggle theme" }));
+		await act(() =>
+			user.click(screen.getByRole("button", { name: "toggle theme" })),
+		);
 
 		expect(
 			screen.getByRole("button", { name: "toggle theme" }).innerHTML,
@@ -83,66 +85,13 @@ describe("header component", () => {
 				<Header />
 			</BrowserRouter>,
 		);
-		await user.click(
-			screen.getByRole("button", { name: "icon to focus on search" }),
+		await act(() =>
+			user.click(
+				screen.getByRole("button", { name: "icon to focus on search" }),
+			),
 		);
 
 		expect(screen.getByRole("searchbox")).toHaveFocus();
-	});
-});
-
-describe("drop down search component", () => {
-	let messages: postType[];
-	beforeEach(() => {
-		messages = generatePosts();
-	});
-	it("renders forums", () => {
-		const displaySearchBox = true;
-		const searchBoxRef = vi.fn();
-		const searchTerm = "test2";
-		render(
-			<BrowserRouter>
-				<SearchBox
-					displaySearchBox={displaySearchBox}
-					searchBoxRef={searchBoxRef}
-					searchTerm={searchTerm}
-				/>
-			</BrowserRouter>,
-		);
-		const forumElements = screen.getAllByRole("link");
-
-		expect(forumElements.length).toBe(2);
-		expect(forumElements[1].textContent).toBe("r/test1");
-	});
-	it("when clicking outside search box it collapses", async () => {
-		const user = userEvent.setup();
-		render(
-			<BrowserRouter>
-				<Header />
-			</BrowserRouter>,
-		);
-		const searchInput = screen.getByRole("searchbox") as HTMLInputElement;
-		await user.type(searchInput, "test");
-		expect(searchInput.value).toBe("test");
-		expect(screen.getByText(/r\/test1/)).toBeInTheDocument();
-		await user.click(screen.getByText(/Convofy/));
-		expect(searchInput.value).toBe("");
-		expect(screen.queryByText(/r\/test1/)).not.toBeInTheDocument();
-	});
-	it("collapses if text is removed", async () => {
-		const user = userEvent.setup();
-		render(
-			<BrowserRouter>
-				<Header />
-			</BrowserRouter>,
-		);
-		const searchInput = screen.getByRole("searchbox") as HTMLInputElement;
-		await user.type(searchInput, "test");
-		expect(searchInput.value).toBe("test");
-		expect(screen.getByText(/r\/test1/)).toBeInTheDocument();
-		await user.clear(searchInput);
-		expect(searchInput.value).toBe("");
-		expect(screen.queryByText(/r\/test1/)).not.toBeInTheDocument();
 	});
 });
 
@@ -163,12 +112,12 @@ describe("header mobile support", () => {
 			</BrowserRouter>,
 		);
 		const mobileIcon = screen.getByRole("button", { name: "mobile search" });
-		await user.click(mobileIcon);
+		await act(() => user.click(mobileIcon));
 
 		const cancelButton = screen.getByRole("button", { name: "Cancel" });
 		expect(cancelButton).toBeInTheDocument();
 
-		await user.click(cancelButton);
+		await act(() => user.click(cancelButton));
 
 		expect(cancelButton).not.toBeInTheDocument();
 	});

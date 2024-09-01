@@ -14,6 +14,7 @@ import {
 } from "../context/postReducerContext";
 import { EditPost } from "../editPost";
 import type { POSTS_ACTION_TYPE } from "../reducers/postsReducerTypes";
+import { act } from "react";
 
 describe("Post component", () => {
 	let messages: postType[];
@@ -73,7 +74,7 @@ describe("post bottom icons component", () => {
 
 		const editPost = screen.getByRole("button", { name: /edit post/ });
 
-		await user.click(editPost);
+		await act(() => user.click(editPost));
 
 		expect(mock).toBeCalled();
 	});
@@ -91,7 +92,7 @@ describe("post bottom icons component", () => {
 
 		expect(count).toBe("0");
 
-		await user.click(upVote);
+		await act(() => user.click(upVote));
 
 		count = screen.getByText("1").innerHTML;
 		expect(count).toBe("1");
@@ -110,7 +111,7 @@ describe("post bottom icons component", () => {
 
 		expect(count).toBe("0");
 
-		await user.click(downVote);
+		await act(() => user.click(downVote));
 
 		count = screen.getByText("-1").innerHTML;
 		expect(count).toBe("-1");
@@ -130,7 +131,7 @@ describe("post bottom icons component", () => {
 
 		expect(deleteButton).toBeInTheDocument();
 
-		await user.click(deleteButton);
+		await act(() => user.click(deleteButton));
 
 		expect(deleteButton).not.toBeInTheDocument();
 	});
@@ -168,7 +169,7 @@ describe("edit posts component", () => {
 
 		const editPost = screen.getByRole("button", { name: /edit post/ });
 
-		await user.click(editPost);
+		await act(() => user.click(editPost));
 
 		const header = screen.getByRole("heading", { name: /Edit Post/ });
 		expect(header).toBeInTheDocument();
@@ -184,18 +185,18 @@ describe("edit posts component", () => {
 
 		const editPost = screen.getByRole("button", { name: /edit post/ });
 
-		await user.click(editPost);
+		await act(() => user.click(editPost));
 
 		const newTitle = screen.getByRole("textbox", { name: /Title/ });
 		const newContent = screen.getByRole("textbox", { name: /Content/ });
 		const submit = screen.getByRole("button", { name: /Submit/ });
 
-		await user.clear(newTitle);
-		await user.clear(newContent);
+		await act(() => user.clear(newTitle));
+		await act(() => user.clear(newContent));
 
-		await user.type(newTitle, "new text");
-		await user.type(newContent, "new content");
-		await user.click(submit);
+		await act(() => user.type(newTitle, "new text"));
+		await act(() => user.type(newContent, "new content"));
+		await act(() => user.click(submit));
 
 		expect(screen.getByText("new text")).toBeInTheDocument();
 		expect(screen.getByText("new content")).toBeInTheDocument();
@@ -216,13 +217,13 @@ describe("edit posts component", () => {
 		const newContent = screen.getByRole("textbox", { name: /Content/ });
 		const submit = screen.getByRole("button", { name: /Submit/ });
 
-		await user.clear(newTitle);
-		await user.clear(newContent);
+		await act(() => user.clear(newTitle));
+		await act(() => user.clear(newContent));
 
-		await user.type(newTitle, "test");
-		await user.type(newContent, "test");
+		await act(() => user.type(newTitle, "test"));
+		await act(() => user.type(newContent, "test"));
 
-		await user.click(submit);
+		await act(() => user.click(submit));
 
 		expect(mock).not.toBeCalled();
 	});
@@ -237,18 +238,18 @@ describe("edit posts component", () => {
 
 		const editPost = screen.getByRole("button", { name: /edit post/ });
 
-		await user.click(editPost);
+		await act(() => user.click(editPost));
 
 		const newTitle = screen.getByRole("textbox", { name: /Title/ });
 		const newContent = screen.getByRole("textbox", { name: /Content/ });
 		const cancel = screen.getByRole("button", { name: /x/ });
 
-		await user.clear(newTitle);
-		await user.clear(newContent);
+		await act(() => user.clear(newTitle));
+		await act(() => user.clear(newContent));
 
-		await user.type(newTitle, "new text");
-		await user.type(newContent, "new content");
-		await user.click(cancel);
+		await act(() => user.type(newTitle, "new text"));
+		await act(() => user.type(newContent, "new content"));
+		await act(() => user.click(cancel));
 
 		expect(screen.queryByText("new text")).toBe(null);
 		expect(screen.queryByText("new content")).toBe(null);
@@ -276,13 +277,13 @@ describe("post reducer context", () => {
 		const deleteButton = screen.getAllByRole("button", {
 			name: /delete post/,
 		})[0];
-		await user.click(deleteButton);
+		await act(() => user.click(deleteButton));
 
 		const upVote = screen.getAllByRole("button", { name: /up vote/ })[0];
-		await user.click(upVote);
+		await act(() => user.click(upVote));
 
 		const downVote = screen.getAllByRole("button", { name: /up vote/ })[0];
-		await user.click(downVote);
+		await act(() => user.click(downVote));
 
 		expect(mock).toBeCalledTimes(3);
 	});

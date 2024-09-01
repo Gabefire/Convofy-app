@@ -4,6 +4,7 @@ import "@testing-library/jest-dom";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Forum from "../forum";
 import userEvent from "@testing-library/user-event";
+import { act } from "react";
 
 describe("Forum component", () => {
 	it("renders correctly", async () => {
@@ -40,7 +41,7 @@ describe("Forum component", () => {
 		);
 		const joinedButton = screen.getByRole("button", { name: /Joined/ });
 
-		await user.click(joinedButton);
+		await act(() => user.click(joinedButton));
 
 		const joinButton = screen.getByRole("button", { name: /Join/ });
 
@@ -72,7 +73,7 @@ describe("Forum component", () => {
 		const deleteButton = screen.getAllByRole("button", {
 			name: /delete forum/,
 		})[0];
-		await user.click(deleteButton);
+		await act(() => user.click(deleteButton));
 
 		expect(
 			screen.getByRole("heading", { name: "test123" }),
@@ -92,7 +93,7 @@ describe("Forum component", () => {
 		const deleteButton = screen.getAllByRole("button", {
 			name: /edit forum/,
 		})[0];
-		await user.click(deleteButton);
+		await act(() => user.click(deleteButton));
 
 		expect(
 			screen.getByRole("heading", { name: "test123" }),

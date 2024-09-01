@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 import { ThemeContext, ThemeProvider } from "../themeContext";
 import Header from "../../components/main/header/header";
 import userEvent from "@testing-library/user-event";
+import { act } from "react";
 
 describe("Theme provider component", () => {
 	it("renders themeProvider", () => {
@@ -29,12 +30,12 @@ describe("Theme provider component", () => {
 
 		const themeButton = screen.getByRole("button", { name: "toggle theme" });
 
-		await user.click(themeButton);
+		await act(() => user.click(themeButton));
 
 		expect(localStorage.theme).toBe("light");
 		expect(document.documentElement.classList.contains("dark")).not.toBe(true);
 
-		await user.click(themeButton);
+		await act(() => user.click(themeButton));
 
 		expect(localStorage.theme).toBe("dark");
 		expect(document.documentElement.classList.contains("dark")).toBe(true);
@@ -108,7 +109,7 @@ describe("theme context", () => {
 
 		const themeButton = screen.getByRole("button", { name: "toggle theme" });
 
-		await user.click(themeButton);
+		await act(() => user.click(themeButton));
 		expect(mock).toBeCalledTimes(1);
 	});
 });

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import type { forumDataType } from "../forum/types/forumData";
 import { TailSpin } from "react-loader-spinner";
-import { ObjIcon } from "./objIcon";
+import { ObjIcon } from "../shared/objIcon";
 import { ThemeContext } from "../../../global-contexts/themeContext";
 import type { user } from "../../auth/types/user";
 import { Link } from "react-router-dom";
@@ -23,7 +23,6 @@ export default function SearchBox({
 
 	useEffect(() => {
 		// api call for search results fuzzy search
-		console.log(searchTerm);
 		const getForums = () => {
 			const userOne: user = {
 				displayName: "Gabe",
@@ -50,7 +49,12 @@ export default function SearchBox({
 				owner: userTwo,
 				file: "test",
 			};
-			const forums: forumDataType[] = [forumOne, forumTwo];
+			let forums: forumDataType[];
+			if (searchTerm === "") {
+				forums = [];
+			} else {
+				forums = [forumOne, forumTwo];
+			}
 			setForums(forums);
 			setLoadingSearchResults(false);
 		};
@@ -67,7 +71,7 @@ export default function SearchBox({
 								height="20"
 								width="20"
 								color={enabled ? "white" : "black"}
-								ariaLabel="tail-spin-loading"
+								ariaLabel="tail spin loading"
 								wrapperClass="load-search"
 							/>
 						</div>
