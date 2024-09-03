@@ -1,5 +1,4 @@
 import { type ReactElement, createContext, useEffect, useState } from "react";
-import { boolean } from "zod";
 
 interface themeContextType {
 	enabled: boolean;

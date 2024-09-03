@@ -1,21 +1,26 @@
-/// <reference types="vite-plugin-svgr/client" />
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ReactComponent as DefaultForum } from "../../../assets/default-forum.svg";
-import { useEffect } from "react";
+import { createIcon } from "../../../utli/createIcon";
 
 const forumFormSchema = z.object({
 	title: z.string().min(1, "Title is required").max(20),
 	description: z.string().max(600).optional(),
-	color: z.string().length(7, "Not a valid color"),
-	file:
-		typeof window === "undefined"
-			? z.undefined()
-			: z.instanceof(FileList)
-				? z.instanceof(FileList)
-				: z.instanceof(Blob), // Zod does not handle Files very well and I need two types of Blob objects to be allowed
+	color: z.string().min(1, "Not a valid color").optional().default("#DC2626"),
+	file: z
+		.any()
+		.nullish()
+		.transform((file) => {
+			if (
+				Object.prototype.toString.call(file) === "[object Blob]" ||
+				file instanceof
+					Blob /*https://stackoverflow.com/questions/25677681/javascript-file-is-instance-of-file-but-instanceof-file-is-false*/
+			) {
+				return file as Blob;
+			}
+			return null;
+		}), // TODO: replace this once zod 4.0 comes out and has better FileList handling
 });
 
 export type forumFormSchemaType = z.infer<typeof forumFormSchema>;
@@ -31,19 +36,12 @@ export default function ForumForm({
 	submitAction,
 	defaultForum,
 }: ForumFormType) {
-	const { register, handleSubmit, watch, reset } = useForm<forumFormSchemaType>(
-		{
-			resolver: zodResolver(forumFormSchema),
-			defaultValues: {
-				color: "#ff3300",
-			},
-		},
-	);
-
-	useEffect(() => {
-		reset(defaultForum);
-	}, [defaultForum, reset]);
-
+	const { register, handleSubmit, watch } = useForm<forumFormSchemaType>({
+		resolver: zodResolver(forumFormSchema),
+		defaultValues: defaultForum
+			? forumFormSchema.parse(defaultForum)
+			: { color: "#DC2626" },
+	});
 	const navigate = useNavigate();
 
 	const submitForm: SubmitHandler<forumFormSchemaType> = async (data) => {
@@ -53,55 +51,6 @@ export default function ForumForm({
 		} catch (error) {
 			console.error(error);
 		}
-	};
-
-	const textColorBasedOnBackground = (backgroundColor: string) => {
-		const color = backgroundColor.substring(1);
-		const r = Number.parseInt(color.substring(0, 2), 16); // 0 ~ 255
-		const g = Number.parseInt(color.substring(2, 4), 16);
-		const b = Number.parseInt(color.substring(4, 6), 16);
-
-		const srgb = [r / 255, g / 255, b / 255];
-		const x = srgb.map((i) => {
-			if (i <= 0.04045) {
-				return i / 12.92;
-			}
-			return ((i + 0.055) / 1.055) ** 2.4;
-		});
-
-		const L = 0.2126 * x[0] + 0.7152 * x[1] + 0.0722 * x[2];
-		return L > 0.179 ? "#000" : "#fff";
-	};
-
-	const imgSrc = () => {
-		const file = watch("file");
-		if (file instanceof FileList && file.length > 0) {
-			return (
-				<img
-					alt="forum-icon"
-					src={URL.createObjectURL(file[0])}
-					className="absolute left-1/2 -translate-x-1/2 bottom-1/2 translate-y-1/2"
-				/>
-			);
-		}
-		if (file instanceof Blob) {
-			return (
-				<img
-					alt="forum-icon"
-					src={URL.createObjectURL(file)}
-					className="absolute left-1/2 -translate-x-1/2 bottom-1/2 translate-y-1/2"
-				/>
-			);
-		}
-		return (
-			<DefaultForum
-				style={{
-					background: watch("color"),
-				}}
-				fill={textColorBasedOnBackground(watch("color"))}
-				className="size-52 p-10 absolute left-1/2 -translate-x-1/2 bottom-1/2 translate-y-1/2"
-			/>
-		);
 	};
 
 	return (
@@ -129,7 +78,7 @@ export default function ForumForm({
 			</section>
 			<section className="flex flex-col justify-between min-w-full text-sm gap-3 dark:border-white border-gray-400 border rounded-lg p-2">
 				<div className="rounded-full overflow-hidden size-52 relative flex flex-col size-30 self-center">
-					{imgSrc()}
+					{createIcon(watch("file"), watch("color"))}
 					<label
 						htmlFor="icon-add"
 						className="absolute left-1/2 bg-black -translate-x-1/2 bottom-3 translate-y-1/2 w-52 text-center h-10 text-white pt-1 text-xs cursor-pointer"

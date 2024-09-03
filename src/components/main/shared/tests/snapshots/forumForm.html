@@ -1,0 +1,150 @@
+<body>
+  <div>
+    <form
+      class="flex flex-col flex-1 dark:bg-neutral-700 bg-white dark:border-none border-neutral-400 border p-4 mt-3 max-w-2xl w-screen md:w-11/12 rounded-xl dark:text-white self-center gap-4"
+    >
+      <section
+        class="flex justify-between items-center w-full"
+      >
+        <input
+          class="cursor-pointer size-8 text-2xl font-light w-20"
+          type="button"
+          value="x"
+        />
+        <h5 />
+        <input
+          class="cursor-pointer h-8 text-base w-20
+                    p-1 rounded-xl bg-green-900 text-center text-white"
+          type="submit"
+          value="Submit"
+        />
+      </section>
+      <section
+        class="flex flex-col justify-between min-w-full text-sm gap-3 dark:border-white border-gray-400 border rounded-lg p-2"
+      >
+        <div
+          class="rounded-full overflow-hidden size-52 relative flex flex-col size-30 self-center"
+        >
+          <svg
+            class="size-52 p-10 absolute left-1/2 -translate-x-1/2 bottom-1/2 translate-y-1/2"
+            fill="#fff"
+            style="background: rgb(220, 38, 38);"
+            viewBox="109.7 146.3 804.6 757.3"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M109.7 146.3V768h256v-73.1H182.9V219.4h658.3v475.5H533.4l-157 157 51.8 51.7L563.7 768h350.6V146.3z"
+            />
+            <path
+              d="M256 329.1h512v73.1H256zM256 512h292.6v73.1H256z"
+            />
+          </svg>
+          <label
+            class="absolute left-1/2 bg-black -translate-x-1/2 bottom-3 translate-y-1/2 w-52 text-center h-10 text-white pt-1 text-xs cursor-pointer"
+            for="icon-add"
+          >
+            Edit Image
+            <input
+              accept="image/*"
+              class="hidden"
+              id="icon-add"
+              name="file"
+              type="file"
+            />
+          </label>
+        </div>
+        <label
+          class="flex flex-col w-full"
+          for="forum-banner-color"
+        >
+          <div
+            class="h-20"
+            style="background-color: rgb(220, 38, 38);"
+          />
+          <input
+            class="cursor-pointer hidden"
+            id="forum-banner-color"
+            name="color"
+            type="color"
+          />
+          <div
+            class="dark:bg-black p-2 border-gray-400 border dark:border-none "
+          >
+            <span>
+              Forum Theme Color
+            </span>
+            <br />
+            <span>
+              #DC2626
+            </span>
+          </div>
+        </label>
+      </section>
+      <div
+        class="flex flex-col"
+      >
+        <label
+          class="flex flex-col justify-self-center items-start dark:border-white border-gray-400 border rounded-lg p-1"
+          for="forum-name"
+        >
+          <div
+            class="text-xs dark:text-gray-300 text-neutral-500"
+          >
+            Name
+            <span
+              class="text-red-600"
+            >
+              *
+            </span>
+          </div>
+          <input
+            class="bg-inherit focus:outline-none focus:ring-0 min-w-full text-base"
+            id="forum-name"
+            maxlength="20"
+            name="title"
+            required=""
+            type="text"
+          />
+        </label>
+        <div
+          class="self-end sm:text-base text-xs"
+        >
+          0/20
+        </div>
+      </div>
+      <div
+        class="flex flex-col"
+      >
+        <label
+          class="flex flex-col justify-self-center items-start dark:border-white border-gray-400 border rounded-lg p-1"
+          for="forum-desc"
+          id="forum-desc-contain"
+        >
+          <div
+            class="text-xs dark:text-gray-300 text-neutral-500"
+          >
+            Description
+            <span
+              class="text-red-600"
+            >
+              *
+            </span>
+          </div>
+          <textarea
+            class="text-base bg-inherit focus:outline-none focus:ring-0 w-full resize-y"
+            id="forum-desc"
+            maxlength="600"
+            name="description"
+            required=""
+            rows="9"
+          />
+        </label>
+        <div
+          class="self-end mt-0 sm:text-base text-xs"
+        >
+          0/600
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
