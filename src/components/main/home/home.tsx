@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Feed from "../feed/feed";
-import type { postType } from "../feed/types/post";
+import type { postType } from "../post/types/post";
 import type { forumDataType } from "../forum/types/forumData";
 
 export default function Home() {

@@ -1,7 +1,7 @@
-import { POST_ACTION, postsReducer } from "../reducers/postsReducer";
 import { beforeEach, describe, expect, it } from "vitest";
-import type { postType } from "../types/post";
+import type { postType } from "../../post/types/post";
 import { generatePosts } from "../../../../test-util/posts";
+import { POST_ACTION, postsReducer } from "../../post/reducers/postsReducer";
 
 describe("Reducer for post management", () => {
 	let messages: postType[];

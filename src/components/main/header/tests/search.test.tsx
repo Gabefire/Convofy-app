@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
-import type { postType } from "../../feed/types/post";
+import type { postType } from "../../post/types/post";
 import { generatePosts } from "../../../../test-util/posts";
 import SearchBox from "../search";
 import Header from "../header";

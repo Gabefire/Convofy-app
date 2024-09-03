@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Feed from "../feed/feed";
-import type { postType } from "../feed/types/post";
+import type { postType } from "../post/types/post";
 import type { forumDataType } from "./types/forumData";
 import { useParams } from "react-router-dom";
 import ForumHeader from "./forumHeader";

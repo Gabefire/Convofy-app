@@ -1,5 +1,5 @@
 import type { forumDataType } from "../components/main/forum/types/forumData";
-import type { postType } from "../components/main/feed/types/post";
+import type { postType } from "../components/main/post/types/post";
 
 export const generatePosts = () => {
 	const owner1 = {

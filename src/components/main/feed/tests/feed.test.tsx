@@ -1,20 +1,20 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import type { postType } from "../types/post";
+import type { postType } from "../../post/types/post";
 import { generatePosts } from "../../../../test-util/posts";
-import Post from "../post";
+import Post from "../../post/post";
 import { render, renderHook, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
-import PostBottomIcons from "../postBottomIcons";
+import PostBottomIcons from "../../post/postBottomIcons";
 import userEvent from "@testing-library/user-event";
 import Feed from "../feed";
 import {
 	PostsDispatchContext,
 	usePostsDispatch,
 } from "../context/postReducerContext";
-import { EditPost } from "../editPost";
-import type { POSTS_ACTION_TYPE } from "../reducers/postsReducerTypes";
+import { EditPost } from "../../post/editPost";
 import { act } from "react";
+import type { POSTS_ACTION_TYPE } from "../../post/reducers/postsReducerTypes";
 
 describe("Post component", () => {
 	let messages: postType[];

@@ -9,6 +9,7 @@ import MainRoot from "./components/main/mainRoot.tsx";
 import "./index.css";
 import { ThemeProvider } from "./global-contexts/themeContext.tsx";
 import EditForum from "./components/main/forum/editForum.tsx";
+import PostHandler from "./components/main/post/postHandler.tsx";
 
 const router = createBrowserRouter([
 	/*
@@ -28,8 +29,9 @@ const router = createBrowserRouter([
 			{ index: true, element: <Home /> },
 			{ path: "create-forum", element: <CreateForum /> },
 			{ path: ":id", element: <Forum /> },
-			{ path: ":id/create-post", element: <CreatePost /> },
-			{ path: ":id/edit-forum", element: <EditForum /> },
+			{ path: "create-post", element: <CreatePost /> },
+			{ path: "edit-forum", element: <EditForum /> },
+			{ path: ":id/:postId", element: <PostHandler /> },
 		],
 	},
 ]);

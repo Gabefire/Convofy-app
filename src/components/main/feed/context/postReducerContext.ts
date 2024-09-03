@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import type React from "react";
-import type { POSTS_ACTION_TYPE } from "../reducers/postsReducerTypes";
+import type { POSTS_ACTION_TYPE } from "../../post/reducers/postsReducerTypes";
 
 export const PostsDispatchContext = createContext((() => {
 	return;

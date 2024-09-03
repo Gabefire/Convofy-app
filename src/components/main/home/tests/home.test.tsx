@@ -4,7 +4,7 @@ import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import Home from "../home";
-import type { postType } from "../../feed/types/post";
+import type { postType } from "../../post/types/post";
 
 describe("Post component", () => {
 	let messages: postType[];
