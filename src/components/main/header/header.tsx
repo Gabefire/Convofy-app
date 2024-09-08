@@ -44,7 +44,7 @@ export default function Header() {
 						<button
 							type="button"
 							className="cursor-pointer"
-							onClick={() => navigate("/r")}
+							onClick={() => navigate("/")}
 						>
 							<img
 								src={mainIcon}

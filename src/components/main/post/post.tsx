@@ -56,7 +56,7 @@ export default function Post({ showForumInfo, post }: postPropsType) {
 					<div className="flex dark:text-neutral-300 text-base items-center text-center text-neutral-500">
 						{showForumInfo ? (
 							<div className="flex gap-6">
-								<Link to={`${post.forumData.title}`}>
+								<Link to={`/r/${post.forumData.title}`}>
 									<div className="flex gap-1">
 										{generateIcon(post.forumData)}
 										<div className="self-center text-sm text-center">{`r/${post.forumData.title}`}</div>
