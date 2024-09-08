@@ -1,7 +1,7 @@
 import type { postType } from "./types/post";
 import { usePostsDispatch } from "../feed/context/postReducerContext";
 import { POST_ACTION } from "./reducers/postsReducer";
-import PostForm, { type postFormSchemaType } from "../shared/postForum";
+import PostForm, { type postFormSchemaType } from "../shared/postForm";
 
 interface editPostType {
 	post: postType;

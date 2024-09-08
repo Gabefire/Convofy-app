@@ -7,7 +7,7 @@ import { POST_ACTION } from "./reducers/postsReducer";
 import { usePostsDispatch } from "../feed/context/postReducerContext";
 import type { postType } from "./types/post";
 import { truncateNumber } from "../../../utli/truncate";
-import { EditDelete } from "../shared/editDelete";
+import { EditDelete, EditDeleteEnum } from "../shared/editDelete";
 import { ThemeContext } from "../../../global-contexts/themeContext";
 import { useContext } from "react";
 
@@ -112,7 +112,7 @@ export default function PostBottomIcons({
 				deleteObj={deletePost}
 				editObj={toggleEditPost}
 				ownerUid={post.owner.id}
-				type="post"
+				type={EditDeleteEnum.Post}
 			/>
 		</div>
 	);

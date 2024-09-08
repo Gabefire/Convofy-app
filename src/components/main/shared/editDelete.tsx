@@ -4,11 +4,17 @@ import { ReactComponent as Delete } from "../../../assets/delete.svg";
 import { ReactComponent as Edit } from "../../../assets/file-edit.svg";
 import { ThemeContext } from "../../../global-contexts/themeContext";
 
+export enum EditDeleteEnum {
+	Forum = "forum",
+	Post = "post",
+	Comment = "comment",
+}
+
 interface EditDeleteType {
 	deleteObj: (e: React.PointerEvent<HTMLButtonElement>) => void;
 	editObj: (e: React.PointerEvent<HTMLButtonElement>) => void;
 	ownerUid: string;
-	type: "forum" | "post";
+	type: EditDeleteEnum;
 }
 
 export function EditDelete({

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import type { forumDataType } from "./types/forumData";
 import { useState } from "react";
-import { EditDelete } from "../shared/editDelete";
+import { EditDelete, EditDeleteEnum } from "../shared/editDelete";
 
 interface forumHeaderType {
 	forumData: forumDataType;
@@ -93,7 +93,7 @@ export default function ForumHeader({ forumData }: forumHeaderType) {
 						deleteObj={deleteForum}
 						editObj={editForum}
 						ownerUid={headerForumData.owner.id}
-						type="forum"
+						type={EditDeleteEnum.Forum}
 					/>
 				</div>
 			</div>

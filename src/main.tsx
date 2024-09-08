@@ -28,10 +28,15 @@ const router = createBrowserRouter([
 		children: [
 			{ index: true, element: <Home /> },
 			{ path: "create-forum", element: <CreateForum /> },
-			{ path: ":id", element: <Forum /> },
-			{ path: "create-post", element: <CreatePost /> },
-			{ path: "edit-forum", element: <EditForum /> },
-			{ path: ":id/:postId", element: <PostHandler /> },
+			{
+				path: ":id",
+				children: [
+					{ index: true, element: <Forum /> },
+					{ path: "create-post", element: <CreatePost /> },
+					{ path: "edit-forum", element: <EditForum /> },
+					{ path: ":postId", element: <PostHandler /> },
+				],
+			},
 		],
 	},
 ]);

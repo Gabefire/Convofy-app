@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import PostForm, { type postFormSchemaType } from "../shared/postForum";
+import PostForm, { type postFormSchemaType } from "../shared/postForm";
 
 export default function CreatePost() {
 	const navigate = useNavigate();
