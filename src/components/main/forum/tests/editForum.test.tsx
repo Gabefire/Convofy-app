@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import EditForum from "../editForum";

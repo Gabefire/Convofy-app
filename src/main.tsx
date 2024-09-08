@@ -10,18 +10,11 @@ import "./index.css";
 import { ThemeProvider } from "./global-contexts/themeContext.tsx";
 import EditForum from "./components/main/forum/editForum.tsx";
 import PostHandler from "./components/main/post/postHandler.tsx";
+import Login from "./components/auth/login.tsx";
+import AuthRoot from "./components/auth/authRoot.tsx";
+import SignUp from "./components/auth/signUp.tsx";
 
 const router = createBrowserRouter([
-	/*
-	{
-		path: "/",
-		element: <AuthRoot />,
-		children: [
-			{ path: "login", element: <Login /> },
-			{ path: "sign-up", element: <SignUp /> },
-		],
-	},
-  */
 	{
 		path: "/",
 		element: <MainRoot />,
@@ -43,6 +36,14 @@ const router = createBrowserRouter([
 					},
 				],
 			},
+		],
+	},
+	{
+		path: "/auth",
+		element: <AuthRoot />,
+		children: [
+			{ path: "login", element: <Login /> },
+			{ path: "sign-up", element: <SignUp /> },
 		],
 	},
 ]);

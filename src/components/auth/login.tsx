@@ -1,79 +1,117 @@
-import React, { useContext, useState } from "react";
-
+import { type SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import useProvideAuth from "./hooks/useProvideAuth";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthUtilContext } from "./authRoot";
 
-import "./login.css";
+const loginFormSchema = z.object({
+	email: z.string().min(1, "Email is required").max(100),
+	password: z.string().min(1, "Password is required"),
+});
 
-export default function Login() {
+type loginFormSchemaType = z.infer<typeof loginFormSchema>;
+
+function Login() {
+	const {
+		register,
+		handleSubmit,
+		setError,
+		formState: { errors, isSubmitting },
+	} = useForm<loginFormSchemaType>({ resolver: zodResolver(loginFormSchema) });
+
+	const { login } = useProvideAuth();
 	const navigate = useNavigate();
+	const { setLoadingLogin } = useContext(AuthUtilContext);
 
-	const login = async (e: React.PointerEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-		const userEmail = document.getElementById("username") as HTMLInputElement;
-		const userPassword = document.getElementById(
-			"password",
-		) as HTMLInputElement;
+	const onSubmit: SubmitHandler<loginFormSchemaType> = async (user) => {
 		try {
-			const userCredentials = await signInWithEmailAndPassword(
-				userEmail.value,
-				userPassword.value,
-			);
-			console.log(userCredentials);
-			navigate("/");
-		} catch (error: any) {
-			console.log(error);
-		}
-	};
-
-	const signUp = async (e: React.PointerEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-		const userEmail = document.getElementById(
-			"username-sign-up",
-		) as HTMLInputElement;
-		const userPassword = document.getElementById(
-			"password-sign-up",
-		) as HTMLInputElement;
-		const displayName = document.getElementById(
-			"name-sign-up",
-		) as HTMLInputElement;
-		try {
-			const userCredentials = await createUserWithEmailAndPassword(
-				auth,
-				userEmail.value,
-				userPassword.value,
-			);
-			if (auth.currentUser !== null) {
-				await updateProfile(auth.currentUser, {
-					displayName: displayName.value,
-				});
+			if (setLoadingLogin) {
+				setLoadingLogin(true);
 			}
-			console.log(userCredentials);
-			navigate("/");
-		} catch (error: any) {
-			console.log(error);
+			const results = await login(user);
+			if (results instanceof Array) {
+				results.forEach((obj) => {
+					const key = Object.keys(obj)[0];
+					const value = Object.values(obj)[0];
+					if (key === "email") {
+						setError("email", { type: "manual", message: `${value}` });
+					} else if (key === "password") {
+						setError("password", { type: "manual", message: `${value}` });
+					} else if (key === "root") {
+						setError("root.serverError", { type: "404", message: `${value}` });
+					}
+				});
+			} else {
+				navigate("/main");
+			}
+		} catch (error) {
+			console.error(error);
+		} finally {
+			if (setLoadingLogin) {
+				setLoadingLogin(false);
+			}
 		}
 	};
-
 	return (
-		<form action="na" id="login-form">
-			<label htmlFor="username">
-				Username:
-				<input type="email" id="username" />
+		<form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+			<h1>Login</h1>
+			<label htmlFor="email" className="form-group">
+				Email:
+				<input
+					aria-label="email"
+					type="text"
+					id="email"
+					placeholder="Enter email"
+					className="form-input"
+					{...register("email")}
+				/>
+				<span className="required-span"></span>
+				{errors.email && (
+					<span className="field-error" aria-live="polite">
+						{errors.email?.message}
+					</span>
+				)}
 			</label>
-			<label htmlFor="password">
+			<label htmlFor="password" className="form-group">
 				Password:
-				<input type="password" id="password" />
+				<input
+					type="password"
+					id="password"
+					placeholder="Enter Password"
+					className="form-input"
+					autoComplete="current-password"
+					{...register("password")}
+				/>
+				<span className="required-span"></span>
+				{errors.password && (
+					<span className="field-error" aria-live="polite">
+						{errors.password?.message}
+					</span>
+				)}
 			</label>
-			<div id="error"></div>
-			<button id="login-btn" onClick={login}>
+			{errors.root && (
+				<div className="errors">{errors.root?.serverError.message}</div>
+			)}
+			<button
+				type="submit"
+				disabled={isSubmitting}
+				className="form-button login"
+			>
 				Login
 			</button>
-			<button id="sign-up-btn" onClick={changeLoginToSignUp}>
-				Sign Up
-			</button>
-			<button id="try-me-btn" onClick={google}>
-				Google Login
+			<button
+				className="form-button sign-up"
+				onClick={(e) => {
+					e.preventDefault();
+					navigate("/");
+				}}
+			>
+				Back
 			</button>
 		</form>
 	);
 }
+
+export default Login;

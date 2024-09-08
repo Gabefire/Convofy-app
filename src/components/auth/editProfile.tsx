@@ -9,12 +9,14 @@ import { AuthUtilContext } from "./authRoot";
 
 const signUpFormSchema = z
 	.object({
-		userName: z.string().min(1, "Username is required").max(100),
-		email: z.string().email("Invalid email").or(z.literal("")),
-		password: z.string().min(1, "Password is required"),
-		passwordConfirmation: z
+		userName: z
 			.string()
-			.min(1, "Password confirmation is required"),
+			.min(1, "Username is required")
+			.max(100)
+			.or(z.literal("")),
+		email: z.string().email("Invalid email").or(z.literal("")),
+		password: z.string().min(1, "Password is required").or(z.literal("")),
+		passwordConfirmation: z.string().or(z.literal("")),
 	})
 	.refine((data) => data.password === data.passwordConfirmation, {
 		path: ["passwordConfirmation"],
@@ -23,7 +25,7 @@ const signUpFormSchema = z
 
 export type signUpFormSchemaType = z.infer<typeof signUpFormSchema>;
 
-const SignUp = () => {
+const EditProfile = () => {
 	const {
 		register,
 		handleSubmit,
@@ -34,7 +36,7 @@ const SignUp = () => {
 	});
 
 	const navigate = useNavigate();
-	const { signUp } = useProvideAuth();
+	const { editProfile } = useProvideAuth();
 	const { setLoadingLogin } = useContext(AuthUtilContext);
 
 	const validateResults = (results: signUpErrorType[] | loginErrorType[]) => {
@@ -62,29 +64,24 @@ const SignUp = () => {
 
 	const onSubmit: SubmitHandler<signUpFormSchemaType> = async (user) => {
 		try {
-			if (setLoadingLogin) {
-				setLoadingLogin(true);
-			}
-			const signUpResults = await signUp(user);
+			if (setLoadingLogin) setLoadingLogin(true);
+			const signUpResults = await editProfile(user);
 			if (signUpResults instanceof Array && signUpResults.length > 0) {
 				validateResults(signUpResults);
-			} else {
-				navigate("/main");
 			}
+			navigate(-1);
 		} catch (error) {
 			console.error(error);
 		} finally {
-			if (setLoadingLogin) {
-				setLoadingLogin(false);
-			}
+			if (setLoadingLogin) setLoadingLogin(false);
 		}
 	};
 
 	return (
 		<form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
-			<h1>Sign Up</h1>
+			<h1>Edit Profile</h1>
 			<label htmlFor="username" className="form-group">
-				Username:
+				New Username:
 				<input
 					aria-label="username"
 					type="text"
@@ -101,7 +98,7 @@ const SignUp = () => {
 				)}
 			</label>
 			<label htmlFor="email" className="form-group">
-				Email:
+				New Email:
 				<input
 					aria-label="email"
 					type="email"
@@ -118,7 +115,7 @@ const SignUp = () => {
 				)}
 			</label>
 			<label htmlFor="password" className="form-group">
-				Password:
+				New Password:
 				<input
 					type="password"
 					id="password"
@@ -159,13 +156,13 @@ const SignUp = () => {
 				disabled={isSubmitting}
 				className="form-button sign-up"
 			>
-				Sign Up
+				Submit
 			</button>
 			<button
 				className="form-button sign-up"
 				onClick={(e) => {
 					e.preventDefault();
-					navigate("/");
+					navigate(-1);
 				}}
 			>
 				Back
@@ -174,4 +171,4 @@ const SignUp = () => {
 	);
 };
 
-export default SignUp;
+export default EditProfile;
