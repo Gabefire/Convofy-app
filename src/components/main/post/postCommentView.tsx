@@ -1,5 +1,5 @@
 import { useReducer, useRef, useState } from "react";
-import { postsReducer } from "./reducers/postsReducer";
+import { POST_ACTION, postsReducer } from "./reducers/postsReducer";
 import Post from "./post";
 import { PostsDispatchContext } from "../feed/context/postReducerContext";
 import type { postType } from "./types/post";
@@ -7,6 +7,7 @@ import useClickOutside from "../header/hooks/useClickOutside";
 import type { commentType } from "../comment/types/comment";
 import CommentForm from "../comment/commentForm";
 import CommentFeed from "../comment/commentFeed";
+import { useNavigate } from "react-router-dom";
 
 interface PostCommentViewType {
 	post: postType;
@@ -16,13 +17,25 @@ export default function PostCommentView({ post }: PostCommentViewType) {
 	const [posts, dispatch] = useReducer(postsReducer, [post]);
 	const [showCommentTextArea, setShowCommentTextArea] = useState(false);
 	const addCommentTextAreaRef = useRef<HTMLDivElement>(null);
+	const navigator = useNavigate();
+
+	if (posts.length === 0) {
+		navigator(-1);
+	}
 
 	// comment box
 	useClickOutside(addCommentTextAreaRef, () => {
 		setShowCommentTextArea(false);
 	});
 
-	const addComment = (parentComment: commentType, newComment: commentType) => {
+	const addComment = (
+		parentComment: commentType | null,
+		newComment: commentType,
+	) => {
+		dispatch({
+			type: POST_ACTION.ADD_COMMENT,
+			payload: { post: post, uid: "2" },
+		});
 		console.log(parentComment, newComment);
 	};
 

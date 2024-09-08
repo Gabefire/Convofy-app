@@ -5,7 +5,10 @@ import type { commentType } from "./types/comment";
 interface CommentFormType {
 	parentComment: commentType | null;
 	toggleView: () => void;
-	addComment: (parentComment: commentType, newComment: commentType) => void;
+	addComment: (
+		parentComment: commentType | null,
+		newComment: commentType,
+	) => void;
 }
 
 export default function CommentForm({
@@ -40,9 +43,8 @@ export default function CommentForm({
 				root: !parentComment,
 			};
 			console.log(comment);
-			if (parentComment) {
-				addComment(parentComment, comment);
-			}
+			addComment(parentComment, comment);
+
 			toggleView();
 		} else {
 			textAreaRef.current?.focus();

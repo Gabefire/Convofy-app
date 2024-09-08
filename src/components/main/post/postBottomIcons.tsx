@@ -10,6 +10,7 @@ import { truncateNumber } from "../../../utli/truncate";
 import { EditDelete, EditDeleteEnum } from "../shared/editDelete";
 import { ThemeContext } from "../../../global-contexts/themeContext";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 interface postBottomIconsProps {
 	post: postType;
@@ -98,8 +99,8 @@ export default function PostBottomIcons({
 					/>
 				</button>
 			</div>
-			<button
-				type="button"
+			<Link
+				to={`/r/${post.forumData.title}/${post.id}`}
 				className="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
 			>
 				<Comment
@@ -107,7 +108,7 @@ export default function PostBottomIcons({
 					className="size-3 md:size-4"
 				/>
 				<div>{truncateNumber(post.comments)}</div>
-			</button>
+			</Link>
 			<EditDelete
 				deleteObj={deletePost}
 				editObj={toggleEditPost}

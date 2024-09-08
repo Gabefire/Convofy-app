@@ -13,7 +13,7 @@ export default function PostHandler() {
 		const getPost = () => {
 			const user = {
 				displayName: "gabe",
-				id: "1",
+				id: "2",
 				color: "#78858B",
 			};
 			const forumData: forumDataType = {

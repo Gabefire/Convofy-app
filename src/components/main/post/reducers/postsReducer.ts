@@ -8,6 +8,8 @@ export const POST_ACTION = {
 	DELETE_POST: "delete-post",
 	EDIT_POST: "edit-post",
 	RESTART: "restart",
+	ADD_COMMENT: "add_comment",
+	DELETE_COMMENT: "delete_comment",
 };
 
 export const postsInitialState = [] as postType[];
@@ -96,6 +98,32 @@ export function postsReducer(
 						...post,
 						title: action.payload.newTitle,
 						content: action.payload.newContent,
+					};
+				}
+				return post;
+			});
+		case POST_ACTION.ADD_COMMENT:
+			return posts.map((post) => {
+				if (
+					post.id === action.payload.post.id &&
+					post.owner.id === action.payload.uid
+				) {
+					return {
+						...post,
+						comments: post.comments + 1,
+					};
+				}
+				return post;
+			});
+		case POST_ACTION.DELETE_COMMENT:
+			return posts.map((post) => {
+				if (
+					post.id === action.payload.post.id &&
+					post.owner.id === action.payload.uid
+				) {
+					return {
+						...post,
+						comments: post.comments - 1,
 					};
 				}
 				return post;

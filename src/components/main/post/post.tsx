@@ -77,12 +77,14 @@ export default function Post({ showForumInfo, post }: postPropsType) {
 							</div>
 						)}
 					</div>
-					<div className="mt-3 mb-3 flex flex-col gap-2">
-						<h3 className="flex font-bold text-l">{post.title}</h3>
-						<div className="font-light line-clamp-6 text-base">
-							{post.content}
+					<Link to={`/r/${post.forumData.title}/${post.id}`}>
+						<div className="mt-3 mb-3 flex flex-col gap-2">
+							<h3 className="flex font-bold text-l">{post.title}</h3>
+							<div className="font-light line-clamp-6 text-base">
+								{post.content}
+							</div>
 						</div>
-					</div>
+					</Link>
 					<PostBottomIcons post={post} toggleEditPost={toggleEditPost} />
 				</>
 			)}
