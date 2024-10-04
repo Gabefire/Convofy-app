@@ -13,6 +13,8 @@ import PostHandler from "./components/main/post/postHandler.tsx";
 import Login from "./components/auth/login.tsx";
 import AuthRoot from "./components/auth/authRoot.tsx";
 import SignUp from "./components/auth/signUp.tsx";
+import AuthProvider from "./global-contexts/authProvider.tsx";
+import EditProfile from "./components/auth/editProfile.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -44,14 +46,17 @@ const router = createBrowserRouter([
 		children: [
 			{ path: "login", element: <Login /> },
 			{ path: "sign-up", element: <SignUp /> },
+			{ path: "edit-profile", element: <EditProfile /> },
 		],
 	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<StrictMode>
-		<ThemeProvider>
-			<RouterProvider router={router} />
-		</ThemeProvider>
+		<AuthProvider>
+			<ThemeProvider>
+				<RouterProvider router={router} />
+			</ThemeProvider>
+		</AuthProvider>
 	</StrictMode>,
 );

@@ -16,11 +16,6 @@ export type loginUserDtoType = {
 	id: string;
 };
 
-export type user = {
-	userName: string;
-	email: string;
-};
-
 export type loginErrorType = {
 	userName?: string;
 	password?: string;

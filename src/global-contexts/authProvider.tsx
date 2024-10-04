@@ -24,7 +24,7 @@ export const AuthContext: React.Context<authContextType> = createContext({
 	},
 });
 
-function AuthProvider({ children }: { children: ReactElement }) {
+export default function AuthProvider({ children }: { children: ReactElement }) {
 	const [token, setToken_] = useState(localStorage.getItem("auth"));
 	const [userName, setUserName_] = useState(localStorage.getItem("userName"));
 	const [userId, setUserId_] = useState(localStorage.getItem("userId"));
@@ -84,5 +84,3 @@ function AuthProvider({ children }: { children: ReactElement }) {
 		<AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
 	);
 }
-
-export default AuthProvider;

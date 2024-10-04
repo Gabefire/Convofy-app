@@ -133,7 +133,7 @@ export default function Header() {
 								)}
 							</button>
 						</div>
-						<Link to="/login">
+						<Link to="/auth/login">
 							<button
 								type="button"
 								className="cursor-pointer flex items-center gap-1  border border-red-600 rounded-2xl pl-2 pr-2 bg-red-600 leading-normal text-white text-center sm:text-lg text-base"

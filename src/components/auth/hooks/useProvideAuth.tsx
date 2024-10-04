@@ -14,7 +14,7 @@ export const useProvideAuth = () => {
 
 	const login = async (
 		loginUser: loginUserType,
-	): Promise<void | loginErrorType[]> => {
+	): Promise<undefined | loginErrorType[]> => {
 		try {
 			const userDto = (
 				await axios.post<loginUserDtoType>("/api/User/login", loginUser)
@@ -22,12 +22,12 @@ export const useProvideAuth = () => {
 			setToken(userDto.token);
 			setUserName(userDto.userName);
 			setUserId(userDto.id);
-			axios.defaults.headers.common["Authorization"] =
-				"Bearer " + userDto.token;
+			axios.defaults.headers.common.Authorization = `Bearer ${userDto.token}`;
 		} catch (err) {
 			if (typeof err === "string") {
 				return [{ root: err }];
-			} else if (axios.isAxiosError(err)) {
+			}
+			if (axios.isAxiosError(err)) {
 				return [{ root: err.response?.data }];
 			}
 		}
@@ -35,7 +35,7 @@ export const useProvideAuth = () => {
 
 	const signUp = async (
 		signUpUser: signUpUserType,
-	): Promise<void | signUpErrorType[]> => {
+	): Promise<undefined | signUpErrorType[]> => {
 		try {
 			await axios.post("/api/User/register", signUpUser);
 			const loginErrors = await login({
@@ -48,19 +48,19 @@ export const useProvideAuth = () => {
 		} catch (err) {
 			if (typeof err === "string") {
 				return [{ root: err }];
-			} else if (axios.isAxiosError(err)) {
-				if (err.response?.status == 409) {
+			}
+			if (axios.isAxiosError(err)) {
+				if (err.response?.status === 409) {
 					return [{ root: err.response?.data }];
-				} else {
-					return [{ root: "Bad Connection" }];
 				}
+				return [{ root: "Bad Connection" }];
 			}
 		}
 	};
 
 	const editProfile = async (
 		signUpUser: signUpUserType,
-	): Promise<void | signUpErrorType[]> => {
+	): Promise<undefined | signUpErrorType[]> => {
 		try {
 			await axios.put("/api/User/edit", signUpUser);
 			const loginErrors = await login({
@@ -73,12 +73,12 @@ export const useProvideAuth = () => {
 		} catch (err) {
 			if (typeof err === "string") {
 				return [{ root: err }];
-			} else if (axios.isAxiosError(err)) {
-				if (err.response?.status == 409) {
+			}
+			if (axios.isAxiosError(err)) {
+				if (err.response?.status === 409) {
 					return [{ root: err.response?.data }];
-				} else {
-					return [{ root: "Bad Connection" }];
 				}
+				return [{ root: "Bad Connection" }];
 			}
 		}
 	};

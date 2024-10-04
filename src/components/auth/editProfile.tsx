@@ -1,11 +1,11 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import type { loginErrorType, signUpErrorType } from "./types/auth";
 import useProvideAuth from "./hooks/useProvideAuth";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthUtilContext } from "./authRoot";
+import { validateResults } from "./util/authUtil";
 
 const signUpFormSchema = z
 	.object({
@@ -25,7 +25,7 @@ const signUpFormSchema = z
 
 export type signUpFormSchemaType = z.infer<typeof signUpFormSchema>;
 
-const EditProfile = () => {
+export default function EditProfile() {
 	const {
 		register,
 		handleSubmit,
@@ -39,35 +39,12 @@ const EditProfile = () => {
 	const { editProfile } = useProvideAuth();
 	const { setLoadingLogin } = useContext(AuthUtilContext);
 
-	const validateResults = (results: signUpErrorType[] | loginErrorType[]) => {
-		results.forEach((obj) => {
-			const key = Object.keys(obj)[0];
-			const value = Object.values(obj)[0];
-			if (key === "userName") {
-				setError("userName", { type: "manual", message: `${value}` });
-			} else if (key === "password") {
-				setError("password", { type: "manual", message: `${value}` });
-			} else if (key == "email") {
-				setError("email", { type: "manual", message: `${value}` });
-			} else if (key === "root") {
-				setError("root.serverError", { type: "404", message: `${value}` });
-			} else if (key === "passwordConfirmation") {
-				setError("passwordConfirmation", {
-					type: "manual",
-					message: `${value}`,
-				});
-			} else if (key === "email") {
-				setError("email", { type: "manual", message: `${value}` });
-			}
-		});
-	};
-
 	const onSubmit: SubmitHandler<signUpFormSchemaType> = async (user) => {
 		try {
 			if (setLoadingLogin) setLoadingLogin(true);
 			const signUpResults = await editProfile(user);
-			if (signUpResults instanceof Array && signUpResults.length > 0) {
-				validateResults(signUpResults);
+			if (Array.isArray(signUpResults) && signUpResults.length > 0) {
+				validateResults(signUpResults, setError);
 			}
 			navigate(-1);
 		} catch (error) {
@@ -78,88 +55,92 @@ const EditProfile = () => {
 	};
 
 	return (
-		<form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
-			<h1>Edit Profile</h1>
-			<label htmlFor="username" className="form-group">
+		<form
+			className="flex flex-col flex-1 dark:bg-neutral-700 bg-white self-center dark:border-none border-neutral-400 border p-4 w-80  dark:text-white absolute top-1/3 gap-5"
+			onSubmit={handleSubmit(onSubmit)}
+		>
+			<h1 className="self-center font-medium">Edit Profile</h1>
+			<label htmlFor="username" className="flex flex-col gap-1">
 				New Username:
 				<input
 					aria-label="username"
 					type="text"
 					id="username"
 					placeholder="Enter Username"
-					className="form-input"
+					className="bg-inherit focus:outline-none focus:ring-0 min-w-full text-base h-7 dark:border-gray-200 border-gray-400 border p-1"
 					{...register("userName")}
 				/>
-				<span className="required-span"></span>
+				<span aria-live="polite" />
 				{errors.userName && (
-					<span className="field-error" aria-live="polite">
+					<span className="text-red-700" aria-live="polite">
 						{errors.userName?.message}
 					</span>
 				)}
 			</label>
-			<label htmlFor="email" className="form-group">
+			<label htmlFor="email" className="flex flex-col gap-1">
 				New Email:
 				<input
 					aria-label="email"
 					type="email"
 					id="email"
 					placeholder="Enter Email"
-					className="form-input"
+					className="bg-inherit focus:outline-none focus:ring-0 min-w-full text-base h-7 dark:border-gray-200 border-gray-400 border p-1"
 					{...register("email")}
 				/>
-				<span className="required-span"></span>
+				<span aria-live="polite" />
 				{errors.email !== undefined && (
-					<span className="field-error" aria-live="polite">
+					<span className="text-red-700" aria-live="polite">
 						{errors.email?.message}
 					</span>
 				)}
 			</label>
-			<label htmlFor="password" className="form-group">
+			<label htmlFor="password" className="flex flex-col gap-1">
 				New Password:
 				<input
 					type="password"
 					id="password"
 					placeholder="Enter Password"
-					className="form-input"
+					className="bg-inherit focus:outline-none focus:ring-0 min-w-full text-base h-7 dark:border-gray-200 border-gray-400 border p-1"
 					autoComplete="new-password"
 					{...register("password")}
 				/>
-				<span className="required-span"></span>
+				<span aria-live="polite" />
 				{errors.password && (
-					<span className="field-error" aria-live="polite">
+					<span className="text-red-700" aria-live="polite">
 						{errors.password?.message}
 					</span>
 				)}
 			</label>
-			<label htmlFor="password-confirmation" className="form-group">
+			<label htmlFor="password-confirmation" className="flex flex-col gap-1">
 				Confirm Password:
 				<input
 					type="password"
 					id="password-confirmation"
 					placeholder="Confirm Password"
-					className="form-input"
+					className="bg-inherit focus:outline-none focus:ring-0 min-w-full text-base h-7 dark:border-gray-200 border-gray-400 border p-1"
 					autoComplete="new-password"
 					{...register("passwordConfirmation")}
 				/>
-				<span className="required-span"></span>
+				<span aria-live="polite" />
 				{errors.passwordConfirmation && (
-					<span className="field-error" aria-live="polite">
+					<span className="text-red-700" aria-live="polite">
 						{errors.passwordConfirmation?.message}
 					</span>
 				)}
 			</label>
 			{errors.root && (
-				<div className="errors">{errors.root?.serverError.message}</div>
+				<div className="text-red-700">{errors.root?.serverError.message}</div>
 			)}
 			<button
 				type="submit"
 				disabled={isSubmitting}
-				className="form-button sign-up"
+				className="h-6 dark:text-white dark:border-white dark:border pb-6 pt-0 bg-neutral-300 dark:bg-inherit text-black"
 			>
 				Submit
 			</button>
 			<button
-				className="form-button sign-up"
+				type="button"
+				className="h-6 dark:text-white dark:border-white dark:border pb-6 pt-0 bg-neutral-300 dark:bg-inherit text-black"
 				onClick={(e) => {
 					e.preventDefault();
 					navigate(-1);
@@ -169,6 +150,4 @@ const EditProfile = () => {
 			</button>
 		</form>
 	);
-};
-
-export default EditProfile;
+}
