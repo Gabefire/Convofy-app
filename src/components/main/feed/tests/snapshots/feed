@@ -6,22 +6,7 @@
         class="flex flex-col justify-center gap-3 dark:text-white text-black m-3"
       >
         <div
-          class="flex flex-col
-								flex-1
-								dark:bg-neutral-700 
-								bg-white self-center
-								dark:border-none
-								border-neutral-400
-								border
-								pl-5
-								pr-5
-								pb-3
-								pt-3
-								max-w-2xl
-								w-screen
-								md:w-11/12
-								rounded-xl
-								"
+          class="flex flex-col flex-1 dark:bg-neutral-700 bg-white self-center dark:border-none border-neutral-400 border pl-5 pr-5 pb-3 pt-3 max-w-2xl w-screen md:w-11/12 rounded-xl"
           id="message-1"
         >
           <div
@@ -31,7 +16,7 @@
               class="flex gap-6"
             >
               <a
-                href="/test1"
+                href="/r/test1"
               >
                 <div
                   class="flex gap-1"
@@ -56,20 +41,24 @@
               </div>
             </div>
           </div>
-          <div
-            class="mt-3 mb-3 flex flex-col gap-2"
+          <a
+            href="/r/test1/1"
           >
-            <h3
-              class="flex font-bold text-l"
-            >
-              test
-            </h3>
             <div
-              class="font-light line-clamp-6 text-base"
+              class="mt-3 mb-3 flex flex-col gap-2"
             >
-              test
+              <h3
+                class="flex font-bold text-l"
+              >
+                test
+              </h3>
+              <div
+                class="font-light line-clamp-6 text-base"
+              >
+                test
+              </div>
             </div>
-          </div>
+          </a>
           <div
             class="flex gap-5 text-xs md:text-sm"
           >
@@ -116,9 +105,9 @@
                 </svg>
               </button>
             </div>
-            <button
+            <a
               class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
-              type="button"
+              href="/r/test1/1"
             >
               <svg
                 class="size-3 md:size-4"
@@ -133,7 +122,7 @@
               <div>
                 0
               </div>
-            </button>
+            </a>
             <div
               class="flex gap-4 items-center justify-center rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
             >
@@ -173,22 +162,7 @@
           </div>
         </div>
         <div
-          class="flex flex-col
-								flex-1
-								dark:bg-neutral-700 
-								bg-white self-center
-								dark:border-none
-								border-neutral-400
-								border
-								pl-5
-								pr-5
-								pb-3
-								pt-3
-								max-w-2xl
-								w-screen
-								md:w-11/12
-								rounded-xl
-								"
+          class="flex flex-col flex-1 dark:bg-neutral-700 bg-white self-center dark:border-none border-neutral-400 border pl-5 pr-5 pb-3 pt-3 max-w-2xl w-screen md:w-11/12 rounded-xl"
           id="message-2"
         >
           <div
@@ -198,7 +172,7 @@
               class="flex gap-6"
             >
               <a
-                href="/test2"
+                href="/r/test2"
               >
                 <div
                   class="flex gap-1"
@@ -223,20 +197,24 @@
               </div>
             </div>
           </div>
-          <div
-            class="mt-3 mb-3 flex flex-col gap-2"
+          <a
+            href="/r/test2/2"
           >
-            <h3
-              class="flex font-bold text-l"
-            >
-              test
-            </h3>
             <div
-              class="font-light line-clamp-6 text-base"
+              class="mt-3 mb-3 flex flex-col gap-2"
             >
-              test
+              <h3
+                class="flex font-bold text-l"
+              >
+                test
+              </h3>
+              <div
+                class="font-light line-clamp-6 text-base"
+              >
+                test
+              </div>
             </div>
-          </div>
+          </a>
           <div
             class="flex gap-5 text-xs md:text-sm"
           >
@@ -283,9 +261,9 @@
                 </svg>
               </button>
             </div>
-            <button
+            <a
               class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
-              type="button"
+              href="/r/test2/2"
             >
               <svg
                 class="size-3 md:size-4"
@@ -300,26 +278,11 @@
               <div>
                 0
               </div>
-            </button>
+            </a>
           </div>
         </div>
         <div
-          class="flex flex-col
-								flex-1
-								dark:bg-neutral-700 
-								bg-white self-center
-								dark:border-none
-								border-neutral-400
-								border
-								pl-5
-								pr-5
-								pb-3
-								pt-3
-								max-w-2xl
-								w-screen
-								md:w-11/12
-								rounded-xl
-								"
+          class="flex flex-col flex-1 dark:bg-neutral-700 bg-white self-center dark:border-none border-neutral-400 border pl-5 pr-5 pb-3 pt-3 max-w-2xl w-screen md:w-11/12 rounded-xl"
           id="message-3"
         >
           <div
@@ -329,7 +292,7 @@
               class="flex gap-6"
             >
               <a
-                href="/test1"
+                href="/r/test1"
               >
                 <div
                   class="flex gap-1"
@@ -353,20 +316,24 @@
               </div>
             </div>
           </div>
-          <div
-            class="mt-3 mb-3 flex flex-col gap-2"
+          <a
+            href="/r/test1/3"
           >
-            <h3
-              class="flex font-bold text-l"
-            >
-              test
-            </h3>
             <div
-              class="font-light line-clamp-6 text-base"
+              class="mt-3 mb-3 flex flex-col gap-2"
             >
-              test
+              <h3
+                class="flex font-bold text-l"
+              >
+                test
+              </h3>
+              <div
+                class="font-light line-clamp-6 text-base"
+              >
+                test
+              </div>
             </div>
-          </div>
+          </a>
           <div
             class="flex gap-5 text-xs md:text-sm"
           >
@@ -413,9 +380,9 @@
                 </svg>
               </button>
             </div>
-            <button
+            <a
               class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
-              type="button"
+              href="/r/test1/3"
             >
               <svg
                 class="size-3 md:size-4"
@@ -430,7 +397,7 @@
               <div>
                 0
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -441,22 +408,7 @@
       class="flex flex-col justify-center gap-3 dark:text-white text-black m-3"
     >
       <div
-        class="flex flex-col
-								flex-1
-								dark:bg-neutral-700 
-								bg-white self-center
-								dark:border-none
-								border-neutral-400
-								border
-								pl-5
-								pr-5
-								pb-3
-								pt-3
-								max-w-2xl
-								w-screen
-								md:w-11/12
-								rounded-xl
-								"
+        class="flex flex-col flex-1 dark:bg-neutral-700 bg-white self-center dark:border-none border-neutral-400 border pl-5 pr-5 pb-3 pt-3 max-w-2xl w-screen md:w-11/12 rounded-xl"
         id="message-1"
       >
         <div
@@ -466,7 +418,7 @@
             class="flex gap-6"
           >
             <a
-              href="/test1"
+              href="/r/test1"
             >
               <div
                 class="flex gap-1"
@@ -491,20 +443,24 @@
             </div>
           </div>
         </div>
-        <div
-          class="mt-3 mb-3 flex flex-col gap-2"
+        <a
+          href="/r/test1/1"
         >
-          <h3
-            class="flex font-bold text-l"
-          >
-            test
-          </h3>
           <div
-            class="font-light line-clamp-6 text-base"
+            class="mt-3 mb-3 flex flex-col gap-2"
           >
-            test
+            <h3
+              class="flex font-bold text-l"
+            >
+              test
+            </h3>
+            <div
+              class="font-light line-clamp-6 text-base"
+            >
+              test
+            </div>
           </div>
-        </div>
+        </a>
         <div
           class="flex gap-5 text-xs md:text-sm"
         >
@@ -551,9 +507,9 @@
               </svg>
             </button>
           </div>
-          <button
+          <a
             class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
-            type="button"
+            href="/r/test1/1"
           >
             <svg
               class="size-3 md:size-4"
@@ -568,7 +524,7 @@
             <div>
               0
             </div>
-          </button>
+          </a>
           <div
             class="flex gap-4 items-center justify-center rounded-2xl pt-1 pb-1 pl-1 pr-1 w-18 min-w-18 md:pl-2 md:pr-2 h-7 min-h-7 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
           >
@@ -608,22 +564,7 @@
         </div>
       </div>
       <div
-        class="flex flex-col
-								flex-1
-								dark:bg-neutral-700 
-								bg-white self-center
-								dark:border-none
-								border-neutral-400
-								border
-								pl-5
-								pr-5
-								pb-3
-								pt-3
-								max-w-2xl
-								w-screen
-								md:w-11/12
-								rounded-xl
-								"
+        class="flex flex-col flex-1 dark:bg-neutral-700 bg-white self-center dark:border-none border-neutral-400 border pl-5 pr-5 pb-3 pt-3 max-w-2xl w-screen md:w-11/12 rounded-xl"
         id="message-2"
       >
         <div
@@ -633,7 +574,7 @@
             class="flex gap-6"
           >
             <a
-              href="/test2"
+              href="/r/test2"
             >
               <div
                 class="flex gap-1"
@@ -658,20 +599,24 @@
             </div>
           </div>
         </div>
-        <div
-          class="mt-3 mb-3 flex flex-col gap-2"
+        <a
+          href="/r/test2/2"
         >
-          <h3
-            class="flex font-bold text-l"
-          >
-            test
-          </h3>
           <div
-            class="font-light line-clamp-6 text-base"
+            class="mt-3 mb-3 flex flex-col gap-2"
           >
-            test
+            <h3
+              class="flex font-bold text-l"
+            >
+              test
+            </h3>
+            <div
+              class="font-light line-clamp-6 text-base"
+            >
+              test
+            </div>
           </div>
-        </div>
+        </a>
         <div
           class="flex gap-5 text-xs md:text-sm"
         >
@@ -718,9 +663,9 @@
               </svg>
             </button>
           </div>
-          <button
+          <a
             class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
-            type="button"
+            href="/r/test2/2"
           >
             <svg
               class="size-3 md:size-4"
@@ -735,26 +680,11 @@
             <div>
               0
             </div>
-          </button>
+          </a>
         </div>
       </div>
       <div
-        class="flex flex-col
-								flex-1
-								dark:bg-neutral-700 
-								bg-white self-center
-								dark:border-none
-								border-neutral-400
-								border
-								pl-5
-								pr-5
-								pb-3
-								pt-3
-								max-w-2xl
-								w-screen
-								md:w-11/12
-								rounded-xl
-								"
+        class="flex flex-col flex-1 dark:bg-neutral-700 bg-white self-center dark:border-none border-neutral-400 border pl-5 pr-5 pb-3 pt-3 max-w-2xl w-screen md:w-11/12 rounded-xl"
         id="message-3"
       >
         <div
@@ -764,7 +694,7 @@
             class="flex gap-6"
           >
             <a
-              href="/test1"
+              href="/r/test1"
             >
               <div
                 class="flex gap-1"
@@ -788,20 +718,24 @@
             </div>
           </div>
         </div>
-        <div
-          class="mt-3 mb-3 flex flex-col gap-2"
+        <a
+          href="/r/test1/3"
         >
-          <h3
-            class="flex font-bold text-l"
-          >
-            test
-          </h3>
           <div
-            class="font-light line-clamp-6 text-base"
+            class="mt-3 mb-3 flex flex-col gap-2"
           >
-            test
+            <h3
+              class="flex font-bold text-l"
+            >
+              test
+            </h3>
+            <div
+              class="font-light line-clamp-6 text-base"
+            >
+              test
+            </div>
           </div>
-        </div>
+        </a>
         <div
           class="flex gap-5 text-xs md:text-sm"
         >
@@ -848,9 +782,9 @@
               </svg>
             </button>
           </div>
-          <button
+          <a
             class="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
-            type="button"
+            href="/r/test1/3"
           >
             <svg
               class="size-3 md:size-4"
@@ -865,7 +799,7 @@
             <div>
               0
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>

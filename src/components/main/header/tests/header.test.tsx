@@ -13,7 +13,7 @@ describe("header component", () => {
 			<MemoryRouter initialEntries={["/r/icon"]}>
 				<Routes>
 					<Route path="/r/:id" Component={() => <Header />} />
-					<Route path="/login" Component={() => <h1>test123</h1>} />
+					<Route path="/auth/login" Component={() => <h1>test123</h1>} />
 				</Routes>
 			</MemoryRouter>,
 		);
@@ -28,7 +28,7 @@ describe("header component", () => {
 			<MemoryRouter initialEntries={["/r/icon"]}>
 				<Routes>
 					<Route path="/r/:id" Component={() => <Header />} />
-					<Route path="/r" Component={() => <h1>test123</h1>} />
+					<Route path="/" Component={() => <h1>test123</h1>} />
 				</Routes>
 			</MemoryRouter>,
 		);
