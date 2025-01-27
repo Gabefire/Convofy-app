@@ -10,7 +10,8 @@ import type {
 import axios from "axios";
 
 export const useProvideAuth = () => {
-	const { setToken, setUserName, setUserId } = useContext(AuthContext);
+	const { setToken, setUser } = useContext(AuthContext);
+	axios.defaults.baseURL = import.meta.env.VITE_API_AUTH_URL;
 
 	const login = async (
 		loginUser: loginUserType,
@@ -20,8 +21,12 @@ export const useProvideAuth = () => {
 				await axios.post<loginUserDtoType>("/api/User/login", loginUser)
 			).data;
 			setToken(userDto.token);
-			setUserName(userDto.userName);
-			setUserId(userDto.id);
+			setUser({
+				displayName: userDto.userName,
+				id: userDto.id,
+				color: userDto.color ?? "#000000",
+				profilePicLink: userDto.profilePicLink ?? undefined,
+			});
 			axios.defaults.headers.common.Authorization = `Bearer ${userDto.token}`;
 		} catch (err) {
 			if (typeof err === "string") {
@@ -85,7 +90,7 @@ export const useProvideAuth = () => {
 
 	const logout = () => {
 		setToken(null);
-		setUserName(null);
+		setUser(null);
 	};
 
 	return {

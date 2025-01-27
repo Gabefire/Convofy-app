@@ -9,10 +9,14 @@ import { ThemeContext } from "../../../global-contexts/themeContext";
 import SearchBox from "./search";
 import useClickOutside from "./hooks/useClickOutside";
 import { MobileSearch } from "./mobileSearch";
+import { AuthContext } from "../../../global-contexts/authProvider";
+import useProvideAuth from "../../auth/hooks/useProvideAuth";
 
 export default function Header() {
 	const navigate = useNavigate();
 	const { enabled, toggleDarkMode } = useContext(ThemeContext);
+	const { user } = useContext(AuthContext);
+	const { logout } = useProvideAuth();
 	const searchBarRef = useRef<HTMLInputElement>(null);
 	const searchBoxRef = useRef<HTMLDivElement>(null);
 	const [displaySearchBox, setDisplaySearchBox] = useState(false);
@@ -133,14 +137,24 @@ export default function Header() {
 								)}
 							</button>
 						</div>
-						<Link to="/auth/login">
+						{user ? (
 							<button
 								type="button"
 								className="cursor-pointer flex items-center gap-1  border border-red-600 rounded-2xl pl-2 pr-2 bg-red-600 leading-normal text-white text-center sm:text-lg text-base"
+								onClick={logout}
 							>
-								Login
+								Logout
 							</button>
-						</Link>
+						) : (
+							<Link to="/auth/login">
+								<button
+									type="button"
+									className="cursor-pointer flex items-center gap-1  border border-red-600 rounded-2xl pl-2 pr-2 bg-red-600 leading-normal text-white text-center sm:text-lg text-base"
+								>
+									Login
+								</button>
+							</Link>
+						)}
 					</div>
 				</>
 			)}

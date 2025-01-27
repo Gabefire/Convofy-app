@@ -8,37 +8,31 @@ import {
 	useState,
 } from "react";
 import type { authContextType } from "../components/auth/types/auth";
+import type { user } from "../components/auth/types/user";
 
 export const AuthContext: React.Context<authContextType> = createContext({
-	userName: null as string | null,
-	setUserName: (userName: string | null): void => {
-		userName;
-	},
 	token: null as string | null,
 	setToken: (token: string | null): void => {
 		token;
 	},
-	userId: null as string | null,
-	setUserId: (userId: string | null): void => {
-		userId;
+	user: null as user | null,
+	setUser: (user: user | null): void => {
+		user;
 	},
 });
 
 export default function AuthProvider({ children }: { children: ReactElement }) {
 	const [token, setToken_] = useState(localStorage.getItem("auth"));
-	const [userName, setUserName_] = useState(localStorage.getItem("userName"));
-	const [userId, setUserId_] = useState(localStorage.getItem("userId"));
+	const [user, setUser_] = useState<user | null>(
+		JSON.parse(localStorage.getItem("user") ?? "null"),
+	);
 
 	const setToken = (newToken: string | null) => {
 		setToken_(newToken);
 	};
 
-	const setUserName = (userName: string | null) => {
-		setUserName_(userName);
-	};
-
-	const setUserId = (userId: string | null) => {
-		setUserId_(userId);
+	const setUser = (user: user | null) => {
+		setUser_(user);
 	};
 
 	useEffect(() => {
@@ -52,32 +46,22 @@ export default function AuthProvider({ children }: { children: ReactElement }) {
 	}, [token]);
 
 	useEffect(() => {
-		if (userName) {
-			localStorage.setItem("userName", userName);
+		if (user) {
+			localStorage.setItem("user", JSON.stringify(user));
 		} else {
-			localStorage.removeItem("userName");
+			localStorage.removeItem("user");
 		}
-	}, [userName]);
-
-	useEffect(() => {
-		if (userId) {
-			localStorage.setItem("userId", userId);
-		} else {
-			localStorage.removeItem("userId");
-		}
-	});
+	}, [user]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: This will run each render
 	const contextValue = useMemo(
 		() => ({
-			userName,
-			setUserName,
+			user,
+			setUser,
 			token,
 			setToken,
-			userId,
-			setUserId,
 		}),
-		[token, userName, userId],
+		[token, user],
 	);
 
 	return (

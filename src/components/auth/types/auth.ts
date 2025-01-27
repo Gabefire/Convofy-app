@@ -1,3 +1,5 @@
+import type { user } from "./user";
+
 export type signUpUserType = {
 	userName: string;
 	password: string;
@@ -14,6 +16,8 @@ export type loginUserDtoType = {
 	userName: string;
 	token: string;
 	id: string;
+	profilePicLink: string | null;
+	color: string;
 };
 
 export type loginErrorType = {
@@ -31,12 +35,10 @@ export type signUpErrorType = {
 };
 
 export type authContextType = {
-	userName: string | null;
-	setUserName: (userName: string | null) => void;
+	user: user | null;
+	setUser: (user: user | null) => void;
 	token: string | null;
 	setToken: (token: string | null) => void;
-	userId: string | null;
-	setUserId: (userId: string | null) => void;
 };
 
 export type authUtilContextType = {
