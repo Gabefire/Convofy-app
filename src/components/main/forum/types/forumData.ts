@@ -3,7 +3,7 @@ import type { user } from "../../../auth/types/user";
 export type forumDataType = {
 	color: string;
 	description: string;
-	file?: string | undefined;
+	fileLink?: string | undefined;
 	title: string;
 	following: boolean;
 	owner: user;

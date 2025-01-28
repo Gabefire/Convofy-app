@@ -1,6 +1,6 @@
 export interface user {
-	displayName: string;
-	id: string;
-	profilePicLink?: string;
-	color: string;
+  displayName: string;
+  id: string;
+  fileLink?: string;
+  color: string;
 }

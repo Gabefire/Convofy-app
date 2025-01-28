@@ -99,7 +99,7 @@ export default function Forum() {
 				following: true,
 				title: param.id as string,
 				owner: leah,
-				file: "cool",
+				fileLink: "cool",
 			};
 			const posts: postType[] = [
 				{

@@ -25,10 +25,10 @@ export default function EditForum() {
 				following: true,
 				title: param.id as string,
 				owner: leah,
-				file: "https://picsum.photos/id/237/200/300",
+				fileLink: "https://picsum.photos/id/237/200/300",
 			};
-			const file = forumData.file
-				? await fetch(forumData.file)
+			const file = forumData.fileLink
+				? await fetch(forumData.fileLink)
 						.then((r) => r.blob())
 						.catch(() => null)
 				: null;

@@ -11,7 +11,7 @@ import axios from "axios";
 
 export const useProvideAuth = () => {
 	const { setToken, setUser } = useContext(AuthContext);
-	axios.defaults.baseURL = import.meta.env.VITE_API_AUTH_URL;
+	axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 	const login = async (
 		loginUser: loginUserType,
@@ -25,7 +25,7 @@ export const useProvideAuth = () => {
 				displayName: userDto.userName,
 				id: userDto.id,
 				color: userDto.color ?? "#000000",
-				profilePicLink: userDto.profilePicLink ?? undefined,
+				fileLink: userDto.fileLink ?? undefined,
 			});
 			axios.defaults.headers.common.Authorization = `Bearer ${userDto.token}`;
 		} catch (err) {

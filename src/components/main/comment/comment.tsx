@@ -47,9 +47,9 @@ export default function Comment({ commentData, indentLevel }: CommentType) {
 		// api call for icon
 		return (
 			<>
-				{obj.file ? (
+				{obj.fileLink ? (
 					<img
-						src={obj.file}
+						src={obj.fileLink}
 						alt={`${displayName} icon`}
 						className="h-6 w-6 rounded-2xl dark:border border-neutral-400 "
 					/>
