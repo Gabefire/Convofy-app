@@ -11,7 +11,7 @@ export type forumDataType = {
 
 export type forumFormData = {
 	title: string;
-	content: string;
+	description: string;
 	bannerColor: string;
 	file?: Blob;
 };

@@ -27,7 +27,7 @@ export type forumFormSchemaType = z.infer<typeof forumFormSchema>;
 
 interface ForumFormType {
 	componentTitle: string;
-	submitAction: (data: forumFormSchemaType) => void;
+	submitAction: (data: forumFormSchemaType) => Promise<void>;
 	defaultForum?: forumFormSchemaType;
 }
 

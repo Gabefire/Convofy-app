@@ -53,9 +53,9 @@ export default function ForumHeader({ forumData }: forumHeaderType) {
 			/>
 			<div className="flex pl-2 pr-2 items-center gap-2 dark:text-white justify-between flex-wrap">
 				<div className="flex items-center gap-2">
-					{headerForumData.file ? (
+					{headerForumData.fileLink ? (
 						<img
-							src={headerForumData.file}
+							src={headerForumData.fileLink}
 							className="text-center size-14 rounded-full
 								object-fill"
 							alt={`${headerForumData.title} icon`}
