@@ -11,14 +11,13 @@ import { EditDelete, EditDeleteEnum } from "../shared/editDelete";
 import { ThemeContext } from "../../../global-contexts/themeContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { AuthContext } from "../../../global-contexts/authProvider";
 
 interface postBottomIconsProps {
 	post: postType;
 	toggleEditPost: () => void;
 }
-
-// auth context for uid
-const uid = "2";
 
 export default function PostBottomIcons({
 	post,
@@ -26,7 +25,7 @@ export default function PostBottomIcons({
 }: postBottomIconsProps) {
 	const dispatch = usePostsDispatch();
 	const { enabled } = useContext(ThemeContext);
-
+	const { user } = useContext(AuthContext);
 	const activatedUp = () => {
 		if (post.liked) {
 			return "red";
@@ -41,30 +40,30 @@ export default function PostBottomIcons({
 		return enabled ? "white" : "black";
 	};
 
-	const upVote = (e: React.PointerEvent<HTMLButtonElement>) => {
+	const upVote = async (e: React.PointerEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		// api to up vote post
+		await axios.post(`/api/Post/${post.id}/up-vote`);
 		dispatch({
 			type: POST_ACTION.UP_VOTE,
-			payload: { post: post, uid: uid },
+			payload: { post: post, uid: user?.id ?? "" },
 		});
 	};
 
-	const downVote = (e: React.PointerEvent<HTMLButtonElement>) => {
+	const downVote = async (e: React.PointerEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		// api to down vote post
+		await axios.post(`/api/Post/${post.id}/down-vote`);
 		dispatch({
 			type: POST_ACTION.DOWN_VOTE,
-			payload: { post: post, uid: uid },
+			payload: { post: post, uid: user?.id ?? "" },
 		});
 	};
 
-	const deletePost = (e: React.PointerEvent<HTMLButtonElement>) => {
+	const deletePost = async (e: React.PointerEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		// api to delete post
+		await axios.delete(`/api/Post/${post.id}`);
 		dispatch({
 			type: POST_ACTION.DELETE_POST,
-			payload: { post: post, uid: uid },
+			payload: { post: post, uid: user?.id ?? "" },
 		});
 	};
 

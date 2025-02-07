@@ -10,7 +10,7 @@ const postFormSchema = z.object({
 export type postFormSchemaType = z.infer<typeof postFormSchema>;
 
 interface postFormType {
-	submitAction: (data: postFormSchemaType) => void;
+	submitAction: (data: postFormSchemaType) => Promise<void>;
 	togglePostForm: () => void;
 	defaultTitle?: string;
 	defaultContent?: string;
@@ -34,8 +34,7 @@ export default function PostForm({
 
 	const submitForm: SubmitHandler<postFormSchemaType> = async (data) => {
 		try {
-			const results = await submitAction(data);
-			console.log(results);
+			await submitAction(data);
 		} catch (error) {
 			console.error(error);
 		}
