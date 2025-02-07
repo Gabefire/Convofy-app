@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import type { forumDataType } from "./types/forumData";
 import { useState } from "react";
 import { EditDelete, EditDeleteEnum } from "../shared/editDelete";
-
+import axios from "axios";
 interface forumHeaderType {
 	forumData: forumDataType;
 }
@@ -12,12 +12,20 @@ export default function ForumHeader({ forumData }: forumHeaderType) {
 	const param = useParams();
 	const [headerForumData, setHeaderForumData] = useState(forumData);
 
-	const toggleJoinForum = () => {
-		// api call to join forum
-		setHeaderForumData((forumData) => ({
-			...headerForumData,
-			following: !forumData.following,
-		}));
+	const toggleJoinForum = async () => {
+		try {
+			setHeaderForumData((forumData) => ({
+				...headerForumData,
+				following: !forumData.following,
+			}));
+			if (headerForumData.following) {
+				await axios.delete(`/api/Forum/${param.id}/unfollow`);
+			} else {
+				await axios.post(`/api/Forum/${param.id}/follow`);
+			}
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	const joinButtonStyle = (
@@ -33,10 +41,15 @@ export default function ForumHeader({ forumData }: forumHeaderType) {
 		return;
 	};
 
-	const deleteForum = (e: React.PointerEvent<HTMLButtonElement>) => {
+	const deleteForum = async (e: React.PointerEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		// api to delete forum
-		navigate("/r");
+		try {
+			await axios.delete(`/api/Forum/${param.id}`);
+		} catch (error) {
+			console.error(error);
+		} finally {
+			navigate("/r");
+		}
 	};
 
 	const editForum = (e: React.PointerEvent<HTMLButtonElement>) => {

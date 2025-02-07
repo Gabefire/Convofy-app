@@ -100,7 +100,7 @@ export default function PostBottomIcons({
 				</button>
 			</div>
 			<Link
-				to={`/r/${post.forumData.title}/${post.id}`}
+				to={`/r/${post.forumData?.title}/${post.id}`}
 				className="cursor-pointer flex gap-2 items-center rounded-2xl pt-1 pb-1 pl-2 pr-2 dark:border-white dark:border bg-neutral-300 dark:bg-transparent"
 			>
 				<Comment

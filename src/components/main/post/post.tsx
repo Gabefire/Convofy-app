@@ -56,10 +56,10 @@ export default function Post({ showForumInfo, post }: postPropsType) {
 					<div className="flex dark:text-neutral-300 text-base items-center text-center text-neutral-500">
 						{showForumInfo ? (
 							<div className="flex gap-6">
-								<Link to={`/r/${post.forumData.title}`}>
+								<Link to={`/r/${post.forumData?.title}`}>
 									<div className="flex gap-1">
 										{generateIcon(post.forumData)}
-										<div className="self-center text-sm text-center">{`r/${post.forumData.title}`}</div>
+										<div className="self-center text-sm text-center">{`r/${post.forumData?.title}`}</div>
 									</div>
 								</Link>
 								<div className="text-sm self-center">{`Posted by u/${post.owner.displayName} • ${dateConverter(
@@ -77,7 +77,7 @@ export default function Post({ showForumInfo, post }: postPropsType) {
 							</div>
 						)}
 					</div>
-					<Link to={`/r/${post.forumData.title}/${post.id}`}>
+					<Link to={`/r/${post.forumData?.title}/${post.id}`}>
 						<div className="mt-3 mb-3 flex flex-col gap-2">
 							<h3 className="flex font-bold text-l">{post.title}</h3>
 							<div className="font-light line-clamp-6 text-base">
